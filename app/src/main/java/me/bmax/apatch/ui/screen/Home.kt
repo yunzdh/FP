@@ -381,13 +381,13 @@ private fun TopBar(
     var showDropdownMoreOptions by remember { mutableStateOf(false) }
     var showDropdownReboot by remember { mutableStateOf(false) }
     val prefs = APApplication.sharedPreferences
-    val currentTitle = prefs.getString("app_title", "foldpatch") ?: "foldpatch"
+    val currentTitle = prefs.getString("app_title", "folkpatch") ?: "folkpatch"
     val titleResId = when (currentTitle) {
         "fpatch" -> R.string.app_title_fpatch
-        "apatch_fold" -> R.string.app_title_apatch_fold
+        "apatch_folk" -> R.string.app_title_apatch_folk
         "apatchx" -> R.string.app_title_apatchx
         "apatch" -> R.string.app_title_apatch
-        else -> R.string.app_title_foldpatch
+        else -> R.string.app_title_folkpatch
     }
 
     TopAppBar(title = {

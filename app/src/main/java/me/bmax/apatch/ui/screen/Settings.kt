@@ -426,7 +426,7 @@ fun SettingScreen() {
             }, modifier = Modifier.clickable {
                 showAppTitleDialog.value = true
             }, supportingContent = {
-                val currentTitle = prefs.getString("app_title", "foldpatch")
+                val currentTitle = prefs.getString("app_title", "folkpatch")
                 Text(
                     text = stringResource(appTitleNameToString(currentTitle.toString())),
                     style = MaterialTheme.typography.bodyMedium,
@@ -906,9 +906,9 @@ private data class AppTitle(
 
 private fun appTitleList(): List<AppTitle> {
     return listOf(
-        AppTitle("foldpatch", R.string.app_title_foldpatch),
+        AppTitle("folkpatch", R.string.app_title_folkpatch),
         AppTitle("fpatch", R.string.app_title_fpatch),
-        AppTitle("apatch_fold", R.string.app_title_apatch_fold),
+        AppTitle("apatch_folk", R.string.app_title_apatch_folk),
         AppTitle("apatchx", R.string.app_title_apatchx),
         AppTitle("apatch", R.string.app_title_apatch),
     )
@@ -916,7 +916,7 @@ private fun appTitleList(): List<AppTitle> {
 
 @Composable
 private fun appTitleNameToString(titleName: String): Int {
-    return appTitleList().find { it.name == titleName }?.nameId ?: R.string.app_title_foldpatch
+    return appTitleList().find { it.name == titleName }?.nameId ?: R.string.app_title_folkpatch
 }
 
 

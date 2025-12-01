@@ -221,10 +221,10 @@
 
     <!-- App Title Strings -->
     <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_fold">APatch Fold</string>
+    <string name="app_title_apatch_folk">APatch Folk</string>
     <string name="app_title_apatchx">APatchX</string>
     <string name="app_title_apatch">APatch</string>
-    <string name="app_title_foldpatch">FoldPatch</string>
+    <string name="app_title_folkpatch">FolkPatch</string>
 
     <!-- Settings Strings -->
     <string name="settings_lite_mode">簡易模式</string>
