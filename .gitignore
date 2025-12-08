@@ -12,6 +12,10 @@ keystore.jks
 keystore.properties
 *.keystore
 *.jks
+
+# FolkPatch specific signing files
+app/folkpatch-release.jks
+keystore.properties
 .vscode
 .kotlin
 app/src/main/resources/
