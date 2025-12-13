@@ -201,7 +201,7 @@ class APApplication : Application(), Thread.UncaughtExceptionHandler, ImageLoade
         var superKey: String = ""
             set(value) {
                 field = value
-                val ready = Natives.nativeReady(value)
+                val ready = BuildConfig.DEBUG_FAKE_ROOT || Natives.nativeReady(value)
                 _kpStateLiveData.value =
                     if (ready) State.KERNELPATCH_INSTALLED else State.UNKNOWN_STATE
                 _apStateLiveData.value =
@@ -212,7 +212,7 @@ class APApplication : Application(), Thread.UncaughtExceptionHandler, ImageLoade
                 APatchKeyHelper.writeSPSuperKey(value)
 
                 thread {
-                    val rc = Natives.su(0, null)
+                    val rc = BuildConfig.DEBUG_FAKE_ROOT || Natives.su(0, null)
                     if (!rc) {
                         Log.e(TAG, "Native.su failed")
                         return@thread
@@ -244,7 +244,7 @@ class APApplication : Application(), Thread.UncaughtExceptionHandler, ImageLoade
                     val installedApdVInt = Version.installedApdVUInt()
                     Log.d(TAG, "manager version: $mgv, installed apd version: $installedApdVInt")
 
-                    if (Version.installedApdVInt > 0) {
+                    if (BuildConfig.DEBUG_FAKE_ROOT || Version.installedApdVInt > 0) {
                         _apStateLiveData.postValue(State.ANDROIDPATCH_INSTALLED)
                     }
                     Log.d(TAG, "ap state: " + _apStateLiveData.value)

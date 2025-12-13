@@ -29,6 +29,13 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
+// Load local properties
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
+}
+
 apksign {
     storeFileProperty = "KEYSTORE_FILE"
     storePasswordProperty = "KEYSTORE_PASSWORD"
@@ -90,6 +97,7 @@ android {
 
     defaultConfig {
         buildConfigField("String", "buildKPV", "\"$kernelPatchVersion\"")
+        buildConfigField("boolean", "DEBUG_FAKE_ROOT", localProperties.getProperty("debug.fake_root", "false"))
 
         base.archivesName = "FolkPatch_${managerVersionCode}_${managerVersionName}_on_${branchname}"
     }

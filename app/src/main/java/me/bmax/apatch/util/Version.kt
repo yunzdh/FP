@@ -32,6 +32,9 @@ object Version {
     }
 
     fun getKpImg(): String {
+        if (BuildConfig.DEBUG_FAKE_ROOT) {
+            return "2024-05-20 12:00:00"
+        }
         var shell: Shell = createRootShell()
         var kimgInfo = mutableStateOf(KPModel.KImgInfo("", false))
         var kpimgInfo = mutableStateOf(KPModel.KPImgInfo("", "", "", "", ""))
@@ -89,6 +92,9 @@ object Version {
     }
     
     fun installedKPTime(): String {
+        if (BuildConfig.DEBUG_FAKE_ROOT) {
+            return "2024-05-20 12:00:00"
+        }
         val time = Natives.kernelPatchBuildTime()
         return if (time.startsWith("ERROR_")) "读取失败" else time
     }
@@ -106,10 +112,16 @@ object Version {
      * installed KernelPatch version (installed kpimg)
      */
     fun installedKPVUInt(): UInt {
+        if (BuildConfig.DEBUG_FAKE_ROOT) {
+            return string2UInt("0.12.2")
+        }
         return Natives.kernelPatchVersion().toUInt()
     }
 
     fun installedKPVString(): String {
+        if (BuildConfig.DEBUG_FAKE_ROOT) {
+            return "0.12.2"
+        }
         return uInt2String(installedKPVUInt())
     }
 
