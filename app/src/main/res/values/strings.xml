@@ -307,6 +307,9 @@
     <string name="settings_custom_background_enabled">Custom Background Enabled</string>
     <string name="settings_custom_background_opacity">Card opacity</string>
     <string name="settings_custom_background_dim">Background dim</string>
+    <string name="settings_custom_background_dual_dim">Enable dual day/night dim</string>
+    <string name="settings_custom_background_day_dim">Day mode background dim</string>
+    <string name="settings_custom_background_night_dim">Night mode background dim</string>
     <string name="settings_multi_background_mode">Multi-Background Mode</string>
     <string name="settings_multi_background_mode_summary">Set different background images for different pages</string>
     <string name="settings_select_home_background">Home Page Background</string>
@@ -564,5 +567,8 @@
     <string name="home_info_mode_full">Full</string>
     <string name="home_info_mode_half">Half</string>
     <string name="home_zygisk_implement">Zygisk Implement</string>
+
+    <string name="settings_list_working_card_hide_mode">Hide Half/Full Card</string>
+    <string name="settings_list_working_card_hide_mode_summary">Hide the small card indicating working mode</string>
 
 </resources>

@@ -650,10 +650,12 @@ private fun KStatusCard(
                                     text = stringResource(R.string.home_working),
                                     style = MaterialTheme.typography.titleMedium
                                 )
-                                Spacer(Modifier.width(8.dp))
-                                StatusBadge(
-                                    text = if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) "Full" else "Half"
-                                )
+                                if (!BackgroundConfig.isListWorkingCardModeHidden) {
+                                    Spacer(Modifier.width(8.dp))
+                                    StatusBadge(
+                                        text = if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) "Full" else "Half"
+                                    )
+                                }
                             }
                         }
 
@@ -686,7 +688,7 @@ private fun KStatusCard(
                     if (kpState != APApplication.State.UNKNOWN_STATE && kpState != APApplication.State.KERNELPATCH_NEED_UPDATE && kpState != APApplication.State.KERNELPATCH_NEED_REBOOT) {
                         Spacer(Modifier.height(4.dp))
                         Text(
-                            text = "${Version.installedKPVString()} (${managerVersion.second}) - " + if (apState != APApplication.State.ANDROIDPATCH_NOT_INSTALLED) "Full" else "KernelPatch",
+                            text = "${Version.installedKPVString()} (${managerVersion.second})" + if (!BackgroundConfig.isListWorkingCardModeHidden) " - " + (if (apState != APApplication.State.ANDROIDPATCH_NOT_INSTALLED) "Full" else "KernelPatch") else "",
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }

@@ -333,6 +333,11 @@
     <string name="settings_grid_working_card_hide_text_summary">Sembunyikan teks "Bekerja" atau "Tidak terinstal" pada kartu kerja</string>
     <string name="settings_grid_working_card_hide_mode">Sembunyikan mode kerja</string>
     <string name="settings_grid_working_card_hide_mode_summary">Sembunyikan teks "Full" atau "Half" pada kartu kerja</string>
+    <string name="settings_list_working_card_hide_mode">Sembunyikan kartu Half/Full</string>
+    <string name="settings_list_working_card_hide_mode_summary">Sembunyikan kartu kecil yang menunjukkan mode kerja</string>
+    <string name="settings_custom_background_dual_dim">Aktifkan redup siang/malam ganda</string>
+    <string name="settings_custom_background_day_dim">Redup latar belakang mode siang</string>
+    <string name="settings_custom_background_night_dim">Redup latar belakang mode malam</string>
     <string name="kpm_autoload_save">Simpan konfigurasi</string>
     <string name="kpm_autoload_save_confirm">Simpan konfigurasi muat otomatis?</string>
     <string name="kpm_autoload_save_success">Konfigurasi berhasil disimpan</string>

@@ -337,6 +337,11 @@
     <string name="settings_grid_working_card_hide_text_summary">Ẩn văn bản "Đang hoạt động" hoặc "Chưa cài đặt" trên thẻ làm việc</string>
     <string name="settings_grid_working_card_hide_mode">Ẩn chế độ làm việc</string>
     <string name="settings_grid_working_card_hide_mode_summary">Ẩn văn bản "Full" hoặc "Half" trên thẻ làm việc</string>
+    <string name="settings_list_working_card_hide_mode">Ẩn thẻ Half/Full</string>
+    <string name="settings_list_working_card_hide_mode_summary">Ẩn thẻ nhỏ chỉ định chế độ làm việc</string>
+    <string name="settings_custom_background_dual_dim">Bật chế độ độ tối ngày/đêm kép</string>
+    <string name="settings_custom_background_day_dim">Độ tối nền ban ngày</string>
+    <string name="settings_custom_background_night_dim">Độ tối nền ban đêm</string>
     <string name="launcher_icon_superroot">SuperRoot</string>
     
     <string name="su_exclude_all_title">Loại trừ hàng loạt</string>

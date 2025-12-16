@@ -335,6 +335,11 @@
     <string name="settings_grid_working_card_hide_text_summary">隐藏魔法少女卡片上的"神域展开"或"未觉醒"文字</string>
     <string name="settings_grid_working_card_hide_mode">魔法少女模式隐身术</string>
     <string name="settings_grid_working_card_hide_mode_summary">隐藏魔法少女卡片上的"Full"或"Half"文字</string>
+    <string name="settings_list_working_card_hide_mode">魔法少女模式小卡片隐身术</string>
+    <string name="settings_list_working_card_hide_mode_summary">隐藏显示魔法少女工作模式的小卡片</string>
+    <string name="settings_custom_background_dual_dim">双向契约</string>
+    <string name="settings_custom_background_day_dim">星之契约魔力</string>
+    <string name="settings_custom_background_night_dim">月之契约魔力</string>
     <!-- KPM AutoLoad Strings -->
     <string name="kpm_autoload_title">心之结晶自动觉醒</string>
     <string name="kpm_autoload_enabled">启用结晶自主觉醒</string>

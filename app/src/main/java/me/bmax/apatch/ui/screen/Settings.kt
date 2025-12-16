@@ -766,6 +766,12 @@ fun SettingScreen(navigator: DestinationsNavigator) {
             val gridModeHiddenSummary = stringResource(id = R.string.settings_grid_working_card_hide_mode_summary)
             val showGridModeHidden = isKernelSuStyle && (matchAppearance || shouldShow(gridModeHiddenTitle, gridModeHiddenSummary))
 
+            // List Layout Customization
+            val isListStyle = currentStyle != "kernelsu" && currentStyle != "focus"
+            val listModeHiddenTitle = stringResource(id = R.string.settings_list_working_card_hide_mode)
+            val listModeHiddenSummary = stringResource(id = R.string.settings_list_working_card_hide_mode_summary)
+            val showListModeHidden = isListStyle && (matchAppearance || shouldShow(listModeHiddenTitle, listModeHiddenSummary))
+
             // Custom Background (Single/Multi)
             val customBackgroundTitle = stringResource(id = R.string.settings_custom_background)
             val customBackgroundSummary = stringResource(id = R.string.settings_custom_background_summary)
@@ -776,7 +782,14 @@ fun SettingScreen(navigator: DestinationsNavigator) {
             val showCustomOpacity = BackgroundConfig.isCustomBackgroundEnabled && (matchAppearance || shouldShow(customOpacityTitle))
             
             val customDimTitle = stringResource(id = R.string.settings_custom_background_dim)
-            val showCustomDim = BackgroundConfig.isCustomBackgroundEnabled && (matchAppearance || shouldShow(customDimTitle))
+            val showCustomDim = BackgroundConfig.isCustomBackgroundEnabled && !BackgroundConfig.isDualBackgroundDimEnabled && (matchAppearance || shouldShow(customDimTitle))
+
+            val customDualDimTitle = stringResource(id = R.string.settings_custom_background_dual_dim)
+            val customDayDimTitle = stringResource(id = R.string.settings_custom_background_day_dim)
+            val customNightDimTitle = stringResource(id = R.string.settings_custom_background_night_dim)
+            val showCustomDualDimSwitch = BackgroundConfig.isCustomBackgroundEnabled && (matchAppearance || shouldShow(customDualDimTitle))
+            val showCustomDayDim = BackgroundConfig.isCustomBackgroundEnabled && BackgroundConfig.isDualBackgroundDimEnabled && (matchAppearance || shouldShow(customDayDimTitle))
+            val showCustomNightDim = BackgroundConfig.isCustomBackgroundEnabled && BackgroundConfig.isDualBackgroundDimEnabled && (matchAppearance || shouldShow(customNightDimTitle))
             
             val videoBackgroundTitle = stringResource(id = R.string.settings_video_background)
             val videoBackgroundSummary = stringResource(id = R.string.settings_video_background_summary)
@@ -827,7 +840,7 @@ fun SettingScreen(navigator: DestinationsNavigator) {
             val importThemeTitle = stringResource(id = R.string.settings_import_theme)
             val showImportTheme = matchAppearance || shouldShow(importThemeTitle)
 
-            val showAppearanceCategory = showNightModeFollowSys || showNightModeEnabled || showUseSystemColor || showCustomColor || showHomeLayout || showGridBackgroundSwitch || showCustomBackgroundSwitch || showCustomFontSwitch || showThemeStore || showSaveTheme || showImportTheme
+            val showAppearanceCategory = showNightModeFollowSys || showNightModeEnabled || showUseSystemColor || showCustomColor || showHomeLayout || showGridBackgroundSwitch || showGridCheckHidden || showGridTextHidden || showGridModeHidden || showListModeHidden || showCustomBackgroundSwitch || showCustomFontSwitch || showThemeStore || showSaveTheme || showImportTheme
 
             if (showAppearanceCategory) {
                 SettingsCategory(icon = Icons.Filled.Palette, title = appearanceTitle, isSearching = searchText.isNotEmpty()) {
@@ -1061,6 +1074,21 @@ fun SettingScreen(navigator: DestinationsNavigator) {
                         }
                     }
 
+                    if (isListStyle) {
+                         if (showListModeHidden) {
+                             SwitchItem(
+                                icon = Icons.Filled.VisibilityOff,
+                                title = listModeHiddenTitle,
+                                summary = listModeHiddenSummary,
+                                checked = BackgroundConfig.isListWorkingCardModeHidden,
+                                onCheckedChange = {
+                                    BackgroundConfig.setListWorkingCardModeHiddenState(it)
+                                    BackgroundConfig.save(context)
+                                }
+                            )
+                        }
+                    }
+
                     // Custom Background (Single/Multi)
                     if (showCustomBackgroundSwitch) {
                         SwitchItem(
@@ -1084,6 +1112,19 @@ fun SettingScreen(navigator: DestinationsNavigator) {
                     }
 
                     if (BackgroundConfig.isCustomBackgroundEnabled) {
+                        if (showCustomDualDimSwitch) {
+                            SwitchItem(
+                                icon = Icons.Filled.DarkMode,
+                                title = customDualDimTitle,
+                                summary = null,
+                                checked = BackgroundConfig.isDualBackgroundDimEnabled
+                            ) {
+                                BackgroundConfig.setDualBackgroundDimEnabledState(it)
+                                BackgroundConfig.save(context)
+                                refreshTheme.value = true
+                            }
+                        }
+
                         // Sliders
                         if (showCustomOpacity) {
                             ListItem(
@@ -1103,7 +1144,7 @@ fun SettingScreen(navigator: DestinationsNavigator) {
                                 }
                             )
                         }
-                        if (showCustomDim) {
+                        if (!BackgroundConfig.isDualBackgroundDimEnabled && showCustomDim) {
                             ListItem(
                                 colors = ListItemDefaults.colors(containerColor = Color.Transparent),
                                 headlineContent = { Text(customDimTitle) },
@@ -1120,6 +1161,43 @@ fun SettingScreen(navigator: DestinationsNavigator) {
                                     )
                                 }
                             )
+                        } else {
+                            if (BackgroundConfig.isDualBackgroundDimEnabled && showCustomDayDim) {
+                                ListItem(
+                                    colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                                    headlineContent = { Text(customDayDimTitle) },
+                                    supportingContent = {
+                                        androidx.compose.material3.Slider(
+                                            value = BackgroundConfig.customBackgroundDayDim,
+                                            onValueChange = { BackgroundConfig.setCustomBackgroundDayDimValue(it) },
+                                            onValueChangeFinished = { BackgroundConfig.save(context) },
+                                            valueRange = 0f..1f,
+                                            colors = androidx.compose.material3.SliderDefaults.colors(
+                                                thumbColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
+                                                activeTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f)
+                                            )
+                                        )
+                                    }
+                                )
+                            }
+                            if (BackgroundConfig.isDualBackgroundDimEnabled && showCustomNightDim) {
+                                ListItem(
+                                    colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                                    headlineContent = { Text(customNightDimTitle) },
+                                    supportingContent = {
+                                        androidx.compose.material3.Slider(
+                                            value = BackgroundConfig.customBackgroundNightDim,
+                                            onValueChange = { BackgroundConfig.setCustomBackgroundNightDimValue(it) },
+                                            onValueChangeFinished = { BackgroundConfig.save(context) },
+                                            valueRange = 0f..1f,
+                                            colors = androidx.compose.material3.SliderDefaults.colors(
+                                                thumbColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
+                                                activeTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f)
+                                            )
+                                        )
+                                    }
+                                )
+                            }
                         }
 
                         // Video Background

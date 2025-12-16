@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
@@ -41,6 +42,14 @@ import com.ramcosta.composedestinations.generated.destinations.SuperUserScreenDe
 @Composable
 fun BackgroundLayer(currentRoute: String? = null) {
     val context = LocalContext.current
+    val prefs = APApplication.sharedPreferences
+    val darkThemeFollowSys = prefs.getBoolean("night_mode_follow_sys", true)
+    val nightModeEnabled = prefs.getBoolean("night_mode_enabled", false)
+    val isDarkTheme = if (darkThemeFollowSys) {
+        isSystemInDarkTheme()
+    } else {
+        nightModeEnabled
+    }
     
     // Video Background Logic
     // Only show video if Custom Background is enabled AND Video Background is enabled
@@ -110,7 +119,7 @@ fun BackgroundLayer(currentRoute: String? = null) {
             modifier = Modifier
                 .fillMaxSize()
                 .zIndex(-1f)
-                .background(Color.Black.copy(alpha = BackgroundConfig.customBackgroundDim))
+                .background(Color.Black.copy(alpha = BackgroundConfig.getEffectiveBackgroundDim(isDarkTheme)))
         )
         return
     }
@@ -175,7 +184,7 @@ fun BackgroundLayer(currentRoute: String? = null) {
             modifier = Modifier
                 .fillMaxSize()
                 .zIndex(-1f)
-                .background(Color.Black.copy(alpha = BackgroundConfig.customBackgroundDim))
+                .background(Color.Black.copy(alpha = BackgroundConfig.getEffectiveBackgroundDim(isDarkTheme)))
         )
     }
 }

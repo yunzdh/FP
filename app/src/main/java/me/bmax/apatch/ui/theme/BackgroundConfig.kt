@@ -22,6 +22,12 @@ object BackgroundConfig {// State
         private set
     var customBackgroundDim: Float by mutableStateOf(0.0f)
         private set
+    var isDualBackgroundDimEnabled: Boolean by mutableStateOf(false)
+        private set
+    var customBackgroundDayDim: Float by mutableStateOf(0.0f)
+        private set
+    var customBackgroundNightDim: Float by mutableStateOf(0.0f)
+        private set
 
     // Video Background
     var videoBackgroundUri: String? by mutableStateOf(null)
@@ -47,6 +53,10 @@ object BackgroundConfig {// State
     var isGridWorkingCardModeHidden: Boolean by mutableStateOf(false)
         private set
 
+    // List Layout Working Card Config
+    var isListWorkingCardModeHidden: Boolean by mutableStateOf(false)
+        private set
+
     // Multi-Background Mode
     var isMultiBackgroundEnabled: Boolean by mutableStateOf(false)
         private set
@@ -66,6 +76,9 @@ object BackgroundConfig {// State
     private const val KEY_CUSTOM_BACKGROUND_ENABLED = "custom_background_enabled"
     private const val KEY_CUSTOM_BACKGROUND_OPACITY = "custom_background_opacity"
     private const val KEY_CUSTOM_BACKGROUND_DIM = "custom_background_dim"
+    private const val KEY_CUSTOM_BACKGROUND_DUAL_DIM_ENABLED = "custom_background_dual_dim_enabled"
+    private const val KEY_CUSTOM_BACKGROUND_DAY_DIM = "custom_background_day_dim"
+    private const val KEY_CUSTOM_BACKGROUND_NIGHT_DIM = "custom_background_night_dim"
     
     private const val KEY_VIDEO_BACKGROUND_URI = "video_background_uri"
     private const val KEY_VIDEO_BACKGROUND_ENABLED = "video_background_enabled"
@@ -78,6 +91,8 @@ object BackgroundConfig {// State
     private const val KEY_GRID_WORKING_CARD_CHECK_HIDDEN = "grid_working_card_check_hidden"
     private const val KEY_GRID_WORKING_CARD_TEXT_HIDDEN = "grid_working_card_text_hidden"
     private const val KEY_GRID_WORKING_CARD_MODE_HIDDEN = "grid_working_card_mode_hidden"
+
+    private const val KEY_LIST_WORKING_CARD_MODE_HIDDEN = "list_working_card_mode_hidden"
 
     private const val KEY_MULTI_BACKGROUND_ENABLED = "multi_background_enabled"
     private const val KEY_HOME_BACKGROUND_URI = "home_background_uri"
@@ -176,6 +191,13 @@ object BackgroundConfig {// State
     }
 
     /**
+     * 设置List布局工作中卡片Full/Half隐藏状态
+     */
+    fun setListWorkingCardModeHiddenState(hidden: Boolean) {
+        isListWorkingCardModeHidden = hidden
+    }
+
+    /**
      * 设置自定义背景不透明度
      */
     fun setCustomBackgroundOpacityValue(opacity: Float) {
@@ -187,6 +209,26 @@ object BackgroundConfig {// State
      */
     fun setCustomBackgroundDimValue(dim: Float) {
         customBackgroundDim = dim
+    }
+
+    fun setDualBackgroundDimEnabledState(enabled: Boolean) {
+        isDualBackgroundDimEnabled = enabled
+    }
+
+    fun setCustomBackgroundDayDimValue(dim: Float) {
+        customBackgroundDayDim = dim
+    }
+
+    fun setCustomBackgroundNightDimValue(dim: Float) {
+        customBackgroundNightDim = dim
+    }
+
+    fun getEffectiveBackgroundDim(isDarkTheme: Boolean): Float {
+        return if (isDualBackgroundDimEnabled) {
+            if (isDarkTheme) customBackgroundNightDim else customBackgroundDayDim
+        } else {
+            customBackgroundDim
+        }
     }
 
     // Multi-Background Setters
@@ -224,6 +266,9 @@ object BackgroundConfig {// State
             putBoolean(KEY_CUSTOM_BACKGROUND_ENABLED, isCustomBackgroundEnabled)
             putFloat(KEY_CUSTOM_BACKGROUND_OPACITY, customBackgroundOpacity)
             putFloat(KEY_CUSTOM_BACKGROUND_DIM, customBackgroundDim)
+            putBoolean(KEY_CUSTOM_BACKGROUND_DUAL_DIM_ENABLED, isDualBackgroundDimEnabled)
+            putFloat(KEY_CUSTOM_BACKGROUND_DAY_DIM, customBackgroundDayDim)
+            putFloat(KEY_CUSTOM_BACKGROUND_NIGHT_DIM, customBackgroundNightDim)
             
             putString(KEY_VIDEO_BACKGROUND_URI, videoBackgroundUri)
             putBoolean(KEY_VIDEO_BACKGROUND_ENABLED, isVideoBackgroundEnabled)
@@ -236,6 +281,8 @@ object BackgroundConfig {// State
             putBoolean(KEY_GRID_WORKING_CARD_CHECK_HIDDEN, isGridWorkingCardCheckHidden)
             putBoolean(KEY_GRID_WORKING_CARD_TEXT_HIDDEN, isGridWorkingCardTextHidden)
             putBoolean(KEY_GRID_WORKING_CARD_MODE_HIDDEN, isGridWorkingCardModeHidden)
+
+            putBoolean(KEY_LIST_WORKING_CARD_MODE_HIDDEN, isListWorkingCardModeHidden)
 
             putBoolean(KEY_MULTI_BACKGROUND_ENABLED, isMultiBackgroundEnabled)
             putString(KEY_HOME_BACKGROUND_URI, homeBackgroundUri)
@@ -256,6 +303,9 @@ object BackgroundConfig {// State
         val enabled = prefs.getBoolean(KEY_CUSTOM_BACKGROUND_ENABLED, true)
         val opacity = prefs.getFloat(KEY_CUSTOM_BACKGROUND_OPACITY, 0.7f)
         val dim = prefs.getFloat(KEY_CUSTOM_BACKGROUND_DIM, 0.0f)
+        val dualDimEnabled = prefs.getBoolean(KEY_CUSTOM_BACKGROUND_DUAL_DIM_ENABLED, false)
+        val dayDim = prefs.getFloat(KEY_CUSTOM_BACKGROUND_DAY_DIM, dim)
+        val nightDim = prefs.getFloat(KEY_CUSTOM_BACKGROUND_NIGHT_DIM, dim)
         
         val videoUri = prefs.getString(KEY_VIDEO_BACKGROUND_URI, null)
         val videoEnabled = prefs.getBoolean(KEY_VIDEO_BACKGROUND_ENABLED, false)
@@ -268,6 +318,8 @@ object BackgroundConfig {// State
         val gridCheckHidden = prefs.getBoolean(KEY_GRID_WORKING_CARD_CHECK_HIDDEN, false)
         val gridTextHidden = prefs.getBoolean(KEY_GRID_WORKING_CARD_TEXT_HIDDEN, false)
         val gridModeHidden = prefs.getBoolean(KEY_GRID_WORKING_CARD_MODE_HIDDEN, false)
+
+        val listModeHidden = prefs.getBoolean(KEY_LIST_WORKING_CARD_MODE_HIDDEN, false)
 
         val multiEnabled = prefs.getBoolean(KEY_MULTI_BACKGROUND_ENABLED, false)
         val homeUri = prefs.getString(KEY_HOME_BACKGROUND_URI, null)
@@ -282,6 +334,9 @@ object BackgroundConfig {// State
         isCustomBackgroundEnabled = enabled
         customBackgroundOpacity = opacity
         customBackgroundDim = dim
+        isDualBackgroundDimEnabled = dualDimEnabled
+        customBackgroundDayDim = dayDim
+        customBackgroundNightDim = nightDim
         
         videoBackgroundUri = videoUri
         isVideoBackgroundEnabled = videoEnabled
@@ -294,6 +349,8 @@ object BackgroundConfig {// State
         isGridWorkingCardCheckHidden = gridCheckHidden
         isGridWorkingCardTextHidden = gridTextHidden
         isGridWorkingCardModeHidden = gridModeHidden
+
+        isListWorkingCardModeHidden = listModeHidden
 
         isMultiBackgroundEnabled = multiEnabled
         homeBackgroundUri = homeUri
@@ -312,6 +369,9 @@ object BackgroundConfig {// State
         isCustomBackgroundEnabled = true
         customBackgroundOpacity = 0.7f
         customBackgroundDim = 0.0f
+        isDualBackgroundDimEnabled = false
+        customBackgroundDayDim = 0.0f
+        customBackgroundNightDim = 0.0f
         
         videoBackgroundUri = null
         isVideoBackgroundEnabled = false
@@ -321,6 +381,11 @@ object BackgroundConfig {// State
         isGridWorkingCardBackgroundEnabled = false
         gridWorkingCardBackgroundOpacity = 1.0f
         gridWorkingCardBackgroundDim = 0.3f
+        isGridWorkingCardCheckHidden = false
+        isGridWorkingCardTextHidden = false
+        isGridWorkingCardModeHidden = false
+
+        isListWorkingCardModeHidden = false
 
         isMultiBackgroundEnabled = false
         homeBackgroundUri = null

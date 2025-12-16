@@ -44,6 +44,9 @@ object ThemeManager {
         val isBackgroundEnabled: Boolean,
         val backgroundOpacity: Float,
         val backgroundDim: Float,
+        val isDualBackgroundDimEnabled: Boolean = false,
+        val backgroundDayDim: Float = 0.0f,
+        val backgroundNightDim: Float = 0.0f,
         val isFontEnabled: Boolean,
         val customColor: String,
         val homeLayoutStyle: String,
@@ -58,6 +61,7 @@ object ThemeManager {
         val isGridWorkingCardCheckHidden: Boolean = false,
         val isGridWorkingCardTextHidden: Boolean = false,
         val isGridWorkingCardModeHidden: Boolean = false,
+        val isListWorkingCardModeHidden: Boolean = false,
         // Multi-Background Mode
         val isMultiBackgroundEnabled: Boolean = false,
         // Music Config
@@ -92,6 +96,9 @@ object ThemeManager {
                     isBackgroundEnabled = BackgroundConfig.isCustomBackgroundEnabled,
                     backgroundOpacity = BackgroundConfig.customBackgroundOpacity,
                     backgroundDim = BackgroundConfig.customBackgroundDim,
+                    isDualBackgroundDimEnabled = BackgroundConfig.isDualBackgroundDimEnabled,
+                    backgroundDayDim = BackgroundConfig.customBackgroundDayDim,
+                    backgroundNightDim = BackgroundConfig.customBackgroundNightDim,
                     isFontEnabled = FontConfig.isCustomFontEnabled,
                     customColor = prefs.getString("custom_color", "blue") ?: "blue",
                     homeLayoutStyle = prefs.getString("home_layout_style", "default") ?: "default",
@@ -105,6 +112,7 @@ object ThemeManager {
                     isGridWorkingCardCheckHidden = BackgroundConfig.isGridWorkingCardCheckHidden,
                     isGridWorkingCardTextHidden = BackgroundConfig.isGridWorkingCardTextHidden,
                     isGridWorkingCardModeHidden = BackgroundConfig.isGridWorkingCardModeHidden,
+                    isListWorkingCardModeHidden = BackgroundConfig.isListWorkingCardModeHidden,
                     isMultiBackgroundEnabled = BackgroundConfig.isMultiBackgroundEnabled,
                     isMusicEnabled = MusicConfig.isMusicEnabled,
                     musicVolume = MusicConfig.volume,
@@ -120,6 +128,9 @@ object ThemeManager {
                     put("isBackgroundEnabled", config.isBackgroundEnabled)
                     put("backgroundOpacity", config.backgroundOpacity.toDouble())
                     put("backgroundDim", config.backgroundDim.toDouble())
+                    put("isDualBackgroundDimEnabled", config.isDualBackgroundDimEnabled)
+                    put("backgroundDayDim", config.backgroundDayDim.toDouble())
+                    put("backgroundNightDim", config.backgroundNightDim.toDouble())
                     put("isFontEnabled", config.isFontEnabled)
                     put("customColor", config.customColor)
                     put("homeLayoutStyle", config.homeLayoutStyle)
@@ -135,6 +146,7 @@ object ThemeManager {
                     put("isGridWorkingCardCheckHidden", config.isGridWorkingCardCheckHidden)
                     put("isGridWorkingCardTextHidden", config.isGridWorkingCardTextHidden)
                     put("isGridWorkingCardModeHidden", config.isGridWorkingCardModeHidden)
+                    put("isListWorkingCardModeHidden", config.isListWorkingCardModeHidden)
 
                     // Multi-Background Mode
                     put("isMultiBackgroundEnabled", config.isMultiBackgroundEnabled)
@@ -352,6 +364,9 @@ object ThemeManager {
                 val isBackgroundEnabled = json.optBoolean("isBackgroundEnabled", false)
                 val backgroundOpacity = json.optDouble("backgroundOpacity", 0.5).toFloat()
                 val backgroundDim = json.optDouble("backgroundDim", 0.2).toFloat()
+                val isDualBackgroundDimEnabled = json.optBoolean("isDualBackgroundDimEnabled", false)
+                val backgroundDayDim = json.optDouble("backgroundDayDim", backgroundDim.toDouble()).toFloat()
+                val backgroundNightDim = json.optDouble("backgroundNightDim", backgroundDim.toDouble()).toFloat()
                 val isFontEnabled = json.optBoolean("isFontEnabled", false)
                 val customColor = json.optString("customColor", "blue")
                 val homeLayoutStyle = json.optString("homeLayoutStyle", "default")
@@ -367,6 +382,7 @@ object ThemeManager {
                 val isGridWorkingCardCheckHidden = json.optBoolean("isGridWorkingCardCheckHidden", false)
                 val isGridWorkingCardTextHidden = json.optBoolean("isGridWorkingCardTextHidden", false)
                 val isGridWorkingCardModeHidden = json.optBoolean("isGridWorkingCardModeHidden", false)
+                val isListWorkingCardModeHidden = json.optBoolean("isListWorkingCardModeHidden", false)
 
                 // Video Background
                 val isVideoBackgroundEnabled = json.optBoolean("isVideoBackgroundEnabled", false)
@@ -385,6 +401,9 @@ object ThemeManager {
                 // 3. Apply Background
                 BackgroundConfig.setCustomBackgroundOpacityValue(backgroundOpacity)
                 BackgroundConfig.setCustomBackgroundDimValue(backgroundDim)
+                BackgroundConfig.setDualBackgroundDimEnabledState(isDualBackgroundDimEnabled)
+                BackgroundConfig.setCustomBackgroundDayDimValue(backgroundDayDim)
+                BackgroundConfig.setCustomBackgroundNightDimValue(backgroundNightDim)
                 BackgroundConfig.setCustomBackgroundEnabledState(isBackgroundEnabled)
 
                 if (isBackgroundEnabled) {
@@ -426,6 +445,7 @@ object ThemeManager {
                 BackgroundConfig.setGridWorkingCardCheckHiddenState(isGridWorkingCardCheckHidden)
                 BackgroundConfig.setGridWorkingCardTextHiddenState(isGridWorkingCardTextHidden)
                 BackgroundConfig.setGridWorkingCardModeHiddenState(isGridWorkingCardModeHidden)
+                BackgroundConfig.setListWorkingCardModeHiddenState(isListWorkingCardModeHidden)
                 
                 if (isGridWorkingCardBackgroundEnabled) {
                     val extensions = listOf(".jpg", ".png", ".gif", ".webp")
