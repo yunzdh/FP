@@ -879,56 +879,59 @@ private fun ModuleItem(
                     verticalAlignment = Alignment.Top
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(6.dp),
-                            modifier = Modifier.padding(bottom = 8.dp)
-                        ) {
-                            val labelOpacity = (opacity + 0.1f).coerceAtMost(1f)
-                            if (showMoreModuleInfo) {
-                                ModuleLabel(
-                                    text = sizeStr,
-                                    containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = labelOpacity),
-                                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-                                )
-                                ModuleLabel(
-                                    text = module.id,
-                                    containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = labelOpacity),
-                                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                                )
-                            }
-                            if (module.remove) {
-                                ModuleLabel(
-                                    text = stringResource(R.string.apm_remove),
-                                    containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = labelOpacity),
-                                    contentColor = MaterialTheme.colorScheme.onErrorContainer
-                                )
-                            } else if (updateUrl.isNotEmpty() && !module.update) {
-                                ModuleLabel(
-                                    text = stringResource(R.string.apm_update),
-                                    containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = labelOpacity),
-                                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer
-                                )
-                            } else if (module.update) {
-                                ModuleLabel(
-                                    text = "Updated",
-                                    containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = labelOpacity),
-                                    contentColor = MaterialTheme.colorScheme.onTertiaryContainer
-                                )
-                            }
-                            
-                            if (showMoreModuleInfo && module.hasWebUi && module.enabled && !module.remove) {
-                                ModuleLabel(
-                                    text = "WebUI",
-                                    containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = labelOpacity),
-                                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                                )
-                            }
-                            if (showMoreModuleInfo && module.hasActionScript && module.enabled && !module.remove) {
-                                ModuleLabel(
-                                    text = "Action",
-                                    containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = labelOpacity),
-                                    contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-                                )
+                        val hasAnyLabel = showMoreModuleInfo || module.remove || (updateUrl.isNotEmpty() && !module.update) || module.update
+                        if (hasAnyLabel) {
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                                modifier = Modifier.padding(bottom = 8.dp)
+                            ) {
+                                val labelOpacity = (opacity + 0.1f).coerceAtMost(1f)
+                                if (showMoreModuleInfo) {
+                                    ModuleLabel(
+                                        text = sizeStr,
+                                        containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = labelOpacity),
+                                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                                    )
+                                    ModuleLabel(
+                                        text = module.id,
+                                        containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = labelOpacity),
+                                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                }
+                                if (module.remove) {
+                                    ModuleLabel(
+                                        text = stringResource(R.string.apm_remove),
+                                        containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = labelOpacity),
+                                        contentColor = MaterialTheme.colorScheme.onErrorContainer
+                                    )
+                                } else if (updateUrl.isNotEmpty() && !module.update) {
+                                    ModuleLabel(
+                                        text = stringResource(R.string.apm_update),
+                                        containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = labelOpacity),
+                                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+                                    )
+                                } else if (module.update) {
+                                    ModuleLabel(
+                                        text = "Updated",
+                                        containerColor = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = labelOpacity),
+                                        contentColor = MaterialTheme.colorScheme.onTertiaryContainer
+                                    )
+                                }
+                                
+                                if (showMoreModuleInfo && module.hasWebUi && module.enabled && !module.remove) {
+                                    ModuleLabel(
+                                        text = "WebUI",
+                                        containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = labelOpacity),
+                                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                                    )
+                                }
+                                if (showMoreModuleInfo && module.hasActionScript && module.enabled && !module.remove) {
+                                    ModuleLabel(
+                                        text = "Action",
+                                        containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = labelOpacity),
+                                        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+                                    )
+                                }
                             }
                         }
 
