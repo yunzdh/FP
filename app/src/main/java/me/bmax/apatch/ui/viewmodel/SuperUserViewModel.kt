@@ -143,6 +143,7 @@ class SuperUserViewModel : ViewModel() {
 
         currentApps.forEach { app ->
             if ((app.packageInfo.applicationInfo!!.flags and ApplicationInfo.FLAG_SYSTEM) != 0) return@forEach
+            if (app.packageName == apApp.packageName) return@forEach
             if (app.config.allow == 0 && app.config.exclude == 0) {
                 app.config.exclude = 1
                 app.config.profile.scontext = APApplication.DEFAULT_SCONTEXT
@@ -164,6 +165,7 @@ class SuperUserViewModel : ViewModel() {
 
         currentApps.forEach { app ->
             if ((app.packageInfo.applicationInfo!!.flags and ApplicationInfo.FLAG_SYSTEM) != 0) return@forEach
+            if (app.packageName == apApp.packageName) return@forEach
             if (app.config.allow == 0) {
                 val newExclude = if (app.config.exclude == 1) 0 else 1
                 app.config.exclude = newExclude
