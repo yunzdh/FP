@@ -636,7 +636,7 @@ private fun BottomBar(navController: NavHostController) {
     var showNavSuperUser by remember { mutableStateOf(prefs.getBoolean("show_nav_superuser", true)) }
 
     // Badge count settings - default enabled
-    val enableBadgeCount by remember { mutableStateOf(prefs.getBoolean("enable_badge_count", true)) }
+    var enableBadgeCount by remember { mutableStateOf(prefs.getBoolean("enable_badge_count", true)) }
 
     // Collect badge counts from AppData
     val superuserCount by me.bmax.apatch.util.AppData.DataRefreshManager.superuserCount.collectAsState()
@@ -648,6 +648,7 @@ private fun BottomBar(navController: NavHostController) {
                 "show_nav_apm" -> showNavApm = sharedPrefs.getBoolean(key, true)
                 "show_nav_kpm" -> showNavKpm = sharedPrefs.getBoolean(key, true)
                 "show_nav_superuser" -> showNavSuperUser = sharedPrefs.getBoolean(key, true)
+                "enable_badge_count" -> enableBadgeCount = sharedPrefs.getBoolean(key, true)
             }
         }
         prefs.registerOnSharedPreferenceChangeListener(listener)
