@@ -33,6 +33,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import android.net.Uri
 import me.bmax.apatch.APApplication
+import me.bmax.apatch.ui.webui.MonetColorsProvider
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.zIndex
 import androidx.navigation.NavHostController
@@ -215,7 +216,10 @@ fun APatchTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = getTypography(FontConfig.getFontFamily(context)),
-        content = content
+        content = {
+            MonetColorsProvider.UpdateCss()
+            content()
+        }
     )
 }
 
