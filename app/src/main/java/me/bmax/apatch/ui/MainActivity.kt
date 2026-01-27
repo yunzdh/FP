@@ -468,7 +468,7 @@ class MainActivity : AppCompatActivity() {
                     val useNavigationRail = when (navMode) {
                         "rail" -> true
                         "bottom" -> false
-                        else -> maxWidth >= 600.dp // auto
+                        else -> maxWidth >= 600.dp && maxWidth > maxHeight // auto
                     }
                     
                     if (useNavigationRail) {
@@ -974,10 +974,10 @@ private fun createNavTransitions(
 
         override val popEnterTransition: AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition = {
             if (targetState.destination.route in bottomBarRoutes) {
-                if (useNavigationRail) {
-                    slideInVertically(initialOffsetY = { -it / 4 }) + fadeIn()
-                } else {
+                if (initialState.destination.route !in bottomBarRoutes || !useNavigationRail) {
                     slideInHorizontally(initialOffsetX = { -it / 4 }) + fadeIn()
+                } else {
+                    slideInVertically(initialOffsetY = { -it / 4 }) + fadeIn()
                 }
             } else {
                 fadeIn(animationSpec = tween(340))
