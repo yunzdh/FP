@@ -173,6 +173,9 @@ fun APModuleScreen(navigator: DestinationsNavigator) {
     var foldSystemModule by remember { mutableStateOf(prefs.getBoolean("fold_system_module", false)) }
     var simpleListBottomBar by remember { mutableStateOf(prefs.getBoolean("simple_list_bottom_bar", false)) }
     var useModuleBanner by remember { mutableStateOf(prefs.getBoolean("apm_use_module_banner", true)) }
+    var useFolkBanner by remember { mutableStateOf(prefs.getBoolean("apm_use_folk_banner", false)) }
+
+    val viewModel = viewModel<APModuleViewModel>()
 
     DisposableEffect(Unit) {
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPrefs, key ->
@@ -184,6 +187,9 @@ fun APModuleScreen(navigator: DestinationsNavigator) {
                 simpleListBottomBar = sharedPrefs.getBoolean("simple_list_bottom_bar", false)
             } else if (key == "apm_use_module_banner") {
                 useModuleBanner = sharedPrefs.getBoolean("apm_use_module_banner", true)
+            } else if (key == "apm_use_folk_banner") {
+                useFolkBanner = sharedPrefs.getBoolean("apm_use_folk_banner", false)
+                viewModel.clearBannerCache()
             }
         }
         prefs.registerOnSharedPreferenceChangeListener(listener)
@@ -225,8 +231,6 @@ fun APModuleScreen(navigator: DestinationsNavigator) {
         }
         return
     }
-
-    val viewModel = viewModel<APModuleViewModel>()
 
     LaunchedEffect(Unit) {
         if (viewModel.moduleList.isEmpty() || viewModel.isNeedRefresh) {
@@ -373,6 +377,7 @@ fun APModuleScreen(navigator: DestinationsNavigator) {
                     foldSystemModule = foldSystemModule,
                     simpleListBottomBar = simpleListBottomBar,
                     enableModuleBanner = useModuleBanner,
+                    enableFolkBanner = useFolkBanner,
                     checkStrongBiometric = ::checkStrongBiometric,
                     modifier = Modifier
                         .padding(innerPadding)
@@ -479,6 +484,7 @@ private fun ModuleList(
     foldSystemModule: Boolean,
     simpleListBottomBar: Boolean,
     enableModuleBanner: Boolean,
+    enableFolkBanner: Boolean,
     checkStrongBiometric: suspend () -> Boolean,
     modifier: Modifier = Modifier,
     state: LazyListState,
@@ -741,6 +747,7 @@ private fun ModuleList(
                             foldSystemModule = foldSystemModule,
                             simpleListBottomBar = simpleListBottomBar,
                             enableModuleBanner = enableModuleBanner,
+                            enableFolkBanner = enableFolkBanner,
                             enableModuleShortcutAdd = enableModuleShortcutAdd,
                             expanded = expandedModuleId == module.id,
                             onExpandToggle = {
@@ -1047,6 +1054,7 @@ private fun ModuleItem(
     foldSystemModule: Boolean,
     simpleListBottomBar: Boolean,
     enableModuleBanner: Boolean,
+    enableFolkBanner: Boolean,
     enableModuleShortcutAdd: Boolean,
     expanded: Boolean,
     onExpandToggle: () -> Unit,
@@ -1113,9 +1121,10 @@ private fun ModuleItem(
 
     val bannerInfo by produceState<APModuleViewModel.BannerInfo?>(
         initialValue = viewModel.getBannerInfo(module.id),
-        key1 = module.id,
-        key2 = enableModuleBanner,
-        key3 = bannerReloadKey
+        module.id,
+        enableModuleBanner,
+        enableFolkBanner,
+        bannerReloadKey
     ) {
         if (!enableModuleBanner) {
             value = null
@@ -1123,7 +1132,7 @@ private fun ModuleItem(
         }
 
         val cached = viewModel.getBannerInfo(module.id)
-        if (cached != null) {
+        if (cached != null && (enableFolkBanner || cached.bytes == null)) {
             value = cached
             return@produceState
         }
@@ -1135,7 +1144,7 @@ private fun ModuleItem(
                     SuFile(path).apply { shell = rootShell }
                 }
                 val resolvedDir = resolveModuleDir(rootShell, module.id)
-                val folkBanner = readFolkBanner(rootShell, resolvedDir)
+                val folkBanner = if (enableFolkBanner) readFolkBanner(rootShell, resolvedDir) else null
                 if (folkBanner != null) {
                     return@withContext APModuleViewModel.BannerInfo(folkBanner, null)
                 }
@@ -1194,7 +1203,7 @@ private fun ModuleItem(
                     }
                 },
                 onLongClick = {
-                    if (enableModuleBanner) {
+                    if (enableModuleBanner && enableFolkBanner) {
                         showFolkBannerDialog = true
                     }
                 }

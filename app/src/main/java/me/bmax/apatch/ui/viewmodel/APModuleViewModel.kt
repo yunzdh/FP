@@ -139,6 +139,10 @@ class APModuleViewModel : ViewModel() {
         bannerCache.remove(id)
     }
 
+    fun clearBannerCache() {
+        bannerCache.clear()
+    }
+
     private fun pruneBannerCache(validIds: Set<String>) {
         val keysToRemove = bannerCache.keys.filter { it !in validIds }
         keysToRemove.forEach { bannerCache.remove(it) }
@@ -189,8 +193,7 @@ class APModuleViewModel : ViewModel() {
                 isRefreshing = false
             }
 
-            // when both old and new is kotlin.collections.EmptyList
-            // moduleList update will don't trigger
+
             if (oldModuleList === modules) {
                 isRefreshing = false
             }

@@ -48,7 +48,11 @@ fun ModuleSettings(
     val enableModuleBannerSummary = stringResource(id = R.string.apm_enable_module_banner_summary)
     val showEnableModuleBanner = matchModule || shouldShow(searchText, enableModuleBannerTitle, enableModuleBannerSummary)
 
-    val showModuleCategory = showMoreInfo || showModuleSortOptimization || showDisableModuleUpdateCheck || showFoldSystemModule || showApmBatchInstallFullProcess || showSimpleListBottomBar || showEnableModuleBanner
+    val enableFolkBannerTitle = stringResource(id = R.string.apm_enable_folk_banner)
+    val enableFolkBannerSummary = stringResource(id = R.string.apm_enable_folk_banner_summary)
+    val showEnableFolkBanner = matchModule || shouldShow(searchText, enableFolkBannerTitle, enableFolkBannerSummary)
+
+    val showModuleCategory = showMoreInfo || showModuleSortOptimization || showDisableModuleUpdateCheck || showFoldSystemModule || showApmBatchInstallFullProcess || showSimpleListBottomBar || showEnableModuleBanner || showEnableFolkBanner
 
     if (showModuleCategory) {
         SettingsCategory(icon = Icons.Filled.Extension, title = moduleTitle, isSearching = searchText.isNotEmpty()) {
@@ -63,6 +67,20 @@ fun ModuleSettings(
                     onCheckedChange = {
                         enableModuleBanner = it
                         prefs.edit().putBoolean("apm_use_module_banner", it).apply()
+                    }
+                )
+            }
+
+            if (showEnableFolkBanner) {
+                var enableFolkBanner by remember { mutableStateOf(prefs.getBoolean("apm_use_folk_banner", false)) }
+                SwitchItem(
+                    icon = Icons.Filled.Edit,
+                    title = enableFolkBannerTitle,
+                    summary = enableFolkBannerSummary,
+                    checked = enableFolkBanner,
+                    onCheckedChange = {
+                        enableFolkBanner = it
+                        prefs.edit().putBoolean("apm_use_folk_banner", it).apply()
                     }
                 )
             }

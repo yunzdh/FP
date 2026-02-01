@@ -259,6 +259,8 @@
     <string name="apm_disable_all_confirm">هل أنت متأكد من أنك تريد تعطيل جميع الوحدات؟ بشكل عام، يتم ذلك قبل تحديث OTA.</string>
     <string name="apm_enable_module_banner">تمكين لافتة الوحدة</string>
     <string name="apm_enable_module_banner_summary">عرض صورة اللافتة للوحدات إذا كانت متوفرة</string>
+    <string name="apm_enable_folk_banner">تخصيص لافتة الوحدة</string>
+    <string name="apm_enable_folk_banner_summary">اضغط مطولًا على بطاقة الوحدة لاختيار صورة اللافتة</string>
     <string name="apm_folk_banner_title">FolkBanner</string>
     <string name="apm_folk_banner_select">اختيار صورة</string>
     <string name="apm_folk_banner_clear">مسح FolkBanner</string>

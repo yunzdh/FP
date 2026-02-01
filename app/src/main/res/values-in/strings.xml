@@ -253,6 +253,8 @@
     <string name="apm_disable_all_confirm">Apakah Anda yakin ingin menonaktifkan semua modul? Ini biasanya dilakukan sebelum pembaruan OTA.</string>
     <string name="apm_enable_module_banner">Aktifkan banner modul</string>
     <string name="apm_enable_module_banner_summary">Tampilkan gambar banner untuk modul jika tersedia</string>
+    <string name="apm_enable_folk_banner">Kustomisasi banner modul</string>
+    <string name="apm_enable_folk_banner_summary">Tekan lama pada kartu modul untuk memilih gambar banner</string>
     <string name="apm_folk_banner_title">FolkBanner</string>
     <string name="apm_folk_banner_select">Pilih gambar</string>
     <string name="apm_folk_banner_clear">Hapus FolkBanner</string>

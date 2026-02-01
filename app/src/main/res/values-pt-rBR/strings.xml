@@ -258,6 +258,8 @@
     <string name="apm_disable_all_confirm">Tem certeza de que deseja desativar todos os módulos? Geralmente, isso é feito antes de uma atualização OTA.</string>
     <string name="apm_enable_module_banner">Ativar banner de módulo</string>
     <string name="apm_enable_module_banner_summary">Exibir imagem de banner para módulos se disponível</string>
+    <string name="apm_enable_folk_banner">Personalizar banner de módulo</string>
+    <string name="apm_enable_folk_banner_summary">Pressione longo no cartão do módulo para selecionar a imagem do banner</string>
     <string name="apm_folk_banner_title">FolkBanner</string>
     <string name="apm_folk_banner_select">Selecionar imagem</string>
     <string name="apm_folk_banner_clear">Limpar FolkBanner</string>
