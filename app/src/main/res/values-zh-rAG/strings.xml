@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">FolkPatch</string>
     <string name="app_name_folksu">FolkSU 喵</string>
@@ -182,6 +182,10 @@
     <string name="su_exclude_reverse_btn">反过来嘛喵！</string>
     <string name="su_pkg_excluded_setting_title">改排除设置喵</string>
     <string name="su_pkg_excluded_setting_summary">开这个，FolkPatch就能恢复这应用改过的文件哒喵！</string>
+    <string name="su_pkg_root_setting_title">超级用户喵</string>
+    <string name="su_pkg_root_setting_summary">开这个为你的软件启动超级用户喵，软件能够使用SU命令喵</string>
+    <string name="su_pkg_normal_setting_title">普通模式喵</string>
+    <string name="su_pkg_normal_setting_summary">默认状态，不做任何特殊处理喵。</string>
     <string name="su_show_system_apps">显示系统应用喵</string>
     <string name="su_hide_system_apps">藏起系统应用喵</string>
     <string name="su_refresh">刷新一下喵！</string>

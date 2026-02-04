@@ -187,6 +187,10 @@
     <string name="su_pkg_excluded_label">Excluir</string>
     <string name="su_pkg_excluded_setting_title">Excluir modificaciones</string>
     <string name="su_pkg_excluded_setting_summary">Habilitar esta opción permitirá a FolkPatch restaurar cualquier archivo modificado por los módulos de esta app.</string>
+    <string name="su_pkg_root_setting_title">Superusuario</string>
+    <string name="su_pkg_root_setting_summary">Habilitar esta opción para otorgar acceso de superusuario a tu app, permitiendo usar comandos SU</string>
+    <string name="su_pkg_normal_setting_title">Modo normal</string>
+    <string name="su_pkg_normal_setting_summary">Estado predeterminado, sin procesamiento especial.</string>
     <string name="su_show_system_apps">Mostrar apps del sistema</string>
     <string name="su_hide_system_apps">Ocultar apps del sistema</string>
     <string name="su_refresh">Actualizar</string>

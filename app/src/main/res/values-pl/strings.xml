@@ -168,6 +168,10 @@
     <string name="su_pkg_excluded_label">Wyklucz</string>
     <string name="su_pkg_excluded_setting_title">Wyklucz modyfikacje</string>
     <string name="su_pkg_excluded_setting_summary">Włączenie tej opcji pozwoli FolkPatch przywrócić wszelkie pliki zmodyfikowane przez moduły tej aplikacji.</string>
+    <string name="su_pkg_root_setting_title">Superużytkownik</string>
+    <string name="su_pkg_root_setting_summary">Włączenie tej opcji przyzna dostęp superużytkownika Twojej aplikacji, pozwalając na używanie poleceń SU</string>
+    <string name="su_pkg_normal_setting_title">Tryb normalny</string>
+    <string name="su_pkg_normal_setting_summary">Stan domyślny, bez specjalnej obsługi.</string>
     <string name="su_batch_exclude_title">Masowe wykluczanie</string>
     <string name="su_batch_exclude_content">Wyklucz wstrzykiwanie dla wszystkich aplikacji bez roota, wybierz działanie</string>
     <string name="su_exclude_btn">Wyklucz</string>

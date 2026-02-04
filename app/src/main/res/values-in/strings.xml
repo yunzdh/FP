@@ -169,6 +169,10 @@
     <string name="su_pkg_excluded_label">Kecualikan</string>
     <string name="su_pkg_excluded_setting_title">Kecualikan perubahan</string>
     <string name="su_pkg_excluded_setting_summary">Mengaktifkan opsi ini akan memungkinkan FolkPatch memulihkan setiap file yang dimodifikasi oleh modul aplikasi ini.</string>
+    <string name="su_pkg_root_setting_title">Superuser</string>
+    <string name="su_pkg_root_setting_summary">Mengaktifkan opsi ini untuk memberikan akses superuser ke aplikasi Anda, aplikasi dapat menggunakan perintah SU</string>
+    <string name="su_pkg_normal_setting_title">Mode Normal</string>
+    <string name="su_pkg_normal_setting_summary">Status default, tidak ada penanganan khusus.</string>
     <string name="su_batch_exclude_title">Pengecualian Massal</string>
     <string name="su_batch_exclude_content">Kecualikan injeksi untuk semua aplikasi non-Root, pilih tindakan</string>
     <string name="su_exclude_btn">Kecualikan</string>

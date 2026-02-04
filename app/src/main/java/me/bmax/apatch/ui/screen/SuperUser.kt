@@ -1,15 +1,14 @@
 package me.bmax.apatch.ui.screen
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,12 +24,9 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlaylistAddCheck
-import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Terminal
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,14 +34,12 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -67,20 +61,16 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
+import com.ramcosta.composedestinations.generated.destinations.AppProfileScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.ScriptLibraryScreenDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.launch
-import me.bmax.apatch.APApplication
-import me.bmax.apatch.Natives
 import me.bmax.apatch.R
 import me.bmax.apatch.apApp
-import me.bmax.apatch.ui.component.ProvideMenuShape
 import me.bmax.apatch.ui.component.SearchAppBar
-import me.bmax.apatch.ui.component.SwitchItem
 import me.bmax.apatch.ui.component.WallpaperAwareDropdownMenu
 import me.bmax.apatch.ui.component.WallpaperAwareDropdownMenuItem
 import me.bmax.apatch.ui.viewmodel.SuperUserViewModel
-import me.bmax.apatch.util.PkgConfig
 import me.bmax.apatch.util.ui.APDialogBlurBehindUtils.Companion.setupWindowBlurListener
 
 
@@ -208,7 +198,6 @@ fun SuperUserScreen(navigator: DestinationsNavigator) {
             )
         },
     ) { innerPadding ->
-
         PullToRefreshBox(
             modifier = Modifier.padding(innerPadding),
             onRefresh = { scope.launch { viewModel.fetchAppList() } },
@@ -216,7 +205,10 @@ fun SuperUserScreen(navigator: DestinationsNavigator) {
         ) {
             LazyColumn(Modifier.fillMaxSize()) {
                 items(viewModel.appList.filter { it.packageName != apApp.packageName }, key = { it.packageName + it.uid }) { app ->
-                    AppItem(app)
+                    AppItem(app) {
+                        navigator.navigate(AppProfileScreenDestination(app.packageName, app.uid))
+                        viewModel.search = ""
+                    }
                 }
             }
         }
@@ -227,23 +219,14 @@ fun SuperUserScreen(navigator: DestinationsNavigator) {
 @Composable
 private fun AppItem(
     app: SuperUserViewModel.AppInfo,
+    onClick: () -> Unit,
 ) {
     val config = app.config
-    var showEditProfile by remember { mutableStateOf(false) }
-    var rootGranted by remember(app.config) { mutableStateOf(config.allow != 0) }
-    var excludeApp by remember(app.config) { mutableIntStateOf(config.exclude) }
+    val rootGranted = config.allow != 0
+    val excludeApp = config.exclude == 1
 
     ListItem(
-        modifier = Modifier.clickable(onClick = {
-            if (!rootGranted) {
-                showEditProfile = !showEditProfile
-            } else {
-                rootGranted = false
-                config.allow = 0
-                Natives.revokeSu(app.uid)
-                PkgConfig.changeConfig(config)
-            }
-        }),
+        modifier = Modifier.clickable(onClick = onClick),
         headlineContent = { Text(app.label) },
         leadingContent = {
             AsyncImage(
@@ -257,79 +240,28 @@ private fun AppItem(
             )
         },
         supportingContent = {
-
             Column {
                 Text(app.packageName)
                 FlowRow {
-
-                    if (excludeApp == 1) {
+                    if (excludeApp) {
                         LabelText(label = stringResource(id = R.string.su_pkg_excluded_label))
                     }
                     if (rootGranted) {
-                        LabelText(label = config.profile.uid.toString())
-                        LabelText(label = config.profile.toUid.toString())
-                        LabelText(
-                            label = when {
-                                // todo: valid scontext ?
-                                config.profile.scontext.isNotEmpty() -> config.profile.scontext
-                                else -> stringResource(id = R.string.su_selinux_via_hook)
-                            }
-                        )
+                        // LabelText(label = config.profile.uid.toString())
+                        LabelText(label = "ROOT")
+                        // LabelText(label = config.profile.toUid.toString())
+                        // LabelText(
+                        //     label = when {
+                        //         // todo: valid scontext ?
+                        //         config.profile.scontext.isNotEmpty() -> config.profile.scontext
+                        //         else -> stringResource(id = R.string.su_selinux_via_hook)
+                        //     }
+                        // )
                     }
                 }
             }
-        },
-        trailingContent = {
-            Switch(checked = rootGranted, onCheckedChange = {
-                rootGranted = !rootGranted
-                if (rootGranted) {
-                    excludeApp = 0
-                    config.allow = 1
-                    config.exclude = 0
-                    config.profile.scontext = APApplication.MAGISK_SCONTEXT
-                } else {
-                    config.allow = 0
-                }
-                config.profile.uid = app.uid
-                PkgConfig.changeConfig(config)
-                if (config.allow == 1) {
-                    Natives.grantSu(app.uid, 0, config.profile.scontext)
-                    Natives.setUidExclude(app.uid, 0)
-                } else {
-                    Natives.revokeSu(app.uid)
-                }
-            })
-        },
+        }
     )
-
-    AnimatedVisibility(
-        visible = showEditProfile && !rootGranted,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.surface)
-            .padding(horizontal = 0.dp)
-    ) {
-        SwitchItem(
-            icon = Icons.Filled.Security,
-            title = stringResource(id = R.string.su_pkg_excluded_setting_title),
-            summary = stringResource(id = R.string.su_pkg_excluded_setting_summary),
-            checked = excludeApp == 1,
-            onCheckedChange = {
-                if (it) {
-                    excludeApp = 1
-                    config.allow = 0
-                    config.profile.scontext = APApplication.DEFAULT_SCONTEXT
-                    Natives.revokeSu(app.uid)
-                } else {
-                    excludeApp = 0
-                }
-                config.exclude = excludeApp
-                config.profile.uid = app.uid
-                PkgConfig.changeConfig(config)
-                Natives.setUidExclude(app.uid, excludeApp)
-            },
-        )
-    }
 }
 
 @Composable
