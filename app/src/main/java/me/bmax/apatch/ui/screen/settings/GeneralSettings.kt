@@ -347,9 +347,8 @@ fun GeneralSettings(
                     onCheckedChange = {
                         prefs.edit {
                             putBoolean("use_alt_icon", it)
-                            putString("desktop_app_name", if (it) "FolkSU" else "FolkPatch")
                         }
-                        LauncherIconUtils.toggleLauncherIcon(context, it)
+                        LauncherIconUtils.updateLauncherState(context)
                         useAltIcon.value = it
                     }
                 )
@@ -788,7 +787,6 @@ fun DesktopAppNameChooseDialog(showDialog: MutableState<Boolean>) {
                             showDialog.value = false
                             prefs.edit {
                                 putString("desktop_app_name", "FolkPatch")
-                                putBoolean("use_alt_icon", false)
                             }
                             me.bmax.apatch.util.LauncherIconUtils.applySaved(context)
                         },
@@ -806,7 +804,6 @@ fun DesktopAppNameChooseDialog(showDialog: MutableState<Boolean>) {
                             showDialog.value = false
                             prefs.edit {
                                 putString("desktop_app_name", "FolkSU")
-                                putBoolean("use_alt_icon", true)
                             }
                             me.bmax.apatch.util.LauncherIconUtils.applySaved(context)
                         },
