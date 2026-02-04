@@ -371,19 +371,6 @@
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">Канал в Telegram</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
-
     <string name="settings_app_dpi">DPI приложения</string>
     <string name="settings_alt_icon">Альтернативная иконка</string>
     <string name="alt_icon_summary">Использовать альтернативный значок запуска</string>
@@ -421,6 +408,8 @@
     <string name="settings_list_working_card_hide_mode_summary">Скрыть маленькую карточку, указывающую режим работы</string>
     <string name="settings_list_card_hide_status_badge">Использовать классический эмодзи</string>
     <string name="settings_list_card_hide_status_badge_summary">Статусный бейдж на главной странице превращается в классический эмодзи</string>
+    <string name="settings_custom_badge_text">Пользовательский текст бейджа</string>
+    <string name="settings_custom_badge_text_summary">Изменить текстовое отображение бейджа, только для развлечения</string>
     <string name="settings_custom_background_dual_dim">Включить двойную дневную/ночную затемненность</string>
     <string name="settings_custom_background_day_dim">Затемненность фона в дневном режиме</string>
     <string name="settings_custom_background_night_dim">Затемненность фона в ночном режиме</string>

@@ -205,7 +205,6 @@
     <string name="setting_reset_su_path">重置魔法使路径</string>
     <string name="setting_reset_su_new_path">新完整魔法路径</string>
 
-
     <string name="settings_folkx_engine_title">FolkX魔法动画引擎</string>
     <string name="settings_folkx_engine_summary">在顶层魔法页面切换时使用流畅的物理弹簧动画</string>
     <string name="settings_folkx_animation_type">魔法动画类型</string>
@@ -368,19 +367,6 @@
     <string name="about_github">魔法书仓库</string>
     <string name="about_telegram_channel">魔法少女通讯频道</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
-
     <string name="settings_app_dpi">魔法使清晰度</string>
     <string name="settings_magic_mount">Folk Mount API</string>
     <string name="settings_magic_mount_summary">启用内置的魔法阵挂载系统</string>
@@ -432,6 +418,8 @@
     <string name="settings_list_working_card_hide_mode_summary">隐藏显示魔法少女工作模式的小卡片</string>
     <string name="settings_list_card_hide_status_badge">使用经典表情</string>
     <string name="settings_list_card_hide_status_badge_summary">首页的魔力印记即刻变身经典表情</string>
+    <string name="settings_custom_badge_text">自选魔力印记文字</string>
+    <string name="settings_custom_badge_text_summary">修改魔力印记的文字显示，仅供魔法少女娱乐</string>
     <string name="settings_custom_background_dual_dim">双向契约</string>
     <string name="settings_custom_background_day_dim">星之契约魔力</string>
     <string name="settings_custom_background_night_dim">月之契约魔力</string>

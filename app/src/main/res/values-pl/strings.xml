@@ -210,7 +210,6 @@
     <string name="setting_reset_su_path">Resetuj ścieżkę su</string>
     <string name="setting_reset_su_new_path">Nowa pełna ścieżka</string>
 
-
     <string name="settings_folkx_engine_title">Silnik animacji FolkX</string>
     <string name="settings_folkx_engine_summary">Używaj płynnych fizycznych animacji sprężynowych przy przełączaniu stron najwyższego poziomu</string>
     <string name="settings_folkx_animation_type">Typ animacji</string>
@@ -372,18 +371,6 @@ Proszę sprawdzić i spróbować ponownie. Jeśli nadal występują problemy, za
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">Kanał Telegram</string>
     
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
 
     <string name="settings_app_dpi">DPI aplikacji</string>
     <string name="settings_alt_icon">Alternatywna ikona</string>
@@ -427,6 +414,8 @@ Proszę sprawdzić i spróbować ponownie. Jeśli nadal występują problemy, za
     <string name="settings_list_working_card_hide_mode_summary">Ukryj małą kartę wskazującą tryb pracy</string>
     <string name="settings_list_card_hide_status_badge">Użyj Klasycznego Emoji</string>
     <string name="settings_list_card_hide_status_badge_summary">Odznaka stanu na stronie głównej zmienia się w klasyczny emoji</string>
+    <string name="settings_custom_badge_text">Niestandardowy tekst odznaki</string>
+    <string name="settings_custom_badge_text_summary">Zmodyfikuj wyświetlanie tekstu odznaki, tylko dla zabawy</string>
     <string name="settings_custom_background_dual_dim">Włącz podwójne przyciemnienie dzienne/nocne</string>
     <string name="settings_custom_background_day_dim">Przyciemnienie tła w trybie dziennym</string>
     <string name="settings_custom_background_night_dim">Przyciemnienie tła w trybie nocnym</string>

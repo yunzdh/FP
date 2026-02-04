@@ -265,7 +265,12 @@ private fun AppCard(
         )
         InfoRow(
             label = stringResource(R.string.home_info_running_mode),
-            value = if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) stringResource(R.string.home_info_mode_full) else if (kpState == APApplication.State.KERNELPATCH_INSTALLED || kpState == APApplication.State.KERNELPATCH_NEED_UPDATE) stringResource(R.string.home_info_mode_half) else stringResource(R.string.home_info_auth_na)
+            value = if (apState == APApplication.State.ANDROIDPATCH_INSTALLED)
+                (BackgroundConfig.getCustomBadgeText() ?: stringResource(R.string.home_info_mode_full))
+            else if (kpState == APApplication.State.KERNELPATCH_INSTALLED || kpState == APApplication.State.KERNELPATCH_NEED_UPDATE)
+                (BackgroundConfig.getCustomBadgeText() ?: stringResource(R.string.home_info_mode_half))
+            else
+                stringResource(R.string.home_info_auth_na)
         )
         InfoRow(
             label = stringResource(R.string.home_selinux_status),

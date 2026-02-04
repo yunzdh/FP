@@ -340,22 +340,11 @@
   <string name="about_app_version">アプリのバージョン</string>
   <string name="about_github">GitHub</string>
   <string name="about_telegram_channel">Telegram チャンネル</string>
-  <!-- App Title Strings -->
-  <string name="app_title_fpatch">FPatch</string>
-  <string name="app_title_apatch_folk">APatch Folk</string>
-  <string name="app_title_apatchx">APatch X</string>
-  <string name="app_title_apatch">APatch</string>
-  <string name="app_title_folkpatch">FolkPatch</string>
-  <string name="app_title_kernelpatch">KernelPatch</string>
-  <string name="app_title_supersu">SuperSU</string>
-  <string name="app_title_folksu">FolkSU</string>
-  <string name="app_title_superuser">Superuser</string>
-  <string name="app_title_superpatch">SuperPatch</string>
-  <string name="app_title_magicpatch">MagicPatch</string>
-    <string name="settings_app_dpi">アプリの DPI</string>
-    <string name="settings_alt_icon">代替アイコン</string>
-    <string name="alt_icon_summary">代替のランチャーアイコンを使用する</string>
-    <string name="settings_magic_mount">Folk Mount API</string>
+
+  <string name="settings_app_dpi">アプリの DPI</string>
+  <string name="settings_alt_icon">代替アイコン</string>
+  <string name="alt_icon_summary">代替のランチャーアイコンを使用する</string>
+  <string name="settings_magic_mount">Folk Mount API</string>
   <string name="settings_magic_mount_summary">内蔵のモジュールマウントシステムを有効化します</string>
   <string name="settings_overlayfs_mode">ハイブリッドマウントモード</string>
   <string name="settings_overlayfs_mode_summary">互換性を最大限に高めるために、Magic Mount の自動フォールバックを備えた OverlayFS を使用します。</string>
@@ -636,8 +625,10 @@
   <string name="settings_list_working_card_hide_mode">一部/完全のカードを非表示</string>
   <string name="settings_list_working_card_hide_mode_summary">動作モードの小さなカードを非表示にします</string>
   <string name="settings_list_card_hide_status_badge">クラシックの絵文字を使用する</string>
-  <string name="settings_list_card_hide_status_badge_summary">ホームのステータスバッジにクラシックの絵文字を使用します</string>
-  <!-- Install Mode Select -->
+   <string name="settings_list_card_hide_status_badge_summary">ホームのステータスバッジにクラシックの絵文字を使用します</string>
+   <string name="settings_custom_badge_text">カスタムバッジテキスト</string>
+   <string name="settings_custom_badge_text_summary">バッジのテキスト表示を変更します。エンターテインメントのみ</string>
+   <!-- Install Mode Select -->
   <string name="kp_install_methods">KernelPatch をパッチ/インストール</string>
   <string name="restore_boot_methods">boot パーティションを復元する boot を選択してください</string>
   <string name="su_backup_list">リストをバックアップ</string>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">FolkPatch</string>
     <string name="app_name_folksu">FolkSU</string>
@@ -371,19 +371,6 @@
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">Telegram 频道</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
-
     <string name="settings_app_dpi">应用 DPI</string>
     <string name="settings_magic_mount">Folk Mount API</string>
     <string name="settings_magic_mount_summary">启用内置的模块挂载系统</string>
@@ -424,7 +411,6 @@
     <string name="settings_background_image_cleared">已移除背景</string>
     <string name="settings_clear_background">清除背景</string>
     <string name="settings_clear_background_confirm">确定要清除背景图片吗？</string>
-
 
     <string name="settings_alt_icon">备用图标</string>
     <string name="alt_icon_summary">使用备选启动器图标</string>
@@ -688,6 +674,8 @@
     <string name="settings_list_working_card_hide_mode_summary">隐藏显示工作模式的小卡片</string>
     <string name="settings_list_card_hide_status_badge">使用经典表情</string>
     <string name="settings_list_card_hide_status_badge_summary">首页的状态徽章即刻变身经典表情</string>
+    <string name="settings_custom_badge_text">自选角标文字</string>
+    <string name="settings_custom_badge_text_summary">修改角标的文本显示，仅供娱乐</string>
 
     <!-- Install Mode Select -->
     <string name="kp_install_methods">KernelPatch 修补/安装</string>

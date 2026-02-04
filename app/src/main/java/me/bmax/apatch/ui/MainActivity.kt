@@ -367,7 +367,7 @@ class MainActivity : AppCompatActivity() {
                         android.util.Log.e("BadgeCount", "Failed to refresh badge data", e)
                     }
 
-                    delay(15000L)
+                    delay(3000L)
                 }
             }
 

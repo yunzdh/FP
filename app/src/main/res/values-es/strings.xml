@@ -225,7 +225,6 @@
     <string name="setting_reset_su_path">Restablecer ruta su</string>
     <string name="setting_reset_su_new_path">Nueva ruta completa</string>
 
-
     <string name="apm_webui_open">Abrir</string>
     <string name="apm_action">Acción</string>
     <string name="module_shortcut_add">Acceso directo</string>
@@ -373,19 +372,6 @@ Por favor verifica e intenta de nuevo. Si persisten los problemas, siempre puede
     <string name="about_app_version">Versión de la App</string>
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">Canal de Telegram</string>
-
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
 
     <string name="settings_app_dpi">DPI de la App</string>
     <string name="settings_alt_icon">Icono alternativo</string>
@@ -681,6 +667,8 @@ Por ejemplo, los KPM que previenen la modificación de particiones solo pueden u
     <string name="settings_list_working_card_hide_mode_summary">Ocultar la tarjeta pequeña indicando el modo de trabajo</string>
     <string name="settings_list_card_hide_status_badge">Usar Emojis Clásicos</string>
     <string name="settings_list_card_hide_status_badge_summary">La insignia de estado en la página de inicio se convierte en emoji clásico</string>
+    <string name="settings_custom_badge_text">Personalizar Texto de Insignia</string>
+    <string name="settings_custom_badge_text_summary">Modificar la visualización del texto de la insignia, solo por diversión</string>
 
     <!-- Install Mode Select -->
     <string name="kp_install_methods">Parcheando/Instalando KernelPatch</string>

@@ -205,7 +205,6 @@
     <string name="setting_reset_su_path">Đặt lại đường dẫn su</string>
     <string name="setting_reset_su_new_path">Đường dẫn đầy đủ mới</string>
 
-
     <string name="settings_folkx_engine_title">Động cơ hoạt hình FolkX</string>
     <string name="settings_folkx_engine_summary">Sử dụng hoạt hình lò xo vật lý mượt mà khi chuyển đổi các trang cấp cao nhất</string>
     <string name="settings_folkx_animation_type">Loại hoạt hình</string>
@@ -368,19 +367,6 @@ Vui lòng kiểm tra và thử lại. Nếu vẫn có vấn đề, bạn có th�
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">Kênh Telegram</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
-
     <string name="settings_app_dpi">DPI ứng dụng</string>
     <string name="settings_magic_mount">Folk Mount API</string>
     <string name="settings_magic_mount_summary">Bật hệ thống gắn kết mô-đun tích hợp</string>
@@ -431,6 +417,8 @@ Vui lòng kiểm tra và thử lại. Nếu vẫn có vấn đề, bạn có th�
     <string name="settings_list_working_card_hide_mode_summary">Ẩn thẻ nhỏ chỉ định chế độ làm việc</string>
     <string name="settings_list_card_hide_status_badge">Sử Dụng Emoji Cổ Điển</string>
     <string name="settings_list_card_hide_status_badge_summary">Huy hiệu trạng thái trên trang chủ trở thành emoji cổ điển</string>
+    <string name="settings_custom_badge_text">Tùy Chỉnh Văn Bản Huy Hiệu</string>
+    <string name="settings_custom_badge_text_summary">Thay đổi hiển thị văn bản của huy hiệu, chỉ để giải trí</string>
     <string name="settings_custom_background_dual_dim">Bật chế độ độ tối ngày/đêm kép</string>
     <string name="settings_custom_background_day_dim">Độ tối nền ban ngày</string>
     <string name="settings_custom_background_night_dim">Độ tối nền ban đêm</string>

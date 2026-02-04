@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">FolkPatch</string>
     <string name="app_name_folksu">FolkSU 喵</string>
 
-    <string name="desktop_app_name">桌面上的名字喵~</string>
+    <string name="desktop_app_name">桌面上的名字喵</string>
 
     <string name="home">首页</string>
 
     <string name="success">成功啦喵！</string>
     <string name="failure">呜喵... 搞砸了啦...</string>
 
-    <string name="patch_warnning">修补可是很危险的喵~ 数据要自己备份好哦，要是出事了，人家才不管你呢喵！</string>
+    <string name="patch_warnning">修补可是很危险的喵 数据要自己备份好哦，要是出事了，人家才不管你呢喵！</string>
     <string name="patch">开始修补喵！</string>
 
     <string name="kernel_patch">内核补丁哒</string>
     <string name="android_patch">系统补丁哒</string>
 
     <string name="settings_nav_layout_title">导航布局设置喵</string>
-    <string name="settings_nav_layout_summary">隐藏东西喵，不要一直问人家怎么弄啦喵~</string>
-    <string name="settings_nav_scheme">导航方案设置喵~</string>
-    <string name="settings_nav_mode">导航栏模式喵~</string>
-    <string name="settings_nav_mode_summary">选择导航栏的显示方式喵~</string>
-    <string name="settings_nav_mode_auto">自动 (根据屏幕宽度) 喵~</string>
-    <string name="settings_nav_mode_bottom">始终底部导航栏 喵~</string>
-    <string name="settings_nav_mode_rail">始终侧边导航栏 喵~</string>
+    <string name="settings_nav_layout_summary">隐藏东西喵，不要一直问人家怎么弄啦喵</string>
+    <string name="settings_nav_scheme">导航方案设置喵</string>
+    <string name="settings_nav_mode">导航栏模式喵</string>
+    <string name="settings_nav_mode_summary">选择导航栏的显示方式喵</string>
+    <string name="settings_nav_mode_auto">自动 (根据屏幕宽度) 喵</string>
+    <string name="settings_nav_mode_bottom">始终底部导航栏 喵</string>
+    <string name="settings_nav_mode_rail">始终侧边导航栏 喵</string>
     <string name="settings_show_apm">显示系统模块喵</string>
     <string name="settings_show_kpm">显示内核模块喵</string>
     <string name="settings_show_superuser">显示超级用户喵</string>
@@ -42,7 +42,7 @@
     <string name="settings_clear_super_key_dialog">真的要继续嘛？不要后悔哦喵！</string>
 
     <string name="home_learn_apatch">了解一下FolkPatch呗喵</string>
-    <string name="home_click_to_learn_apatch">快戳人家喵！看看FolkPatch能干什么喵~</string>
+    <string name="home_click_to_learn_apatch">快戳人家喵！看看FolkPatch能干什么喵</string>
     <string name="settings_hide_apatch_card">藏起这张卡片喵</string>
     <string name="settings_hide_apatch_card_summary">把首页那个"了解FolkPatch"的卡片藏起来啦喵</string>
     <string name="settings_grid_working_card_hide_check">把状态图标藏起来喵</string>
@@ -53,7 +53,7 @@
     <string name="settings_grid_working_card_hide_mode_summary">把工作卡片上那个“Full”或者“Half”藏起来嘛喵</string>
 
     <string name="settings_folkx_engine_title">FolkX动画引擎喵</string>
-    <string name="settings_folkx_engine_summary">切页面的时候用那个弹簧动画哒，不要嫌卡哦喵~</string>
+    <string name="settings_folkx_engine_summary">切页面的时候用那个弹簧动画哒，不要嫌卡哦喵</string>
     <string name="settings_folkx_animation_type">动画类型喵</string>
     <string name="settings_folkx_animation_speed">动画速度喵</string>
     <string name="settings_folkx_animation_linear">直直地动喵</string>
@@ -82,7 +82,7 @@
     <string name="home_kp_need_update">有新版本出来啦喵！</string>
     <string name="home_kp_cando_update">快更新喵！</string>
 
-    <string name="home_installing">正在安装中喵！不要催人家啦~</string>
+    <string name="home_installing">正在安装中喵！不要催人家啦</string>
 
     <string name="kpatch_version">版本号：%s 喵</string>
     <string name="apatch_version">版本号：%s 喵</string>
@@ -147,7 +147,7 @@
     <string name="settings_selinux_mode_permissive">宽松（睁只眼闭只眼）喵</string>
     <string name="settings_selinux_current_mode">现在是喵：%s</string>
     <string name="settings_selinux_mode_enforcing_summary">SELinux会严格按规则来哒，不要违规哦喵！</string>
-    <string name="settings_selinux_mode_permissive_summary">SELinux只会记违规，不会拦着你的喵~</string>
+    <string name="settings_selinux_mode_permissive_summary">SELinux只会记违规，不会拦着你的喵</string>
 
     <string name="home_device_info">设备信息喵</string>
     <string name="home_system_version">你的系统喵</string>
@@ -177,7 +177,7 @@
     <string name="su_selinux_via_hook">靠hook绕过去喵！</string>
     <string name="su_pkg_excluded_label">排除喵</string>
     <string name="su_batch_exclude_title">批量排除喵</string>
-    <string name="su_batch_exclude_content">给所有没ROOT权限的软件排除注入，选一个嘛喵~</string>
+    <string name="su_batch_exclude_content">给所有没ROOT权限的软件排除注入，选一个嘛喵</string>
     <string name="su_exclude_btn">排除掉喵！</string>
     <string name="su_exclude_reverse_btn">反过来嘛喵！</string>
     <string name="su_pkg_excluded_setting_title">改排除设置喵</string>
@@ -190,7 +190,7 @@
     <string name="apm_not_installed">系统补丁没装喵！</string>
     <string name="apm_failed_to_enable">开模块失败了喵：%s</string>
     <string name="apm_failed_to_disable">关模块失败了喵：%s</string>
-    <string name="apm_empty">没装模块喵，这里空空的~</string>
+    <string name="apm_empty">没装模块喵，这里空空的</string>
     <string name="apm_remove">删掉喵！</string>
     <string name="apm_install">安装喵！</string>
     <string name="apm_uninstall_confirm">要把%s模块卸了嘛喵？不要后悔哦</string>
@@ -219,7 +219,6 @@
 
     <string name="setting_reset_su_path">重置su路径喵</string>
     <string name="setting_reset_su_new_path">新的完整路径喵</string>
-
 
     <string name="apm_webui_open">打开喵！</string>
     <string name="apm_action">操作喵</string>
@@ -373,20 +372,6 @@
     <string name="about_github">GitHub哒</string>
     <string name="about_telegram_channel">Telegram频道哒</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
-
-
     <string name="settings_app_dpi">应用DPI喵</string>
     <string name="settings_alt_icon">备用图标喵</string>
     <string name="alt_icon_summary">用备选启动器图标喵</string>
@@ -429,7 +414,6 @@
     <string name="settings_background_image_cleared">背景删了喵！</string>
     <string name="settings_clear_background">清背景喵</string>
     <string name="settings_clear_background_confirm">确定清背景图嘛喵？</string>
-
 
     <string name="settings_launcher_icon">桌面图标喵</string>
     <!-- Video Background Settings -->
@@ -496,7 +480,7 @@
     <string name="apm_bulk_install_first_use_text">这个功能可以一次刷多个模块哒喵，是快速刷哦！适合刷没按键操作的模块，要按音量键的去设置里开完整流程喵！</string>
     <string name="apm_bulk_install_remove">删掉喵！</string>
     <string name="apm_first_use_title">欢迎用系统模块喵</string>
-    <string name="apm_first_use_text">欢迎用系统模块喵！这里用的是兼容Magisk的模块，以后可能会加Lua模块支持哦喵！点右下角装模块，也可以用顶部安装器批量装，还能一键备份所有模块喵！但这方案不一定都能用，自己要多备份哦~</string>
+    <string name="apm_first_use_text">欢迎用系统模块喵！这里用的是兼容Magisk的模块，以后可能会加Lua模块支持哦喵！点右下角装模块，也可以用顶部安装器批量装，还能一键备份所有模块喵！但这方案不一定都能用，自己要多备份哦</string>
     <string name="kpm_autoload_add_kpm">加KPM喵！</string>
     <string name="kpm_autoload_remove_kpm">删掉喵！</string>
     <string name="kpm_autoload_kpm_list_title">KPM模块列表喵</string>
@@ -505,8 +489,8 @@
     <string name="kpm_autoload_file_not_found">文件没找到喵！</string>
     <string name="kpm_autoload_select_kpm_file">选KPM文件喵！</string>
     <string name="kpm_autoload_first_time_title">关于KPM自动加载喵</string>
-    <string name="kpm_autoload_first_time_message">这个功能可以在开机的时候自动把配置里的所有KPM都加载起来哦喵！比嵌进内核方便多啦~
-比如防分区被改的KPM，只能临时加载，嵌进去开不了机喵！不想改BOOT分区就用这个配置加载嘛~
+    <string name="kpm_autoload_first_time_message">这个功能可以在开机的时候自动把配置里的所有KPM都加载起来哦喵！比嵌进内核方便多啦
+比如防分区被改的KPM，只能临时加载，嵌进去开不了机喵！不想改BOOT分区就用这个配置加载嘛
 要确保软件完全退出再进才执行命令，开机进一般也会加载喵！管理器黑屏一会儿是正常的，纯后台加载喵！记得手动上滑刷新看看加载没喵！</string>
     <string name="kpm_autoload_first_time_confirm">知道了喵！</string>
     <string name="kpm_autoload_do_not_show_again">不要再显示了喵！</string>
@@ -582,7 +566,7 @@
 
     <!-- Biometric Strings -->
     <string name="action_biometric">生物识别认证喵！</string>
-    <string name="msg_biometric">验证你的指纹或者人脸喵~</string>
+    <string name="msg_biometric">验证你的指纹或者人脸喵</string>
     <string name="settings_biometric_login">生物识别认证喵</string>
     <string name="settings_biometric_login_summary">开应用要生物识别哒喵！</string>
     <string name="settings_strong_biometric">强力生物识别喵</string>
@@ -687,6 +671,8 @@
     <string name="settings_list_working_card_hide_mode_summary">藏起显示工作模式的小卡片喵！</string>
     <string name="settings_list_card_hide_status_badge">使用经典表情喵</string>
     <string name="settings_list_card_hide_status_badge_summary">首页的状态标记即刻变身经典表情喵！</string>
+    <string name="settings_custom_badge_text">自选角标文字喵</string>
+    <string name="settings_custom_badge_text_summary">修改角标的文字显示，仅供娱乐喵</string>
 
     <!-- Install Mode Select -->
     <string name="kp_install_methods">KernelPatch修补/安装喵</string>
@@ -704,7 +690,7 @@
     <string name="badge_apm">显示APM模块角标喵</string>
     <string name="badge_kernel">显示内核模块角标喵</string>
     <string name="settings_sound_effect">音效喵</string>
-    <string name="settings_sound_effect_summary">戳人家的时候会叫喵~</string>
+    <string name="settings_sound_effect_summary">戳人家的时候会叫喵</string>
     <string name="settings_sound_effect_enabled">已经开启啦喵</string>
     <string name="settings_sound_effect_playing">现在选的是: %s 喵</string>
     <string name="settings_select_sound_effect">选个好听的声音喵</string>

@@ -49,7 +49,6 @@
     <string name="settings_grid_working_card_hide_mode">إخفاء وضع العمل</string>
     <string name="settings_grid_working_card_hide_mode_summary">إخفاء نص "كامل" أو "نصف" في بطاقة الحالة</string>
 
-
     <string name="settings_folkx_engine_title">محرك FolkX للرسوم المتحركة</string>
     <string name="settings_folkx_engine_summary">استخدام رسوم متحركة زنبركية سلسة قائمة على الفيزياء عند التبديل بين الصفحات الرئيسية</string>
     <string name="settings_folkx_animation_type">نوع الرسوم المتحركة</string>
@@ -375,19 +374,6 @@
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">قناة تيليجرام</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
-
     <string name="settings_app_dpi">DPI التطبيق</string>
     <string name="settings_alt_icon">أيقونة بديلة</string>
     <string name="alt_icon_summary">استخدم أيقونة المشغل البديلة</string>
@@ -690,11 +676,12 @@
     <string name="settings_list_working_card_hide_mode_summary">إخفاء البطاقة الصغيرة التي تشير إلى وضع العمل</string>
     <string name="settings_list_card_hide_status_badge">استخدم الإيموجي الكلاسيكي</string>
     <string name="settings_list_card_hide_status_badge_summary">شارة الحالة في الصفحة الرئيسية تتحول إلى إيموجي كلاسيكي</string>
+    <string name="settings_custom_badge_text">نص الشارة المخصص</string>
+    <string name="settings_custom_badge_text_summary">تعديل عرض نص الشارة، للمتعة فقط</string>
 
     <!-- Install Mode Select -->
     <string name="kp_install_methods">تصحيح/تثبيت KernelPatch</string>
     <string name="restore_boot_methods">حدد boot لاستعادته إلى قسم boot</string>
-
 
     <string name="su_backup_list">قائمة النسخ الاحتياطي</string>
     <string name="su_restore_list">قائمة الاستعادة</string>

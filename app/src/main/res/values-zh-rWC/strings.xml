@@ -203,7 +203,6 @@
     <string name="setting_reset_su_path">重铸登仙令符之路</string>
     <string name="setting_reset_su_new_path">新登仙令符全径</string>
 
-
     <string name="settings_folkx_engine_title">FolkX仙法动画引擎</string>
     <string name="settings_folkx_engine_summary">在天阶仙页转换时使用仙域灵动的物理符箓动画</string>
     <string name="settings_folkx_animation_type">仙法动画类型</string>
@@ -360,17 +359,6 @@
     <string name="about_github">GitHub仙府</string>
     <string name="about_telegram_channel">Telegram仙音频道</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
     <string name="app_title_superroot">SuperRoot</string>
 
     <string name="settings_app_dpi">仙器DPI</string>
@@ -425,6 +413,8 @@
     <string name="settings_list_working_card_hide_mode_summary">隐显示仙术工作模式之小卡片</string>
     <string name="settings_list_card_hide_status_badge">使用经典表情</string>
     <string name="settings_list_card_hide_status_badge_summary">首页之仙域印记即刻变身经典表情</string>
+    <string name="settings_custom_badge_text">自选仙域印记文字</string>
+    <string name="settings_custom_badge_text_summary">修改仙域印记之文字显示，仅供道友娱乐</string>
     <string name="settings_custom_background_dual_dim">启昼夜双修仙法</string>
     <string name="settings_custom_background_day_dim">白昼仙法暗度</string>
     <string name="settings_custom_background_night_dim">夜晚仙法暗度</string>
@@ -526,7 +516,6 @@
     <string name="settings_auto_backup_boot_summary">自动将Boot神印拓印至乾坤戒 (Downloads/FolkPatch/BootBackups)</string>
 
     <!-- Auto-added missing strings -->
-    <string name="app_title_magicpatch">MagicPatch</string>
 
     <!-- Home Layout Strings -->
     <string name="settings_home_layout_style">仙府主殿布局</string>

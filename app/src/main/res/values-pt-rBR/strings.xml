@@ -373,19 +373,6 @@ Por favor, verifique e tente novamente. Se houver problemas persistentes, você 
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">Canal do Telegram</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superusuário</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
-
     <string name="settings_app_dpi">DPI do App</string>
     <string name="settings_alt_icon">Ícone alternativo</string>
     <string name="alt_icon_summary">Usar ícone alternativo do lançador</string>
@@ -680,6 +667,8 @@ Por favor, certifique-se de fechar completamente o app e reabri-lo para que os c
     <string name="settings_list_working_card_hide_mode_summary">Ocultar o pequeno cartão indicando o modo de funcionamento</string>
     <string name="settings_list_card_hide_status_badge">Usar Emoji Clássico</string>
     <string name="settings_list_card_hide_status_badge_summary">O emblema de status na página inicial se transforma em emoji clássico</string>
+    <string name="settings_custom_badge_text">Personalizar Texto do Emblema</string>
+    <string name="settings_custom_badge_text_summary">Modificar a exibição de texto do emblema, apenas por diversão</string>
 
     <!-- Install Mode Select -->
     <string name="kp_install_methods">Aplicar Patch/Instalar KernelPatch</string>

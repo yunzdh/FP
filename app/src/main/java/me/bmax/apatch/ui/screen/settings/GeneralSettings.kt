@@ -114,6 +114,24 @@ fun GeneralSettings(
     val launcherIconTitle = stringResource(id = R.string.settings_alt_icon)
     val showLauncherIcon = matchGeneral || shouldShow(searchText, launcherIconTitle)
 
+    val appTitleTitle = stringResource(id = R.string.settings_app_title)
+    val currentAppTitle = prefs.getString("app_title", "folkpatch")
+    val appTitleLabel = when (currentAppTitle) {
+        "fpatch" -> stringResource(R.string.app_title_fpatch)
+        "apatch_folk" -> stringResource(R.string.app_title_apatch_folk)
+        "apatchx" -> stringResource(R.string.app_title_apatchx)
+        "apatch" -> stringResource(R.string.app_title_apatch)
+        "kernelpatch" -> stringResource(R.string.app_title_kernelpatch)
+        "kernelsu" -> stringResource(R.string.app_title_kernelsu)
+        "supersu" -> stringResource(R.string.app_title_supersu)
+        "folksu" -> stringResource(R.string.app_title_folksu)
+        "superuser" -> stringResource(R.string.app_title_superuser)
+        "superpatch" -> stringResource(R.string.app_title_superpatch)
+        "magicpatch" -> stringResource(R.string.app_title_magicpatch)
+        else -> stringResource(R.string.app_title_folkpatch)
+    }
+    val showAppTitle = matchGeneral || shouldShow(searchText, appTitleTitle, appTitleLabel)
+
     val desktopAppNameTitle = stringResource(id = R.string.desktop_app_name)
     val currentDesktopAppName = prefs.getString("desktop_app_name", "FolkPatch")
     val showDesktopAppName = matchGeneral || shouldShow(searchText, desktopAppNameTitle, currentDesktopAppName.toString())
@@ -135,12 +153,13 @@ fun GeneralSettings(
     val currentSchemeLabel = if (currentScheme == "root_service") stringResource(R.string.app_list_loading_scheme_root_service) else stringResource(R.string.app_list_loading_scheme_package_manager)
     val showAppListLoadingScheme = kPatchReady && (matchGeneral || shouldShow(searchText, appListLoadingSchemeTitle, currentSchemeLabel))
 
-    val showGeneralCategory = showLanguage || showUpdate || showAutoUpdate || showGlobalNamespace || showMagicMount || showResetSuPath || showLauncherIcon || showDesktopAppName || showDpi || showLog || showFolkXEngine || showAppListLoadingScheme || showSELinuxMode
+    val showGeneralCategory = showLanguage || showUpdate || showAutoUpdate || showGlobalNamespace || showMagicMount || showResetSuPath || showLauncherIcon || showAppTitle || showDesktopAppName || showDpi || showLog || showFolkXEngine || showAppListLoadingScheme || showSELinuxMode
 
     // Dialog States
     val showLanguageDialog = remember { mutableStateOf(false) }
     val showUpdateDialog = remember { mutableStateOf(false) }
     val showResetSuPathDialog = remember { mutableStateOf(false) }
+    val showAppTitleDialog = remember { mutableStateOf(false) }
     val showDesktopAppNameDialog = remember { mutableStateOf(false) }
     val showDpiDialog = remember { mutableStateOf(false) }
     val showFolkXAnimationTypeDialog = remember { mutableStateOf(false) }
@@ -343,6 +362,21 @@ fun GeneralSettings(
                     modifier = Modifier.clickable { showResetSuPathDialog.value = true })
             }
 
+            // App Title
+            if (showAppTitle) {
+                ListItem(colors = ListItemDefaults.colors(containerColor = Color.Transparent), headlineContent = {
+                    Text(text = appTitleTitle)
+                }, modifier = Modifier.clickable {
+                    showAppTitleDialog.value = true
+                }, supportingContent = {
+                    Text(
+                        text = appTitleLabel,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.outline
+                    )
+                }, leadingContent = { Icon(Icons.Filled.Title, null) })
+            }
+
             // Desktop App Name
             if (showDesktopAppName) {
                 ListItem(colors = ListItemDefaults.colors(containerColor = Color.Transparent), headlineContent = {
@@ -431,6 +465,10 @@ fun GeneralSettings(
             currentMode = currentSELinuxMode,
             onModeChanged = onSELinuxModeChange
         )
+    }
+    
+    if (showAppTitleDialog.value) {
+        AppTitleChooseDialog(showAppTitleDialog)
     }
     
     if (showDesktopAppNameDialog.value) {
@@ -653,6 +691,65 @@ fun SELinuxModeDialog(
                     }
                 }
             }
+            val dialogWindowProvider = LocalView.current.parent as DialogWindowProvider
+            APDialogBlurBehindUtils.setupWindowBlurListener(dialogWindowProvider.window)
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppTitleChooseDialog(showDialog: MutableState<Boolean>) {
+    val prefs = APApplication.sharedPreferences
+    val currentTitle = prefs.getString("app_title", "folkpatch")
+
+    val titles = listOf(
+        "fpatch" to stringResource(R.string.app_title_fpatch),
+        "apatch_folk" to stringResource(R.string.app_title_apatch_folk),
+        "apatchx" to stringResource(R.string.app_title_apatchx),
+        "apatch" to stringResource(R.string.app_title_apatch),
+        "folkpatch" to stringResource(R.string.app_title_folkpatch),
+        "kernelpatch" to stringResource(R.string.app_title_kernelpatch),
+        "kernelsu" to stringResource(R.string.app_title_kernelsu),
+        "supersu" to stringResource(R.string.app_title_supersu),
+        "folksu" to stringResource(R.string.app_title_folksu),
+        "superuser" to stringResource(R.string.app_title_superuser),
+        "superpatch" to stringResource(R.string.app_title_superpatch),
+        "magicpatch" to stringResource(R.string.app_title_magicpatch)
+    )
+
+    BasicAlertDialog(
+        onDismissRequest = { showDialog.value = false }, properties = DialogProperties(
+            decorFitsSystemWindows = true,
+            usePlatformDefaultWidth = false,
+        )
+    ) {
+        Surface(
+            modifier = Modifier
+                .width(310.dp)
+                .wrapContentHeight(),
+            shape = RoundedCornerShape(30.dp),
+            tonalElevation = AlertDialogDefaults.TonalElevation,
+            color = AlertDialogDefaults.containerColor,
+        ) {
+            LazyColumn {
+                items(titles.size) { index ->
+                    val (key, displayName) = titles[index]
+                    ListItem(
+                        headlineContent = { Text(text = displayName) },
+                        modifier = Modifier.clickable {
+                            showDialog.value = false
+                            prefs.edit { putString("app_title", key) }
+                        },
+                        trailingContent = {
+                            if (currentTitle == key) {
+                                Icon(Icons.Filled.Check, contentDescription = null)
+                            }
+                        }
+                    )
+                }
+            }
+
             val dialogWindowProvider = LocalView.current.parent as DialogWindowProvider
             APDialogBlurBehindUtils.setupWindowBlurListener(dialogWindowProvider.window)
         }

@@ -559,6 +559,7 @@ private fun TopBar(
         "apatchx" -> R.string.app_title_apatchx
         "apatch" -> R.string.app_title_apatch
         "kernelpatch" -> R.string.app_title_kernelpatch
+        "kernelsu" -> R.string.app_title_kernelsu
         "supersu" -> R.string.app_title_supersu
         "folksu" -> R.string.app_title_folksu
         "superuser" -> R.string.app_title_superuser
@@ -799,7 +800,7 @@ private fun KStatusCard(
                                 if (!BackgroundConfig.isListWorkingCardModeHidden) {
                                     Spacer(Modifier.width(8.dp))
                                     StatusBadge(
-                                        text = if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) "Full" else "Half"
+                                        text = BackgroundConfig.getCustomBadgeText() ?: if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) "Full" else "Half"
                                     )
                                 }
                             }

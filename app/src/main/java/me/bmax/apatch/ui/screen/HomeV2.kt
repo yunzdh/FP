@@ -284,8 +284,9 @@ private fun StatusCardBig(
                     }
                     if (isWorking && !BackgroundConfig.isGridWorkingCardModeHidden) {
                         Spacer(Modifier.height(4.dp))
+                        val customText = BackgroundConfig.getCustomBadgeText()
                         Text(
-                            text = if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) "<Full>" else "<Half>",
+                            text = if (customText != null) "<$customText>" else if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) "<Full>" else "<Half>",
                             style = MaterialTheme.typography.bodyMedium,
                             color = contentColor.copy(alpha = 0.8f)
                         )

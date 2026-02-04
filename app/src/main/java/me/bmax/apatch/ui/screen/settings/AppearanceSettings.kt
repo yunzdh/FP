@@ -295,6 +295,22 @@ fun AppearanceSettings(
     val listCardHideStatusBadgeSummary = stringResource(id = R.string.settings_list_card_hide_status_badge_summary)
     val showListCardHideStatusBadge = isListStyle && (matchAppearance || shouldShow(searchText, listCardHideStatusBadgeTitle, listCardHideStatusBadgeSummary))
 
+    val customBadgeTextTitle = stringResource(id = R.string.settings_custom_badge_text)
+    val customBadgeTextSummary = stringResource(id = R.string.settings_custom_badge_text_summary)
+    val badgeTextModes = listOf(
+        stringResource(R.string.settings_custom_badge_text_full_half),
+        stringResource(R.string.settings_custom_badge_text_lkm),
+        stringResource(R.string.settings_custom_badge_text_gki),
+        stringResource(R.string.settings_custom_badge_text_n_gki),
+        stringResource(R.string.settings_custom_badge_text_oki),
+        stringResource(R.string.settings_custom_badge_text_built_in)
+    )
+    val currentBadgeTextModeIndex = BackgroundConfig.customBadgeTextMode
+    val currentBadgeTextMode = badgeTextModes.getOrElse(currentBadgeTextModeIndex) { badgeTextModes[0] }
+    val showCustomBadgeTextList = isListStyle && !BackgroundConfig.isListWorkingCardModeHidden && (matchAppearance || shouldShow(searchText, customBadgeTextTitle, customBadgeTextSummary))
+    val showCustomBadgeTextGrid = isKernelSuStyle && !BackgroundConfig.isGridWorkingCardModeHidden && (matchAppearance || shouldShow(searchText, customBadgeTextTitle, customBadgeTextSummary))
+    val showCustomBadgeTextDialog = remember { mutableStateOf(false) }
+
     // Banner Settings
     val bannerEnabledTitle = stringResource(id = R.string.apm_enable_module_banner)
     val bannerEnabledSummary = stringResource(id = R.string.apm_enable_module_banner_summary)
@@ -797,6 +813,23 @@ fun AppearanceSettings(
                  )
              }
 
+            // Custom Badge Text (Grid Mode)
+            if (showCustomBadgeTextGrid) {
+                ListItem(
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                    headlineContent = { Text(customBadgeTextTitle) },
+                    supportingContent = {
+                        Text(
+                            text = currentBadgeTextMode,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.outline
+                        )
+                    },
+                    leadingContent = { Icon(Icons.Filled.NewReleases, null) },
+                    modifier = Modifier.clickable { showCustomBadgeTextDialog.value = true }
+                )
+            }
+
             // Hide List Status Badge
             if (showListCardHideStatusBadge) {
                 SwitchItem(
@@ -807,6 +840,60 @@ fun AppearanceSettings(
                     onCheckedChange = {
                         BackgroundConfig.setListWorkingCardModeHiddenState(it)
                         BackgroundConfig.save(context)
+                    }
+                )
+            }
+
+            // Custom Badge Text (List Mode)
+            if (showCustomBadgeTextList) {
+                ListItem(
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                    headlineContent = { Text(customBadgeTextTitle) },
+                    supportingContent = {
+                        Text(
+                            text = currentBadgeTextMode,
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.outline
+                        )
+                    },
+                    leadingContent = { Icon(Icons.Filled.NewReleases, null) },
+                    modifier = Modifier.clickable { showCustomBadgeTextDialog.value = true }
+                )
+            }
+
+            if (showCustomBadgeTextDialog.value) {
+                AlertDialog(
+                    onDismissRequest = { showCustomBadgeTextDialog.value = false },
+                    title = { Text(customBadgeTextTitle) },
+                    text = {
+                        Column {
+                            Text(customBadgeTextSummary, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(bottom = 16.dp))
+                            badgeTextModes.forEachIndexed { index, mode ->
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+                                            BackgroundConfig.setCustomBadgeTextModeValue(index)
+                                            BackgroundConfig.save(context)
+                                            showCustomBadgeTextDialog.value = false
+                                        }
+                                        .padding(vertical = 12.dp)
+                                ) {
+                                    RadioButton(
+                                        selected = index == currentBadgeTextModeIndex,
+                                        onClick = null
+                                    )
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text(text = mode)
+                                }
+                            }
+                        }
+                    },
+                    confirmButton = {
+                        TextButton(onClick = { showCustomBadgeTextDialog.value = false }) {
+                            Text(stringResource(android.R.string.cancel))
+                        }
                     }
                 )
             }

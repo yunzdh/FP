@@ -66,6 +66,9 @@ object BackgroundConfig {
     var isListWorkingCardModeHidden: Boolean by mutableStateOf(false)
         private set
 
+    var customBadgeTextMode: Int by mutableStateOf(0)
+        private set
+
     // Banner Settings
     var isBannerEnabled: Boolean by mutableStateOf(true)
         private set
@@ -114,8 +117,9 @@ object BackgroundConfig {
     private const val KEY_GRID_WORKING_CARD_CHECK_HIDDEN = "grid_working_card_check_hidden"
     private const val KEY_GRID_WORKING_CARD_TEXT_HIDDEN = "grid_working_card_text_hidden"
     private const val KEY_GRID_WORKING_CARD_MODE_HIDDEN = "grid_working_card_mode_hidden"
-
+    
     private const val KEY_LIST_WORKING_CARD_MODE_HIDDEN = "list_working_card_mode_hidden"
+    private const val KEY_CUSTOM_BADGE_TEXT_MODE = "custom_badge_text_mode"
 
     private const val KEY_BANNER_ENABLED = "banner_enabled"
     private const val KEY_FOLK_BANNER_ENABLED = "folk_banner_enabled"
@@ -245,6 +249,21 @@ object BackgroundConfig {
         isListWorkingCardModeHidden = hidden
     }
 
+    fun setCustomBadgeTextModeValue(mode: Int) {
+        customBadgeTextMode = mode
+    }
+
+    fun getCustomBadgeText(): String? {
+        return when (customBadgeTextMode) {
+            1 -> "LKM"
+            2 -> "GKI"
+            3 -> "N-GKI"
+            4 -> "OKI"
+            5 -> "Built-in"
+            else -> null
+        }
+    }
+
     /**
      * 设置自定义背景不透明度
      */
@@ -370,6 +389,7 @@ object BackgroundConfig {
             putBoolean(KEY_GRID_WORKING_CARD_MODE_HIDDEN, isGridWorkingCardModeHidden)
 
             putBoolean(KEY_LIST_WORKING_CARD_MODE_HIDDEN, isListWorkingCardModeHidden)
+            putInt(KEY_CUSTOM_BADGE_TEXT_MODE, customBadgeTextMode)
 
             putBoolean(KEY_BANNER_ENABLED, isBannerEnabled)
             putBoolean(KEY_FOLK_BANNER_ENABLED, isFolkBannerEnabled)
@@ -416,6 +436,7 @@ object BackgroundConfig {
         val gridModeHidden = prefs.getBoolean(KEY_GRID_WORKING_CARD_MODE_HIDDEN, false)
 
         val listModeHidden = prefs.getBoolean(KEY_LIST_WORKING_CARD_MODE_HIDDEN, false)
+        val badgeTextMode = prefs.getInt(KEY_CUSTOM_BADGE_TEXT_MODE, 0)
 
         val bannerEnabled = prefs.getBoolean(KEY_BANNER_ENABLED, true)
         val folkBannerEnabled = prefs.getBoolean(KEY_FOLK_BANNER_ENABLED, false)
@@ -500,6 +521,7 @@ object BackgroundConfig {
         isGridWorkingCardModeHidden = false
 
         isListWorkingCardModeHidden = false
+        customBadgeTextMode = 0
 
         isBannerEnabled = true
         isFolkBannerEnabled = false

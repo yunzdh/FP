@@ -226,29 +226,33 @@ fun StatusCardCircle(
             if (isWorking) {
                  Icon(Icons.Outlined.CheckCircle, stringResource(R.string.home_working))
                  Column(Modifier.padding(start = 20.dp)) {
-                     val modeText = if (apState == APApplication.State.ANDROIDPATCH_INSTALLED) "FULL" else "HALF"
+                     val isFull = apState == APApplication.State.ANDROIDPATCH_INSTALLED
+                    val modeTextTitle = if (isFull) "Full" else "Half"
+                    val modeTextCaps = if (isFull) "FULL" else "HALF"
+                    val modeText = BackgroundConfig.getCustomBadgeText() ?: modeTextCaps
+
                      Row(verticalAlignment = Alignment.CenterVertically) {
-                         Text(
-                             text = if (classicEmojiEnabled) {
-                                 stringResource(R.string.home_working) + "😋"
-                             } else {
-                                 stringResource(R.string.home_working)
-                             },
-                             style = MaterialTheme.typography.titleMedium
-                         )
-                         Spacer(Modifier.width(8.dp))
-                         
-                        // Full/Half Label
-                       if (!classicEmojiEnabled) {
-                           ModeLabelText(label = modeText)
-                       }
-                    }
-                    Spacer(Modifier.height(4.dp))
-                    Text(
-                        text = stringResource(R.string.home_version, getManagerVersion().second.toString()) +
-                                if (classicEmojiEnabled) " - $modeText" else "",
-                        style = MaterialTheme.typography.bodyMedium
-                    )
+                        Text(
+                            text = if (classicEmojiEnabled) {
+                                stringResource(R.string.home_working) + "😋"
+                            } else {
+                                stringResource(R.string.home_working)
+                            },
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        
+                       // Full/Half Label
+                      if (!classicEmojiEnabled) {
+                          ModeLabelText(label = modeText)
+                      }
+                   }
+                   Spacer(Modifier.height(4.dp))
+                   Text(
+                       text = stringResource(R.string.home_version, getManagerVersion().second.toString()) +
+                               if (classicEmojiEnabled) " - $modeTextTitle" else "",
+                       style = MaterialTheme.typography.bodyMedium
+                   )
                 }
             } else {
                  // Not installed or error

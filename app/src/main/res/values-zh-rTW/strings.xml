@@ -366,18 +366,6 @@
     <string name="about_github">GitHub</string>
     <string name="about_telegram_channel">Telegram 頻道</string>
 
-    <!-- App Title Strings -->
-    <string name="app_title_fpatch">FPatch</string>
-    <string name="app_title_apatch_folk">APatch Folk</string>
-    <string name="app_title_apatchx">APatch X</string>
-    <string name="app_title_apatch">APatch</string>
-    <string name="app_title_folkpatch">FolkPatch</string>
-    <string name="app_title_kernelpatch">KernelPatch</string>
-    <string name="app_title_supersu">SuperSU</string>
-    <string name="app_title_folksu">FolkSU</string>
-    <string name="app_title_superuser">Superuser</string>
-    <string name="app_title_superpatch">SuperPatch</string>
-
     <string name="settings_app_dpi">應用程式 DPI</string>
     <string name="settings_magic_mount">Folk Mount API</string>
     <string name="settings_magic_mount_summary">啟用內建的模組掛載系統</string>
@@ -433,6 +421,8 @@
     <string name="settings_list_working_card_hide_mode_summary">隱藏顯示工作模式的小卡片</string>
     <string name="settings_list_card_hide_status_badge">使用經典表情</string>
     <string name="settings_list_card_hide_status_badge_summary">首頁的狀態徽章替換為經典表情</string>
+    <string name="settings_custom_badge_text">自選角標文字</string>
+    <string name="settings_custom_badge_text_summary">修改角標的文字顯示，僅供娛樂</string>
     <string name="settings_custom_background_dual_dim">啟用日夜雙切模式</string>
     <string name="settings_custom_background_day_dim">白天模式暗度</string>
     <string name="settings_custom_background_night_dim">夜晚模式暗度</string>
@@ -535,7 +525,6 @@
     <string name="home_hide_su_path">隱藏「可執行 SU 路徑」</string>
     <string name="home_hide_zygisk">隱藏「Zygisk 實現」</string>
     <string name="home_hide_mount">隱藏「掛載實現」</string>
-    <string name="app_title_magicpatch">MagicPatch</string>
 
     <!-- Home Layout Strings -->
     <string name="settings_home_layout_style">首頁佈局樣式</string>
