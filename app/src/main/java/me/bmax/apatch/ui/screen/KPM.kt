@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -204,12 +206,15 @@ fun KPModuleScreen(navigator: DestinationsNavigator) {
 
     val prefs = remember { APApplication.sharedPreferences }
     var showMoreModuleInfo by remember { mutableStateOf(prefs.getBoolean("show_more_module_info", true)) }
+    var foldSystemModule by remember { mutableStateOf(prefs.getBoolean("fold_system_module", false)) }
     var simpleListBottomBar by remember { mutableStateOf(prefs.getBoolean("simple_list_bottom_bar", false)) }
 
     DisposableEffect(Unit) {
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPrefs, key ->
             if (key == "show_more_module_info") {
                 showMoreModuleInfo = sharedPrefs.getBoolean("show_more_module_info", true)
+            } else if (key == "fold_system_module") {
+                foldSystemModule = sharedPrefs.getBoolean("fold_system_module", false)
             } else if (key == "simple_list_bottom_bar") {
                 simpleListBottomBar = sharedPrefs.getBoolean("simple_list_bottom_bar", false)
             }
@@ -372,6 +377,7 @@ fun KPModuleScreen(navigator: DestinationsNavigator) {
                 .fillMaxSize(),
             state = kpModuleListState,
             showMoreModuleInfo = showMoreModuleInfo,
+            foldSystemModule = foldSystemModule,
             simpleListBottomBar = simpleListBottomBar,
             checkStrongBiometric = ::checkStrongBiometric
         )
@@ -613,6 +619,7 @@ private fun KPModuleList(
     modifier: Modifier = Modifier,
     state: LazyListState,
     showMoreModuleInfo: Boolean,
+    foldSystemModule: Boolean,
     simpleListBottomBar: Boolean,
     checkStrongBiometric: suspend () -> Boolean
 ) {
@@ -620,6 +627,8 @@ private fun KPModuleList(
     val moduleUninstallConfirm = stringResource(id = R.string.kpm_unload_confirm)
     val uninstall = stringResource(id = R.string.kpm_unload)
     val cancel = stringResource(id = android.R.string.cancel)
+
+    var expandedModuleId by remember { mutableStateOf<String?>(null) }
 
     val confirmDialog = rememberConfirmDialog()
     val loadingDialog = rememberLoadingDialog()
@@ -701,7 +710,12 @@ private fun KPModuleList(
                                 }
                             },
                             showMoreModuleInfo = showMoreModuleInfo,
-                            simpleListBottomBar = simpleListBottomBar
+                            simpleListBottomBar = simpleListBottomBar,
+                            foldSystemModule = foldSystemModule,
+                            expanded = expandedModuleId == module.name,
+                            onExpandToggle = {
+                                expandedModuleId = if (expandedModuleId == module.name) null else module.name
+                            }
                         )
 
                         // fix last item shadow incomplete in LazyColumn
@@ -854,7 +868,10 @@ private fun KPModuleItem(
     modifier: Modifier = Modifier,
     alpha: Float = 1f,
     showMoreModuleInfo: Boolean,
-    simpleListBottomBar: Boolean
+    simpleListBottomBar: Boolean,
+    foldSystemModule: Boolean,
+    expanded: Boolean,
+    onExpandToggle: () -> Unit
 ) {
     val moduleAuthor = stringResource(id = R.string.kpm_author)
     val moduleArgs = stringResource(id = R.string.kpm_args)
@@ -936,7 +953,11 @@ private fun KPModuleItem(
             .fillMaxWidth()
             .clip(cardShape)
             .combinedClickable(
-                onClick = {},
+                onClick = {
+                    if (foldSystemModule) {
+                        onExpandToggle()
+                    }
+                },
                 onLongClick = {
                     if (BackgroundConfig.isBannerEnabled && BackgroundConfig.isFolkBannerEnabled) {
                         showFolkBannerDialog = true
@@ -1059,52 +1080,58 @@ private fun KPModuleItem(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(if (simpleListBottomBar) 12.dp else 8.dp)
+                AnimatedVisibility(
+                    visible = !foldSystemModule || expanded,
+                    enter = fadeIn() + expandVertically(),
+                    exit = shrinkVertically() + fadeOut()
                 ) {
-                     FilledTonalButton(
-                        onClick = { onControl(module) },
-                        enabled = true,
-                        contentPadding = if (simpleListBottomBar) PaddingValues(12.dp) else PaddingValues(horizontal = 12.dp),
-                        modifier = if (simpleListBottomBar) Modifier else Modifier.height(36.dp),
-                        colors = ButtonDefaults.filledTonalButtonColors(
-                                containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = (opacity + 0.3f).coerceAtMost(1f))
-                        )
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(if (simpleListBottomBar) 12.dp else 8.dp)
                     ) {
-                        Icon(
-                            modifier = Modifier.size(20.dp),
-                            painter = painterResource(id = R.drawable.settings),
-                            contentDescription = stringResource(id = R.string.kpm_control)
-                        )
-                        if (!simpleListBottomBar) {
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(stringResource(id = R.string.kpm_control))
-                        }
-                    }
-
-                    Spacer(modifier = Modifier.weight(1f))
-                    
-                    FilledTonalButton(
-                        onClick = { onUninstall(module) },
-                        enabled = true,
-                        contentPadding = if (simpleListBottomBar) PaddingValues(12.dp) else PaddingValues(horizontal = 12.dp),
-                        modifier = if (simpleListBottomBar) Modifier else Modifier.height(36.dp),
-                        colors = if (simpleListBottomBar) ButtonDefaults.filledTonalButtonColors(
+                        FilledTonalButton(
+                            onClick = { onControl(module) },
+                            enabled = true,
+                            contentPadding = if (simpleListBottomBar) PaddingValues(12.dp) else PaddingValues(horizontal = 12.dp),
+                            modifier = if (simpleListBottomBar) Modifier else Modifier.height(36.dp),
+                            colors = ButtonDefaults.filledTonalButtonColors(
                                 containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = (opacity + 0.3f).coerceAtMost(1f))
-                        ) else ButtonDefaults.filledTonalButtonColors(
+                            )
+                        ) {
+                            Icon(
+                                modifier = Modifier.size(20.dp),
+                                painter = painterResource(id = R.drawable.settings),
+                                contentDescription = stringResource(id = R.string.kpm_control)
+                            )
+                            if (!simpleListBottomBar) {
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(stringResource(id = R.string.kpm_control))
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        FilledTonalButton(
+                            onClick = { onUninstall(module) },
+                            enabled = true,
+                            contentPadding = if (simpleListBottomBar) PaddingValues(12.dp) else PaddingValues(horizontal = 12.dp),
+                            modifier = if (simpleListBottomBar) Modifier else Modifier.height(36.dp),
+                            colors = if (simpleListBottomBar) ButtonDefaults.filledTonalButtonColors(
+                                containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = (opacity + 0.3f).coerceAtMost(1f))
+                            ) else ButtonDefaults.filledTonalButtonColors(
                                 containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = (opacity + 0.3f).coerceAtMost(1f)),
                                 contentColor = MaterialTheme.colorScheme.onErrorContainer
-                        )
-                    ) {
-                         Icon(
-                            modifier = Modifier.size(20.dp),
-                            painter = painterResource(id = R.drawable.trash),
-                            contentDescription = stringResource(id = R.string.kpm_unload)
-                        )
-                        if (!simpleListBottomBar) {
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(stringResource(id = R.string.kpm_unload))
+                            )
+                        ) {
+                            Icon(
+                                modifier = Modifier.size(20.dp),
+                                painter = painterResource(id = R.drawable.trash),
+                                contentDescription = stringResource(id = R.string.kpm_unload)
+                            )
+                            if (!simpleListBottomBar) {
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text(stringResource(id = R.string.kpm_unload))
+                            }
                         }
                     }
                 }
