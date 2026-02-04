@@ -1206,9 +1206,7 @@ private fun ModuleItem(
             }
         }
 
-        if (loaded != null) {
-            viewModel.putBannerInfo(module.id, loaded)
-        }
+        viewModel.putBannerInfo(module.id, loaded)
         value = loaded
     }
 

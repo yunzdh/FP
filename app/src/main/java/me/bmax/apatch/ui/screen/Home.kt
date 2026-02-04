@@ -137,8 +137,8 @@ import me.bmax.apatch.util.ui.APDialogBlurBehindUtils
 private val managerVersion = getManagerVersion()
 
 private enum class ApatchUninstallOption(
-    @StringRes val titleRes: Int,
-    @StringRes val descRes: Int,
+    @param:StringRes val titleRes: Int,
+    @param:StringRes val descRes: Int,
     val icon: ImageVector,
 ) {
     PATCH_ONLY(

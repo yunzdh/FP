@@ -12,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.automirrored.outlined.Help
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.*
@@ -531,7 +532,7 @@ fun AStatusCardCircle(apState: APApplication.State) {
 
                     else -> {
                         Icon(
-                            Icons.Outlined.Help,
+                            Icons.AutoMirrored.Outlined.Help,
                             stringResource(R.string.home_install_unknown)
                         )
                     }

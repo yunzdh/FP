@@ -24,7 +24,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.PlaylistAddCheck
+import androidx.compose.material.icons.automirrored.filled.PlaylistAddCheck
 import androidx.compose.material.icons.filled.Terminal
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.BasicAlertDialog
@@ -186,7 +186,7 @@ fun SuperUserScreen(navigator: DestinationsNavigator) {
                     IconButton(onClick = {
                         showBatchExcludeDialog = true
                     }) {
-                        Icon(Icons.Filled.PlaylistAddCheck, contentDescription = stringResource(R.string.su_batch_exclude_title))
+                        Icon(Icons.AutoMirrored.Filled.PlaylistAddCheck, contentDescription = stringResource(R.string.su_batch_exclude_title))
                     }
                 },
                 dropdownContent = {

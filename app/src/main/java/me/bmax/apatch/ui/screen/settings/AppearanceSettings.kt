@@ -17,6 +17,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.filled.ViewQuilt
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -513,7 +515,7 @@ fun AppearanceSettings(
                             color = MaterialTheme.colorScheme.outline
                         )
                     },
-                    leadingContent = { Icon(Icons.Filled.ViewQuilt, null) },
+                    leadingContent = { Icon(Icons.AutoMirrored.Filled.ViewQuilt, null) },
                     trailingContent = {
                         Icon(
                             imageVector = Icons.Filled.KeyboardArrowDown,
@@ -1212,14 +1214,14 @@ fun AppearanceSettings(
                                     )
                                 )
                             },
-                            leadingContent = { Icon(Icons.Filled.VolumeUp, null) }
+                            leadingContent = { Icon(Icons.AutoMirrored.Filled.VolumeUp, null) }
                         )
                     }
                  } else {
                      // Image logic ...
                      if (showMultiBackgroundSwitch) {
                          SwitchItem(
-                            icon = Icons.Filled.ViewQuilt,
+                            icon = Icons.AutoMirrored.Filled.ViewQuilt,
                             title = multiBackgroundTitle,
                             summary = multiBackgroundSummary,
                             checked = BackgroundConfig.isMultiBackgroundEnabled
