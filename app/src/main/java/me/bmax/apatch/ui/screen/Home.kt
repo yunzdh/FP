@@ -1130,7 +1130,7 @@ fun getDeviceInfo(): String {
     if (!Build.BRAND.equals(Build.MANUFACTURER, ignoreCase = true)) {
         manufacturer += " " + Build.BRAND[0].uppercaseChar() + Build.BRAND.substring(1)
     }
-    manufacturer += " " + Build.MODEL + " "
+    manufacturer += " " + me.bmax.apatch.util.getDeviceModelForDisplay() + " "
     return manufacturer
 }
 
