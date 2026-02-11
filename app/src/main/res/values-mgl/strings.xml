@@ -191,13 +191,13 @@
     <string name="apm_failed_to_disable">解除魔法阵失败: %s</string>
     <string name="apm_empty">未契约魔法阵</string>
     <string name="apm_remove">移除</string>
-    <string name="apm_undo">逆转仙法</string>
+    <string name="apm_undo">恢复契约</string>
     <string name="apm_install">契约</string>
     <string name="apm_uninstall_confirm">解除%s魔法阵契约？</string>
     <string name="apm_uninstall_success">%s已解除契约</string>
     <string name="apm_uninstall_failed">解除契约失败: %s</string>
-    <string name="apm_undo_uninstall_success">%s仙法逆转成功</string>
-    <string name="apm_undo_uninstall_failed">仙法逆转败陨：%s</string>
+    <string name="apm_undo_uninstall_success">%s契约恢复成功</string>
+    <string name="apm_undo_uninstall_failed">契约恢复失败：%s</string>
     <string name="apm_version">魔法等级</string>
     <string name="apm_author">创造者</string>
     <string name="apm_desc">魔法描述</string>
@@ -776,11 +776,13 @@
     <string name="script_library_log_saved">施展历史已记录到 %s</string>
     <string name="script_library_log_save_failed">记录施展历史失败：%s</string>
 
-    <string name="settings_vibration">Чичиргээ ба мэдрэхүй</string>
-    <string name="settings_vibration_summary">Хүрэх үед чичирхийлэх</string>
-    <string name="settings_vibration_enabled">Чичиргээ идэвхжүүлэх</string>
-    <string name="settings_vibration_intensity">Чичиргээний хүч</string>
-    <string name="settings_vibration_scope">Чичиргээний хамрах хүрээ</string>
-    <string name="settings_vibration_scope_global">Глобал (Хаа сайгүй)</string>
-    <string name="settings_vibration_scope_bottom_bar">Зөвхөн доод самбар</string>
+    <string name="settings_vibration">魔力共鸣</string>
+    <string name="settings_vibration_summary">触碰时产生魔力反馈</string>
+    <string name="settings_vibration_enabled">开启魔力共鸣</string>
+    <string name="settings_vibration_intensity">共鸣强度</string>
+    <string name="settings_vibration_scope">共鸣结界范围</string>
+    <string name="settings_vibration_scope_global">全域 (魔法世界)</string>
+    <string name="settings_vibration_scope_bottom_bar">仅基座法阵</string>
+    <string name="superuser">魔法使</string>
+    <string name="module">星之魔法阵</string>
 </resources>

@@ -616,6 +616,8 @@
     <string name="update_error">查更新出错了喵...</string>
     <!--折叠选项-->
     <string name="settings_category_general">常规喵</string>
+    <string name="superuser">超级用户喵</string>
+    <string name="module">模块喵</string>
     <string name="settings_app_list_loading_scheme">应用列表加载方案喵</string>
     <string name="settings_use_legacy_su_page">单页超级用户授权喵</string>
     <string name="settings_use_legacy_su_page_summary">超级用户页面改用单页授权设计喵</string>

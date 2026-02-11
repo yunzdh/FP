@@ -617,6 +617,8 @@
     <string name="update_error">Ошибка при проверке обновлений</string>
     <!--Варианты сворачивания-->
     <string name="settings_category_general">Общие</string>
+    <string name="superuser">Суперпользователь</string>
+    <string name="module">Модули</string>
     <string name="settings_category_appearance">Внешний вид</string>
     <string name="settings_category_behavior">Поведение</string>
     <string name="settings_use_legacy_su_page">Авторизация суперпользователя на одной странице</string>

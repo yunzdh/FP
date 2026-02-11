@@ -619,6 +619,8 @@
     <string name="update_error">檢查更新時出錯</string>
     <!--折疊選項-->
     <string name="settings_category_general">一般</string>
+    <string name="superuser">超級使用者</string>
+    <string name="module">模組</string>
     <string name="settings_category_appearance">外觀</string>
     <string name="settings_category_behavior">行為</string>
     <string name="settings_use_legacy_su_page">單頁超級用戶授權</string>

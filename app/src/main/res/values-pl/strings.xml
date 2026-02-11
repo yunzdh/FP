@@ -801,4 +801,6 @@ Upewnij się, że aplikacja jest całkowicie zamknięta i ponownie otwarta, aby 
     <string name="settings_vibration_scope">Zakres wibracji</string>
     <string name="settings_vibration_scope_global">Globalny (wszędzie)</string>
     <string name="settings_vibration_scope_bottom_bar">Tylko dolny pasek</string>
+    <string name="superuser">Superużytkownik</string>
+    <string name="module">Moduł</string>
 </resources>

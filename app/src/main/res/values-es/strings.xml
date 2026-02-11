@@ -617,6 +617,8 @@ Por ejemplo, los KPM que previenen la modificación de particiones solo pueden u
     <string name="update_latest">Estás en la última versión</string>
     <string name="update_error">Error al buscar actualizaciones</string>
     <string name="settings_category_general">General</string>
+    <string name="superuser">Superusuario</string>
+    <string name="module">Módulos</string>
     <string name="settings_category_appearance">Apariencia</string>
     <string name="settings_category_behavior">Comportamiento</string>
     <string name="settings_use_legacy_su_page">Autorización de superusuario de página única</string>

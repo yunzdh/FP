@@ -786,4 +786,6 @@
     <string name="settings_vibration_scope">نطاق الاهتزاز</string>
     <string name="settings_vibration_scope_global">عالمي (في كل مكان)</string>
     <string name="settings_vibration_scope_bottom_bar">الشريط السفلي فقط</string>
+    <string name="superuser">المستخدم الخارق</string>
+    <string name="module">وحدة</string>
 </resources>

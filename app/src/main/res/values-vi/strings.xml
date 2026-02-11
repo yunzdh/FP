@@ -616,6 +616,8 @@ Cần đảm bảo phần mềm thoát hoàn toàn vào mới sẽ thực thi l�
     <string name="update_error">Lỗi kiểm tra cập nhật</string>
     <!--Tùy chọn thu gọn-->
     <string name="settings_category_general">Chung</string>
+    <string name="superuser">Người dùng siêu cấp</string>
+    <string name="module">Module hệ thống</string>
     <string name="settings_category_appearance">Giao diện</string>
     <string name="settings_category_behavior">Hành vi</string>
     <string name="settings_use_legacy_su_page">Ủy quyền siêu người dùng một trang</string>

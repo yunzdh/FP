@@ -779,4 +779,6 @@ Pastikan aplikasi ditutup sepenuhnya dan dimulai ulang untuk menjalankan perinta
     <string name="settings_vibration_scope">Cakupan getaran</string>
     <string name="settings_vibration_scope_global">Global (Di mana saja)</string>
     <string name="settings_vibration_scope_bottom_bar">Hanya bilah bawah</string>
+    <string name="superuser">Superuser</string>
+    <string name="module">Modul</string>
 </resources>

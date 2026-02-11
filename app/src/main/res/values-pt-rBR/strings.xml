@@ -799,4 +799,6 @@ Por favor, certifique-se de fechar completamente o app e reabri-lo para que os c
     <string name="settings_vibration_scope">Escopo da vibração</string>
     <string name="settings_vibration_scope_global">Global (Em todo lugar)</string>
     <string name="settings_vibration_scope_bottom_bar">Apenas barra inferior</string>
+    <string name="superuser">Superusuário</string>
+    <string name="module">Módulo</string>
 </resources>

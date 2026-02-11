@@ -518,6 +518,8 @@
     <string name="update_latest">最新のバージョンを使用しています</string>
     <string name="update_error">更新の確認でエラーが発生しました</string>
     <string name="settings_category_general">一般</string>
+    <string name="superuser">スーパーユーザー</string>
+    <string name="module">モジュール</string>
     <string name="settings_app_list_loading_scheme">アプリリストの読み込み方式</string>
     <string name="settings_app_list_loading_scheme_summary">アプリリストの読み込み方式を選択します。</string>
     <string name="app_list_loading_scheme_root_service">root サービス (デフォルト)</string>
