@@ -300,6 +300,17 @@
     <string name="apm_banner_api_config_desc">Masukkan URL API gambar acak atau jalur direktori lokal. Setiap modul akan mendapatkan banner unik.</string>
     <string name="apm_banner_api_examples_title">Contoh:</string>
     <string name="apm_banner_api_examples">API: https://picsum.photos/800/400\nLokal: /sdcard/Pictures/Banners</string>
+    <!-- Pasar API -->
+    <string name="apm_api_marketplace_title">Pasar API</string>
+    <string name="apm_api_preview">Pratinjau</string>
+    <string name="apm_api_apply">Terapkan</string>
+    <string name="apm_api_preview_title">Pratinjau API</string>
+    <string name="apm_api_preview_failed">Gagal memuat pratinjau</string>
+    <string name="apm_api_url_label">URL API:</string>
+    <string name="apm_api_apply_success">Sumber API berhasil diterapkan</string>
+    <string name="apm_api_verifying">Memverifikasi…</string>
+    <string name="apm_api_retry">Coba lagi</string>
+    <string name="apm_api_empty">Tidak ada sumber API yang tersedia</string>
     <string name="settings_banner_custom_opacity">Opasitas banner</string>
     <string name="settings_banner_custom_opacity_summary">Gunakan opasitas kustom untuk banner alih-alih mengikuti mode latar belakang</string>
     <string name="settings_banner_opacity">Transparansi banner</string>

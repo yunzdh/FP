@@ -295,6 +295,17 @@
     <string name="apm_banner_api_config_desc">输入圣光图鉴法门或凡间图库路径，每座圣光阵将得独一无二的圣图。</string>
     <string name="apm_banner_api_examples_title">法门示例：</string>
     <string name="apm_banner_api_examples">圣光图鉴: https://picsum.photos/800/400\n凡间图库: /sdcard/Pictures/Banners</string>
+    <!-- API 法门集市 -->
+    <string name="apm_api_marketplace_title">API 法门集市</string>
+    <string name="apm_api_preview">圣光预览</string>
+    <string name="apm_api_apply">施展法门</string>
+    <string name="apm_api_preview_title">API 法门预览</string>
+    <string name="apm_api_preview_failed">圣光预览加载失败</string>
+    <string name="apm_api_url_label">API 法门地址：</string>
+    <string name="apm_api_apply_success">API 法门施展成功</string>
+    <string name="apm_api_verifying">圣光验证中…</string>
+    <string name="apm_api_retry">重新施展</string>
+    <string name="apm_api_empty">暂无 API 法门</string>
     <string name="settings_banner_custom_opacity">圣光阵横幅透明度</string>
     <string name="settings_banner_custom_opacity_summary">自定义圣光阵横幅透明度，不再跟随天界背景模式</string>
     <string name="settings_banner_opacity">圣光阵横幅不透明度</string>

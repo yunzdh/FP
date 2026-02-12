@@ -33,6 +33,7 @@ import me.bmax.apatch.util.isGlobalNamespaceEnabled as checkGlobalNamespaceEnabl
 import me.bmax.apatch.util.isMagicMountEnabled as checkMagicMountEnabled
 import me.bmax.apatch.util.ui.LocalSnackbarHost
 
+import com.ramcosta.composedestinations.generated.destinations.ApiMarketplaceScreenDestination
 import com.ramcosta.composedestinations.generated.destinations.ThemeStoreScreenDestination
 
 @Destination<RootGraph>
@@ -106,6 +107,9 @@ fun SettingScreen(navigator: DestinationsNavigator) {
                 kPatchReady = kPatchReady,
                 onNavigateToThemeStore = {
                     navigator.navigate(ThemeStoreScreenDestination)
+                },
+                onNavigateToApiMarketplace = {
+                    navigator.navigate(ApiMarketplaceScreenDestination)
                 }
             )
 

@@ -39,12 +39,14 @@ object BannerApiService {
         }
 
         val trimmedSource = source.trim()
+        // Generate source hash for cache key - each API source has its own cache
+        val sourceHash = getSourceHash(trimmedSource)
 
         return try {
-            // 首先检查缓存
-            val cachedBanner = getCachedBanner(context, moduleId)
+            // 首先检查缓存（包含source hash）
+            val cachedBanner = getCachedBanner(context, moduleId, sourceHash)
             if (cachedBanner != null) {
-                Log.d(TAG, "Using cached banner for module: $moduleId")
+                Log.d(TAG, "Using cached banner for module: $moduleId (source: $sourceHash)")
                 return cachedBanner
             }
 
@@ -55,8 +57,8 @@ object BannerApiService {
             }
 
             if (bannerData != null) {
-                // 缓存图片
-                cacheBanner(context, moduleId, bannerData)
+                // 缓存图片（包含source hash）
+                cacheBanner(context, moduleId, sourceHash, bannerData)
             }
 
             bannerData
@@ -64,6 +66,16 @@ object BannerApiService {
             Log.e(TAG, "Failed to get banner for module $moduleId: ${e.message}", e)
             null
         }
+    }
+
+    /**
+     * Generate a hash for the API source URL/path
+     * This ensures each API source has its own cache namespace
+     */
+    private fun getSourceHash(source: String): String {
+        val md = MessageDigest.getInstance("MD5")
+        val digest = md.digest(source.toByteArray())
+        return digest.take(8).joinToString("") { String.format("%02x", it) }
     }
 
     /**
@@ -195,18 +207,21 @@ object BannerApiService {
 
     /**
      * 获取模块的缓存横幅文件
+     * 包含source hash以确保不同API源的缓存隔离
      */
-    private fun getCachedBannerFile(context: Context, moduleId: String): File {
+    private fun getCachedBannerFile(context: Context, moduleId: String, sourceHash: String): File {
         val sanitizedId = sanitizeModuleId(moduleId)
-        return File(getApiBannerDir(context), sanitizedId)
+        // Include source hash in filename: sourceHash_moduleId
+        val fileName = "${sourceHash}_$sanitizedId"
+        return File(getApiBannerDir(context), fileName)
     }
 
     /**
      * 获取缓存的横幅
      */
-    private suspend fun getCachedBanner(context: Context, moduleId: String): ByteArray? = withContext(Dispatchers.IO) {
+    private suspend fun getCachedBanner(context: Context, moduleId: String, sourceHash: String): ByteArray? = withContext(Dispatchers.IO) {
         try {
-            val file = getCachedBannerFile(context, moduleId)
+            val file = getCachedBannerFile(context, moduleId, sourceHash)
             if (file.exists()) {
                 file.readBytes()
             } else {
@@ -221,11 +236,11 @@ object BannerApiService {
     /**
      * 缓存横幅图片
      */
-    private suspend fun cacheBanner(context: Context, moduleId: String, data: ByteArray) = withContext(Dispatchers.IO) {
+    private suspend fun cacheBanner(context: Context, moduleId: String, sourceHash: String, data: ByteArray) = withContext(Dispatchers.IO) {
         try {
-            val file = getCachedBannerFile(context, moduleId)
+            val file = getCachedBannerFile(context, moduleId, sourceHash)
             file.writeBytes(data)
-            Log.d(TAG, "Cached banner for module $moduleId")
+            Log.d(TAG, "Cached banner for module $moduleId (source: $sourceHash)")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to cache banner: ${e.message}", e)
         }
@@ -245,15 +260,20 @@ object BannerApiService {
     }
 
     /**
-     * 清除指定模块的缓存
+     * 清除指定模块的所有缓存（跨所有API源）
      */
     suspend fun clearModuleCache(context: Context, moduleId: String) = withContext(Dispatchers.IO) {
         try {
-            val file = getCachedBannerFile(context, moduleId)
-            if (file.exists()) {
+            val sanitizedId = sanitizeModuleId(moduleId)
+            val dir = getApiBannerDir(context)
+            // Find all cache files for this module (pattern: *_<moduleId>)
+            dir.listFiles()?.filter { file ->
+                file.name.endsWith("_$sanitizedId")
+            }?.forEach { file ->
                 file.delete()
-                Log.d(TAG, "Cleared cache for module $moduleId")
+                Log.d(TAG, "Cleared cache file: ${file.name}")
             }
+            Log.d(TAG, "Cleared all cache for module $moduleId")
         } catch (e: Exception) {
             Log.e(TAG, "Failed to clear module cache: ${e.message}", e)
         }

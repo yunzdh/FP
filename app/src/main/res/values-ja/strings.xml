@@ -319,6 +319,17 @@
     <string name="apm_banner_api_config_desc">ランダム画像APIのURLまたはローカルディレクトリのパスを入力してください。各モジュールはユニークなバナーを取得します。</string>
     <string name="apm_banner_api_examples_title">例：</string>
     <string name="apm_banner_api_examples">API: https://picsum.photos/800/400\nローカル: /sdcard/Pictures/Banners</string>
+    <!-- API マーケットプレイス -->
+    <string name="apm_api_marketplace_title">API マーケットプレイス</string>
+    <string name="apm_api_preview">プレビュー</string>
+    <string name="apm_api_apply">適用</string>
+    <string name="apm_api_preview_title">API プレビュー</string>
+    <string name="apm_api_preview_failed">プレビューの読み込みに失敗しました</string>
+    <string name="apm_api_url_label">API URL：</string>
+    <string name="apm_api_apply_success">API ソースを適用しました</string>
+    <string name="apm_api_verifying">検証中…</string>
+    <string name="apm_api_retry">再試行</string>
+    <string name="apm_api_empty">利用可能な API ソースがありません</string>
     <string name="about_app_desc">カーネルをリコンパイルせずにカーネルモジュールとカーネル関数フックをサポートするカーネルベースのルートソリューションです。</string>
     <string name="about_powered_by">Powered by %1$s</string>
     <string name="about_telegram_group">Telegram グループ</string>

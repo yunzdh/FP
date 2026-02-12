@@ -303,6 +303,17 @@
     <string name="apm_banner_api_config_desc">输入随机图API地址或本地目录路径，每个模块都会有个特别的横幅喵！</string>
     <string name="apm_banner_api_examples_title">示例喵：</string>
     <string name="apm_banner_api_examples">API: https://picsum.photos/800/400\n本地: /sdcard/Pictures/Banners</string>
+    <!-- API 接口市场喵 -->
+    <string name="apm_api_marketplace_title">API 接口市场喵</string>
+    <string name="apm_api_preview">预览喵</string>
+    <string name="apm_api_apply">应用喵</string>
+    <string name="apm_api_preview_title">API 预览喵</string>
+    <string name="apm_api_preview_failed">预览加载失败喵</string>
+    <string name="apm_api_url_label">API 地址喵：</string>
+    <string name="apm_api_apply_success">API 源应用成功了喵！</string>
+    <string name="apm_api_verifying">验证中喵…</string>
+    <string name="apm_api_retry">重试喵</string>
+    <string name="apm_api_empty">暂无 API 源喵</string>
     <string name="settings_banner_custom_opacity">横幅透明度喵</string>
     <string name="settings_banner_custom_opacity_summary">自定横幅透明度，不再跟随机箱模式哒喵！</string>
     <string name="settings_banner_opacity">横幅不透明度喵</string>

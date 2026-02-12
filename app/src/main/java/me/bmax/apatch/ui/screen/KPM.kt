@@ -947,13 +947,15 @@ private fun KPModuleItem(
             return@produceState
         }
 
-        // API模式优先级最高
-        if (BackgroundConfig.isBannerApiModeEnabled && BackgroundConfig.bannerApiSource.isNotBlank()) {
+        // Get effective API source
+        val effectiveApiSource = BackgroundConfig.getEffectiveBannerApiSource()
+
+        if (BackgroundConfig.isBannerApiModeEnabled && effectiveApiSource.isNotBlank()) {
             val apiBanner = withContext(Dispatchers.IO) {
                 BannerApiService.getModuleBanner(
                     context = context,
                     moduleId = "kpm_${module.name}",
-                    source = BackgroundConfig.bannerApiSource
+                    source = effectiveApiSource
                 )
             }
             if (apiBanner != null) {

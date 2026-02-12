@@ -305,6 +305,17 @@
     <string name="apm_banner_api_config_desc">Introduce una URL de API de imágenes aleatorias o una ruta de directorio local. Cada módulo obtendrá un banner único.</string>
     <string name="apm_banner_api_examples_title">Ejemplos:</string>
     <string name="apm_banner_api_examples">API: https://picsum.photos/800/400\nLocal: /sdcard/Pictures/Banners</string>
+    <!-- Mercado de API -->
+    <string name="apm_api_marketplace_title">Mercado de API</string>
+    <string name="apm_api_preview">Vista previa</string>
+    <string name="apm_api_apply">Aplicar</string>
+    <string name="apm_api_preview_title">Vista previa de API</string>
+    <string name="apm_api_preview_failed">Error al cargar la vista previa</string>
+    <string name="apm_api_url_label">URL de API:</string>
+    <string name="apm_api_apply_success">Fuente de API aplicada correctamente</string>
+    <string name="apm_api_verifying">Verificando…</string>
+    <string name="apm_api_retry">Reintentar</string>
+    <string name="apm_api_empty">No hay fuentes de API disponibles</string>
     <string name="settings_banner_custom_opacity">Opacidad del banner</string>
     <string name="settings_banner_custom_opacity_summary">Usar opacidad personalizada para banners en lugar de seguir el modo de fondo de pantalla</string>
     <string name="settings_banner_opacity">Transparencia del banner</string>

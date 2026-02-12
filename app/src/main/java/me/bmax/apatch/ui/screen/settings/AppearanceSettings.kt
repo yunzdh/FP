@@ -57,7 +57,8 @@ fun AppearanceSettings(
     searchText: String,
     snackBarHost: SnackbarHostState,
     kPatchReady: Boolean,
-    onNavigateToThemeStore: () -> Unit
+    onNavigateToThemeStore: () -> Unit,
+    onNavigateToApiMarketplace: () -> Unit
 ) {
     val prefs = APApplication.sharedPreferences
     val context = LocalContext.current
@@ -332,6 +333,10 @@ fun AppearanceSettings(
     val showBannerApiSource = BackgroundConfig.isBannerEnabled && BackgroundConfig.isFolkBannerEnabled && BackgroundConfig.isBannerApiModeEnabled && (matchAppearance || shouldShow(searchText, bannerApiSourceTitle, bannerApiSourceHint))
 
     val bannerApiClearCacheTitle = stringResource(id = R.string.apm_banner_clear_cache)
+
+    // API Marketplace
+    val apiMarketplaceTitle = stringResource(id = R.string.apm_api_marketplace_title)
+    val showApiMarketplace = BackgroundConfig.isBannerEnabled && BackgroundConfig.isFolkBannerEnabled && BackgroundConfig.isBannerApiModeEnabled && (matchAppearance || shouldShow(searchText, apiMarketplaceTitle))
 
     val bannerCustomOpacityTitle = stringResource(id = R.string.settings_banner_custom_opacity)
     val bannerCustomOpacitySummary = stringResource(id = R.string.settings_banner_custom_opacity_summary)
@@ -998,6 +1003,18 @@ fun AppearanceSettings(
                         }
                     )
                 }
+            }
+
+            // API Marketplace Entry
+            if (showApiMarketplace) {
+                ListItem(
+                    colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                    headlineContent = { Text(apiMarketplaceTitle) },
+                    leadingContent = { Icon(Icons.Filled.Store, null) },
+                    modifier = Modifier.clickable {
+                        onNavigateToApiMarketplace()
+                    }
+                )
             }
 
             if (showBannerCustomOpacitySwitch) {

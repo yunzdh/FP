@@ -134,6 +134,8 @@ object BackgroundConfig {
 
     private const val KEY_BANNER_API_MODE_ENABLED = "banner_api_mode_enabled"
     private const val KEY_BANNER_API_SOURCE = "banner_api_source"
+    // Legacy key for migration
+    private const val KEY_FOLK_BANNER_API_SOURCE = "folk_banner_api_source"
 
     private const val KEY_MULTI_BACKGROUND_ENABLED = "multi_background_enabled"
     private const val KEY_HOME_BACKGROUND_URI = "home_background_uri"
@@ -323,6 +325,13 @@ object BackgroundConfig {
     }
 
     /**
+     * 获取有效的横幅API源
+     */
+    fun getEffectiveBannerApiSource(): String {
+        return bannerApiSource
+    }
+
+    /**
      * 设置自定义背景模糊度
      */
     fun setCustomBackgroundBlurValue(blur: Float) {
@@ -421,6 +430,8 @@ object BackgroundConfig {
 
             putBoolean(KEY_BANNER_API_MODE_ENABLED, isBannerApiModeEnabled)
             putString(KEY_BANNER_API_SOURCE, bannerApiSource)
+            // Remove legacy key
+            remove(KEY_FOLK_BANNER_API_SOURCE)
 
             putBoolean(KEY_MULTI_BACKGROUND_ENABLED, isMultiBackgroundEnabled)
             putString(KEY_HOME_BACKGROUND_URI, homeBackgroundUri)
@@ -471,6 +482,9 @@ object BackgroundConfig {
 
         val bannerApiModeEnabled = prefs.getBoolean(KEY_BANNER_API_MODE_ENABLED, false)
         val bannerApiSourceValue = prefs.getString(KEY_BANNER_API_SOURCE, "") ?: ""
+        // Migration logic: if folk banner source exists, use it and it will be saved as main source later
+        val folkBannerApiSourceValue = prefs.getString(KEY_FOLK_BANNER_API_SOURCE, "") ?: ""
+        val effectiveApiSource = if (folkBannerApiSourceValue.isNotBlank()) folkBannerApiSourceValue else bannerApiSourceValue
 
         val multiEnabled = prefs.getBoolean(KEY_MULTI_BACKGROUND_ENABLED, false)
         val homeUri = prefs.getString(KEY_HOME_BACKGROUND_URI, null)
@@ -514,7 +528,7 @@ object BackgroundConfig {
         this.bannerCustomOpacity = bannerCustomOpacity
 
         isBannerApiModeEnabled = bannerApiModeEnabled
-        bannerApiSource = bannerApiSourceValue
+        bannerApiSource = effectiveApiSource
 
         isMultiBackgroundEnabled = multiEnabled
         homeBackgroundUri = homeUri

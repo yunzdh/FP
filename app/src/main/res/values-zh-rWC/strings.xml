@@ -294,6 +294,17 @@
     <string name="apm_banner_api_config_desc">输入天界仙图法门或凡间图库路径，每座仙阵将得独一无二的仙图。</string>
     <string name="apm_banner_api_examples_title">法门示例：</string>
     <string name="apm_banner_api_examples">天界仙图: https://picsum.photos/800/400\n凡间图库: /sdcard/Pictures/Banners</string>
+    <!-- API 仙界集市 -->
+    <string name="apm_api_marketplace_title">API 仙界集市</string>
+    <string name="apm_api_preview">仙法预览</string>
+    <string name="apm_api_apply">施展仙法</string>
+    <string name="apm_api_preview_title">API 仙法预览</string>
+    <string name="apm_api_preview_failed">仙法预览加载失败</string>
+    <string name="apm_api_url_label">API 仙法门路：</string>
+    <string name="apm_api_apply_success">API 仙法施展成功</string>
+    <string name="apm_api_verifying">仙法验证中…</string>
+    <string name="apm_api_retry">重新施展</string>
+    <string name="apm_api_empty">暂无 API 仙法门</string>
     <string name="settings_banner_custom_opacity">仙阵横幅透度</string>
     <string name="settings_banner_custom_opacity_summary">自定仙阵横幅透度，不随凡界背景而变</string>
     <string name="settings_banner_opacity">仙阵横幅不透法</string>
