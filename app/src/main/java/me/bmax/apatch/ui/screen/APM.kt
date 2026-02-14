@@ -1138,7 +1138,7 @@ private fun ModuleItem(
 
     val isWallpaperMode = BackgroundConfig.isCustomBackgroundEnabled
     val opacity = if (isWallpaperMode) {
-        BackgroundConfig.customBackgroundOpacity.coerceAtLeast(0.2f)
+        BackgroundConfig.customBackgroundOpacity.coerceAtLeast(0.35f)
     } else {
         1f
     }
