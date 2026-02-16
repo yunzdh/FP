@@ -443,7 +443,22 @@
     <string name="settings_select_system_module_background">خلفية وحدة النظام</string>
     <string name="settings_select_settings_background">خلفية الإعدادات</string>
 
-    
+    <string name="settings_advanced_title_style">نمط العنوان المتقدم</string>
+    <string name="settings_advanced_title_style_summary">استبدال العنوان العلوي بصورة مخصصة</string>
+    <string name="settings_advanced_title_style_enabled">تمكين نمط العنوان المتقدم</string>
+    <string name="settings_select_title_image">تحديد صورة العنوان</string>
+    <string name="settings_title_image_selected">تم تحديد صورة العنوان</string>
+    <string name="settings_title_image_saved">تم حفظ صورة العنوان بنجاح</string>
+    <string name="settings_title_image_error">فشل حفظ صورة العنوان</string>
+    <string name="settings_clear_title_image">مسح صورة العنوان</string>
+    <string name="settings_clear_title_image_confirm">هل أنت متأكد من أنك تريد مسح صورة العنوان؟</string>
+    <string name="settings_title_image_cleared">تم مسح صورة العنوان</string>
+    <string name="settings_title_image_day_opacity">شفافية وضع النهار</string>
+    <string name="settings_title_image_night_opacity">شفافية وضع الليل</string>
+    <string name="settings_title_image_dim">تعتيم الخلفية</string>
+    <string name="settings_title_image_offset_x">الموضع الأفقي</string>
+
+
     <!-- Font Settings -->
     <string name="settings_custom_font">خط مخصص</string>
     <string name="settings_select_font_file">تحديد ملف الخط</string>

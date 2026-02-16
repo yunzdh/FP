@@ -439,6 +439,22 @@ Berikut adalah beberapa kemungkinan penyebab kegagalan autentikasi—silakan cek
     <string name="settings_select_superuser_background">Latar Belakang Superuser</string>
     <string name="settings_select_system_module_background">Latar Belakang Modul Sistem</string>
     <string name="settings_select_settings_background">Latar Belakang Halaman Pengaturan</string>
+
+    <string name="settings_advanced_title_style">Gaya Judul Lanjutan</string>
+    <string name="settings_advanced_title_style_summary">Ganti judul bilah atas dengan gambar kustom</string>
+    <string name="settings_advanced_title_style_enabled">Gaya judul lanjutan diaktifkan</string>
+    <string name="settings_select_title_image">Pilih Gambar Judul</string>
+    <string name="settings_title_image_selected">Gambar judul dipilih</string>
+    <string name="settings_title_image_saved">Gambar judul berhasil disimpan</string>
+    <string name="settings_title_image_error">Gagal menyimpan gambar judul</string>
+    <string name="settings_clear_title_image">Hapus Gambar Judul</string>
+    <string name="settings_clear_title_image_confirm">Apakah Anda yakin ingin menghapus gambar judul?</string>
+    <string name="settings_title_image_cleared">Gambar judul dihapus</string>
+    <string name="settings_title_image_day_opacity">Opresitas Mode Siang</string>
+    <string name="settings_title_image_night_opacity">Opresitas Mode Malam</string>
+    <string name="settings_title_image_dim">Redupkan Latar Belakang</string>
+    <string name="settings_title_image_offset_x">Posisi Horizontal</string>
+
     <string name="settings_launcher_icon">Ikon Peluncur</string>
 
     <string name="kpm_autoload_title">Muat Otomatis KPM</string>

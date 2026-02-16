@@ -442,6 +442,22 @@
     <string name="settings_select_superuser_background">超级用户魔法背景</string>
     <string name="settings_select_system_module_background">系统模块魔法背景</string>
     <string name="settings_select_settings_background">设置页面魔法背景</string>
+
+    <string name="settings_advanced_title_style">高级魔法标题样式</string>
+    <string name="settings_advanced_title_style_summary">使用魔法图片替换顶部标题</string>
+    <string name="settings_advanced_title_style_enabled">高级魔法标题样式已开启</string>
+    <string name="settings_select_title_image">选择魔法标题图片</string>
+    <string name="settings_title_image_selected">已选择魔法标题图片</string>
+    <string name="settings_title_image_saved">魔法标题图片保存成功</string>
+    <string name="settings_title_image_error">保存魔法标题图片失败</string>
+    <string name="settings_clear_title_image">清除魔法标题图片</string>
+    <string name="settings_clear_title_image_confirm">确定要清除魔法标题图片吗？</string>
+    <string name="settings_title_image_cleared">魔法标题图片已清除</string>
+    <string name="settings_title_image_day_opacity">白天模式透明度</string>
+    <string name="settings_title_image_night_opacity">夜间模式透明度</string>
+    <string name="settings_title_image_dim">背景魔法暗度</string>
+    <string name="settings_title_image_offset_x">水平位置</string>
+
     <string name="settings_launcher_icon">魔法使徽章</string>
     <string name="su_exclude_all_title">批量免疫</string>
     <string name="su_exclude_all_confirm">确定要将所有未觉醒的魔法使施加免疫咒语吗？</string>

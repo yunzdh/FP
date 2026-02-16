@@ -152,6 +152,24 @@ fun AppearanceSettings(
             }
         }
     }
+
+    val pickTitleImageLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let {
+            scope.launch {
+                loadingDialog.show()
+                val success = BackgroundManager.saveAndApplyTitleImage(context, it)
+                loadingDialog.hide()
+                if (success) {
+                    snackBarHost.showSnackbar(message = context.getString(R.string.settings_title_image_saved))
+                    refreshTheme.value = true
+                } else {
+                    snackBarHost.showSnackbar(message = context.getString(R.string.settings_title_image_error))
+                }
+            }
+        }
+    }
     
     // Theme Export/Import Logic
     var pendingExportMetadata by remember { mutableStateOf<ThemeManager.ThemeMetadata?>(null) }
@@ -314,6 +332,31 @@ fun AppearanceSettings(
     val showCustomBadgeTextGrid = isKernelSuStyle && !BackgroundConfig.isGridWorkingCardModeHidden && (matchAppearance || shouldShow(searchText, customBadgeTextTitle, customBadgeTextSummary))
     val showCustomBadgeTextDialog = remember { mutableStateOf(false) }
 
+    // Advanced Title Style
+    val advancedTitleStyleTitle = stringResource(id = R.string.settings_advanced_title_style)
+    val advancedTitleStyleSummary = stringResource(id = R.string.settings_advanced_title_style_summary)
+    val advancedTitleStyleEnabledText = stringResource(id = R.string.settings_advanced_title_style_enabled)
+    val showAdvancedTitleStyleSwitch = matchAppearance || shouldShow(searchText, advancedTitleStyleTitle, advancedTitleStyleSummary, advancedTitleStyleEnabledText)
+
+    val titleImageDayOpacityTitle = stringResource(id = R.string.settings_title_image_day_opacity)
+    val showTitleImageDayOpacity = BackgroundConfig.isAdvancedTitleStyleEnabled && (matchAppearance || shouldShow(searchText, titleImageDayOpacityTitle))
+
+    val titleImageNightOpacityTitle = stringResource(id = R.string.settings_title_image_night_opacity)
+    val showTitleImageNightOpacity = BackgroundConfig.isAdvancedTitleStyleEnabled && (matchAppearance || shouldShow(searchText, titleImageNightOpacityTitle))
+
+    val titleImageDimTitle = stringResource(id = R.string.settings_title_image_dim)
+    val showTitleImageDim = BackgroundConfig.isAdvancedTitleStyleEnabled && (matchAppearance || shouldShow(searchText, titleImageDimTitle))
+
+    val titleImageSelectTitle = stringResource(id = R.string.settings_select_title_image)
+    val titleImageSelectedText = stringResource(id = R.string.settings_title_image_selected)
+    val showTitleImagePicker = BackgroundConfig.isAdvancedTitleStyleEnabled && (matchAppearance || shouldShow(searchText, titleImageSelectTitle, titleImageSelectedText))
+
+    val titleImageClearTitle = stringResource(id = R.string.settings_clear_title_image)
+    val showTitleImageClear = BackgroundConfig.isAdvancedTitleStyleEnabled && !BackgroundConfig.titleImageUri.isNullOrEmpty() && (matchAppearance || shouldShow(searchText, titleImageClearTitle))
+
+    val titleImageOffsetXTitle = stringResource(id = R.string.settings_title_image_offset_x)
+    val showTitleImageOffsetX = BackgroundConfig.isAdvancedTitleStyleEnabled && (matchAppearance || shouldShow(searchText, titleImageOffsetXTitle))
+
     // Banner Settings
     val bannerEnabledTitle = stringResource(id = R.string.apm_enable_module_banner)
     val bannerEnabledSummary = stringResource(id = R.string.apm_enable_module_banner_summary)
@@ -420,7 +463,7 @@ fun AppearanceSettings(
     val importThemeTitle = stringResource(id = R.string.settings_import_theme)
     val showImportTheme = matchAppearance || shouldShow(searchText, importThemeTitle)
     
-    val showAppearanceCategory = showNightModeFollowSys || showNightModeEnabled || showUseSystemColor || showCustomColor || showHomeLayout || showNavLayout || showGridBackgroundSwitch || showGridOpacity || showGridTextHidden || showGridModeHidden || showListModeHidden || showListCardHideStatusBadge || showCustomBackgroundSwitch || showCustomFontSwitch || showThemeStore || showSaveTheme || showImportTheme
+    val showAppearanceCategory = showNightModeFollowSys || showNightModeEnabled || showUseSystemColor || showCustomColor || showHomeLayout || showNavLayout || showGridBackgroundSwitch || showGridOpacity || showGridTextHidden || showGridModeHidden || showListModeHidden || showListCardHideStatusBadge || showCustomBackgroundSwitch || showCustomFontSwitch || showThemeStore || showSaveTheme || showImportTheme || showAdvancedTitleStyleSwitch
 
     val showThemeChooseDialog = remember { mutableStateOf(false) }
     val showHomeLayoutChooseDialog = remember { mutableStateOf(false) }
@@ -914,6 +957,152 @@ fun AppearanceSettings(
                         }
                     }
                 )
+            }
+
+            // Advanced Title Style
+            if (showAdvancedTitleStyleSwitch) {
+                SwitchItem(
+                    icon = Icons.Filled.Brush,
+                    title = advancedTitleStyleTitle,
+                    summary = if (BackgroundConfig.isAdvancedTitleStyleEnabled) advancedTitleStyleEnabledText else advancedTitleStyleSummary,
+                    checked = BackgroundConfig.isAdvancedTitleStyleEnabled
+                ) {
+                    BackgroundConfig.setAdvancedTitleStyleEnabledState(it)
+                    BackgroundConfig.save(context)
+                    refreshTheme.value = true
+                }
+            }
+
+            if (BackgroundConfig.isAdvancedTitleStyleEnabled) {
+                if (showTitleImageDayOpacity) {
+                    ListItem(
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        headlineContent = { Text(titleImageDayOpacityTitle) },
+                        supportingContent = {
+                            androidx.compose.material3.Slider(
+                                value = BackgroundConfig.titleImageDayOpacity,
+                                onValueChange = { BackgroundConfig.setTitleImageDayOpacityValue(it) },
+                                onValueChangeFinished = { BackgroundConfig.save(context) },
+                                valueRange = 0f..1f,
+                                colors = androidx.compose.material3.SliderDefaults.colors(
+                                    thumbColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
+                                    activeTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f)
+                                )
+                            )
+                        }
+                    )
+                }
+
+                if (showTitleImageNightOpacity) {
+                    ListItem(
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        headlineContent = { Text(titleImageNightOpacityTitle) },
+                        supportingContent = {
+                            androidx.compose.material3.Slider(
+                                value = BackgroundConfig.titleImageNightOpacity,
+                                onValueChange = { BackgroundConfig.setTitleImageNightOpacityValue(it) },
+                                onValueChangeFinished = { BackgroundConfig.save(context) },
+                                valueRange = 0f..1f,
+                                colors = androidx.compose.material3.SliderDefaults.colors(
+                                    thumbColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
+                                    activeTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f)
+                                )
+                            )
+                        }
+                    )
+                }
+
+                if (showTitleImageDim) {
+                    ListItem(
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        headlineContent = { Text(titleImageDimTitle) },
+                        supportingContent = {
+                            androidx.compose.material3.Slider(
+                                value = BackgroundConfig.titleImageDim,
+                                onValueChange = { BackgroundConfig.setTitleImageDimValue(it) },
+                                onValueChangeFinished = { BackgroundConfig.save(context) },
+                                valueRange = 0f..1f,
+                                colors = androidx.compose.material3.SliderDefaults.colors(
+                                    thumbColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
+                                    activeTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f)
+                                )
+                            )
+                        }
+                    )
+                }
+
+                if (showTitleImageOffsetX) {
+                    ListItem(
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        headlineContent = { Text(titleImageOffsetXTitle) },
+                        supportingContent = {
+                            androidx.compose.material3.Slider(
+                                value = BackgroundConfig.titleImageOffsetX,
+                                onValueChange = { BackgroundConfig.setTitleImageOffsetXValue(it) },
+                                onValueChangeFinished = { BackgroundConfig.save(context) },
+                                valueRange = -1f..1f,
+                                colors = androidx.compose.material3.SliderDefaults.colors(
+                                    thumbColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f),
+                                    activeTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 1f)
+                                )
+                            )
+                        }
+                    )
+                }
+
+                if (showTitleImagePicker) {
+                    ListItem(
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        headlineContent = { Text(text = titleImageSelectTitle) },
+                        supportingContent = {
+                            if (!BackgroundConfig.titleImageUri.isNullOrEmpty()) {
+                                Text(
+                                    text = titleImageSelectedText,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.outline
+                                )
+                            }
+                        },
+                        leadingContent = { Icon(painterResource(id = R.drawable.ic_custom_background), null) },
+                        modifier = Modifier.clickable {
+                            if (PermissionUtils.hasExternalStoragePermission(context)) {
+                                try {
+                                    pickTitleImageLauncher.launch("image/*")
+                                } catch (e: ActivityNotFoundException) {
+                                    Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                Toast.makeText(context, "请先授予存储权限才能选择标题图片", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    )
+                }
+
+                val clearTitleImageDialog = rememberConfirmDialog(
+                    onConfirm = {
+                        scope.launch {
+                            loadingDialog.show()
+                            BackgroundManager.clearTitleImage(context)
+                            loadingDialog.hide()
+                            snackBarHost.showSnackbar(message = context.getString(R.string.settings_title_image_cleared))
+                            refreshTheme.value = true
+                        }
+                    }
+                )
+                if (showTitleImageClear) {
+                    ListItem(
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+                        headlineContent = { Text(text = titleImageClearTitle) },
+                        leadingContent = { Icon(painterResource(id = R.drawable.ic_clear_background), null) },
+                        modifier = Modifier.clickable {
+                            clearTitleImageDialog.showConfirm(
+                                title = context.getString(R.string.settings_clear_title_image),
+                                content = context.getString(R.string.settings_clear_title_image_confirm),
+                                markdown = false
+                            )
+                        }
+                    )
+                }
             }
 
             // Banner Settings

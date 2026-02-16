@@ -434,8 +434,24 @@
     <string name="settings_select_superuser_background">超级用户天使背景</string>
     <string name="settings_select_system_module_background">系统模块天使背景</string>
     <string name="settings_select_settings_background">设置页面天使背景</string>
+
+    <string name="settings_advanced_title_style">高级标题天使样式</string>
+    <string name="settings_advanced_title_style_summary">用自定义图片替换顶部天使标题</string>
+    <string name="settings_advanced_title_style_enabled">高级标题天使样式已开启</string>
+    <string name="settings_select_title_image">选择标题天使图片</string>
+    <string name="settings_title_image_selected">已选择标题天使图片</string>
+    <string name="settings_title_image_saved">标题天使图片保存成功</string>
+    <string name="settings_title_image_error">保存标题天使图片失败</string>
+    <string name="settings_clear_title_image">清除标题天使图片</string>
+    <string name="settings_clear_title_image_confirm">确定要清除标题天使图片吗？</string>
+    <string name="settings_title_image_cleared">标题天使图片已清除</string>
+    <string name="settings_title_image_day_opacity">白天模式透明度</string>
+    <string name="settings_title_image_night_opacity">夜间模式透明度</string>
+    <string name="settings_title_image_dim">背景天使暗度</string>
+    <string name="settings_title_image_offset_x">水平位置</string>
+
     <string name="settings_launcher_icon">天使使徽章</string>
-    
+
     <!-- 隐藏设定字符串 -->
     <string name="home_hide_su_path">隐藏天使使路径</string>
     <string name="home_hide_kpatch_version">隐藏心之魔法祝福等级</string>

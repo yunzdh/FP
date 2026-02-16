@@ -450,6 +450,21 @@ Here are some possible reasons for authentication failure—please check which o
     <string name="settings_select_system_module_background">System Module Background</string>
     <string name="settings_select_settings_background">Settings Background</string>
 
+    <string name="settings_advanced_title_style">Advanced Title Style</string>
+    <string name="settings_advanced_title_style_summary">Replace top bar title with custom image</string>
+    <string name="settings_advanced_title_style_enabled">Advanced title style enabled</string>
+    <string name="settings_select_title_image">Select Title Image</string>
+    <string name="settings_title_image_selected">Title image selected</string>
+    <string name="settings_title_image_saved">Title image saved successfully</string>
+    <string name="settings_title_image_error">Failed to save title image</string>
+    <string name="settings_clear_title_image">Clear Title Image</string>
+    <string name="settings_clear_title_image_confirm">Are you sure you want to clear the title image?</string>
+    <string name="settings_title_image_cleared">Title image cleared</string>
+    <string name="settings_title_image_day_opacity">Day Mode Opacity</string>
+    <string name="settings_title_image_night_opacity">Night Mode Opacity</string>
+    <string name="settings_title_image_dim">Background Dim</string>
+    <string name="settings_title_image_offset_x">Horizontal Position</string>
+
     
     <!-- Font Settings -->
     <string name="settings_custom_font">Custom Font</string>

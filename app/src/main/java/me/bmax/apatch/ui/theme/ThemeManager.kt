@@ -91,7 +91,13 @@ object ThemeManager {
         val isBannerEnabled: Boolean = true,
         val isFolkBannerEnabled: Boolean = false,
         val isBannerCustomOpacityEnabled: Boolean = false,
-        val bannerCustomOpacity: Float = 0.5f
+        val bannerCustomOpacity: Float = 0.5f,
+        // Advanced Title Style
+        val isAdvancedTitleStyleEnabled: Boolean = false,
+        val titleImageDayOpacity: Float = 1.0f,
+        val titleImageNightOpacity: Float = 1.0f,
+        val titleImageDim: Float = 0.0f,
+        val titleImageOffsetX: Float = 0f
     )
 
     data class ThemeMetadata(
@@ -150,7 +156,13 @@ object ThemeManager {
                     isBannerEnabled = BackgroundConfig.isBannerEnabled,
                     isFolkBannerEnabled = BackgroundConfig.isFolkBannerEnabled,
                     isBannerCustomOpacityEnabled = BackgroundConfig.isBannerCustomOpacityEnabled,
-                    bannerCustomOpacity = BackgroundConfig.bannerCustomOpacity
+                    bannerCustomOpacity = BackgroundConfig.bannerCustomOpacity,
+                    // Advanced Title Style
+                    isAdvancedTitleStyleEnabled = BackgroundConfig.isAdvancedTitleStyleEnabled,
+                    titleImageDayOpacity = BackgroundConfig.titleImageDayOpacity,
+                    titleImageNightOpacity = BackgroundConfig.titleImageNightOpacity,
+                    titleImageDim = BackgroundConfig.titleImageDim,
+                    titleImageOffsetX = BackgroundConfig.titleImageOffsetX
                 )
 
                 // 2. Write Config JSON
@@ -206,6 +218,13 @@ object ThemeManager {
                     put("isFolkBannerEnabled", config.isFolkBannerEnabled)
                     put("isBannerCustomOpacityEnabled", config.isBannerCustomOpacityEnabled)
                     put("bannerCustomOpacity", config.bannerCustomOpacity.toDouble())
+
+                    // Advanced Title Style
+                    put("isAdvancedTitleStyleEnabled", config.isAdvancedTitleStyleEnabled)
+                    put("titleImageDayOpacity", config.titleImageDayOpacity.toDouble())
+                    put("titleImageNightOpacity", config.titleImageNightOpacity.toDouble())
+                    put("titleImageDim", config.titleImageDim.toDouble())
+                    put("titleImageOffsetX", config.titleImageOffsetX.toDouble())
 
                     // Add metadata
                     put("meta_name", metadata.name)
@@ -308,7 +327,19 @@ object ThemeManager {
                     }
                 }
 
-                // 8. Encrypt and Zip to Uri
+                // 8. Copy Title Image if enabled
+                if (config.isAdvancedTitleStyleEnabled) {
+                    val extensions = listOf(".jpg", ".png", ".gif", ".webp")
+                    for (ext in extensions) {
+                        val titleImageFile = File(context.filesDir, "title_image$ext")
+                        if (titleImageFile.exists()) {
+                            titleImageFile.copyTo(File(cacheDir, "title_image$ext"))
+                            break
+                        }
+                    }
+                }
+
+                // 9. Encrypt and Zip to Uri
                 context.contentResolver.openOutputStream(uri)?.use { os ->
                     // Init Cipher
                     val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
@@ -470,6 +501,13 @@ object ThemeManager {
                 val isFolkBannerEnabled = json.optBoolean("isFolkBannerEnabled", false)
                 val isBannerCustomOpacityEnabled = json.optBoolean("isBannerCustomOpacityEnabled", false)
                 val bannerCustomOpacity = json.optDouble("bannerCustomOpacity", 0.5).toFloat()
+
+                // Advanced Title Style
+                val isAdvancedTitleStyleEnabled = json.optBoolean("isAdvancedTitleStyleEnabled", false)
+                val titleImageDayOpacity = json.optDouble("titleImageDayOpacity", 1.0).toFloat()
+                val titleImageNightOpacity = json.optDouble("titleImageNightOpacity", 1.0).toFloat()
+                val titleImageDim = json.optDouble("titleImageDim", 0.0).toFloat()
+                val titleImageOffsetX = json.optDouble("titleImageOffsetX", 0.0).toFloat()
 
                 // Multi-Background Mode
                 val isMultiBackgroundEnabled = json.optBoolean("isMultiBackgroundEnabled", false)
@@ -643,6 +681,44 @@ object ThemeManager {
                 BackgroundConfig.setFolkBannerEnabledState(isFolkBannerEnabled)
                 BackgroundConfig.setBannerCustomOpacityEnabledState(isBannerCustomOpacityEnabled)
                 BackgroundConfig.setBannerCustomOpacityValue(bannerCustomOpacity)
+
+                // Apply Advanced Title Style
+                BackgroundConfig.setAdvancedTitleStyleEnabledState(isAdvancedTitleStyleEnabled)
+                BackgroundConfig.setTitleImageDayOpacityValue(titleImageDayOpacity)
+                BackgroundConfig.setTitleImageNightOpacityValue(titleImageNightOpacity)
+                BackgroundConfig.setTitleImageDimValue(titleImageDim)
+                BackgroundConfig.setTitleImageOffsetXValue(titleImageOffsetX)
+
+                if (isAdvancedTitleStyleEnabled) {
+                    val extensions = listOf(".jpg", ".png", ".gif", ".webp")
+                    for (ext in extensions) {
+                        val titleImageFile = File(cacheDir, "title_image$ext")
+                        if (titleImageFile.exists()) {
+                            // Clear old files
+                            for (oldExt in extensions) {
+                                val oldFile = File(context.filesDir, "title_image$oldExt")
+                                if (oldFile.exists()) oldFile.delete()
+                            }
+                            
+                            val destFile = File(context.filesDir, "title_image$ext")
+                            titleImageFile.copyTo(destFile, overwrite = true)
+                            
+                            val fileUri = Uri.fromFile(destFile).buildUpon()
+                                .appendQueryParameter("t", System.currentTimeMillis().toString())
+                                .build()
+                            BackgroundConfig.updateTitleImageUri(fileUri.toString())
+                            break
+                        }
+                    }
+                } else {
+                    // Clear title image if disabled in theme
+                    val extensions = listOf(".jpg", ".png", ".gif", ".webp")
+                    for (ext in extensions) {
+                        val oldFile = File(context.filesDir, "title_image$ext")
+                        if (oldFile.exists()) oldFile.delete()
+                    }
+                    BackgroundConfig.updateTitleImageUri(null)
+                }
 
                 BackgroundConfig.save(context)
 

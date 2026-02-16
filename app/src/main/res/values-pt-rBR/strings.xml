@@ -440,6 +440,21 @@ Aqui estão algumas possíveis razões para a falha de autenticação—verifiqu
     <string name="settings_select_system_module_background">Fundo Módulos de Sistema</string>
     <string name="settings_select_settings_background">Fundo Configurações</string>
 
+    <string name="settings_advanced_title_style">Estilo de Título Avançado</string>
+    <string name="settings_advanced_title_style_summary">Substituir o título da barra superior por uma imagem personalizada</string>
+    <string name="settings_advanced_title_style_enabled">Estilo de título avançado ativado</string>
+    <string name="settings_select_title_image">Selecionar Imagem de Título</string>
+    <string name="settings_title_image_selected">Imagem de título selecionada</string>
+    <string name="settings_title_image_saved">Imagem de título salva com sucesso</string>
+    <string name="settings_title_image_error">Falha ao salvar imagem de título</string>
+    <string name="settings_clear_title_image">Limpar Imagem de Título</string>
+    <string name="settings_clear_title_image_confirm">Tem certeza de que deseja limpar a imagem de título?</string>
+    <string name="settings_title_image_cleared">Imagem de título limpa</string>
+    <string name="settings_title_image_day_opacity">Opacidade do Modo Diurno</string>
+    <string name="settings_title_image_night_opacity">Opacidade do Modo Noturno</string>
+    <string name="settings_title_image_dim">Escurecimento do Fundo</string>
+    <string name="settings_title_image_offset_x">Posição Horizontal</string>
+
     <!-- Font Settings -->
     <string name="settings_custom_font">Fonte Personalizada</string>
     <string name="settings_select_font_file">Selecionar Arquivo de Fonte</string>

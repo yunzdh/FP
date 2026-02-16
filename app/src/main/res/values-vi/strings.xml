@@ -453,6 +453,22 @@ Dưới đây là một số nguyên nhân có thể gây ra thất bại xác t
     <string name="settings_select_superuser_background">Nền siêu người dùng</string>
     <string name="settings_select_system_module_background">Nền mô-đun hệ thống</string>
     <string name="settings_select_settings_background">Nền trang cài đặt</string>
+
+    <string name="settings_advanced_title_style">Kiểu Tiêu Đề Nâng Cao</string>
+    <string name="settings_advanced_title_style_summary">Thay thế tiêu đề thanh trên bằng hình ảnh tùy chỉnh</string>
+    <string name="settings_advanced_title_style_enabled">Đã bật kiểu tiêu đề nâng cao</string>
+    <string name="settings_select_title_image">Chọn Hình Ảnh Tiêu Đề</string>
+    <string name="settings_title_image_selected">Đã chọn hình ảnh tiêu đề</string>
+    <string name="settings_title_image_saved">Lưu hình ảnh tiêu đề thành công</string>
+    <string name="settings_title_image_error">Không thể lưu hình ảnh tiêu đề</string>
+    <string name="settings_clear_title_image">Xóa Hình Ảnh Tiêu Đề</string>
+    <string name="settings_clear_title_image_confirm">Bạn có chắc chắn muốn xóa hình ảnh tiêu đề không?</string>
+    <string name="settings_title_image_cleared">Đã xóa hình ảnh tiêu đề</string>
+    <string name="settings_title_image_day_opacity">Độ Mờ Chế Độ Ngày</string>
+    <string name="settings_title_image_night_opacity">Độ Mờ Chế Độ Đêm</string>
+    <string name="settings_title_image_dim">Độ Tối Của Nền</string>
+    <string name="settings_title_image_offset_x">Vị Trí Ngang</string>
+
     <string name="settings_launcher_icon">Biểu tượng màn hình chính</string>
     <string name="settings_grid_working_card_hide_check">Ẩn biểu tượng trạng thái</string>
     <string name="settings_grid_working_card_hide_check_summary">Ẩn dấu kiểm hoặc biểu tượng cảnh báo trên thẻ đang hoạt động</string>

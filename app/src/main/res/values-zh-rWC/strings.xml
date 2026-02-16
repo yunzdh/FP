@@ -436,6 +436,22 @@
     <string name="settings_select_superuser_background">超级用户仙府背景</string>
     <string name="settings_select_system_module_background">系统模块仙府背景</string>
     <string name="settings_select_settings_background">设置页面仙府背景</string>
+
+    <string name="settings_advanced_title_style">进阶题款样式</string>
+    <string name="settings_advanced_title_style_summary">以自绘图样置换顶栏题款</string>
+    <string name="settings_advanced_title_style_enabled">进阶题款样式已启</string>
+    <string name="settings_select_title_image">择题款图样</string>
+    <string name="settings_title_image_selected">已选题款图样</string>
+    <string name="settings_title_image_saved">题款图样存讫</string>
+    <string name="settings_title_image_error">存题款图样败</string>
+    <string name="settings_clear_title_image">除题款图样</string>
+    <string name="settings_clear_title_image_confirm">确欲除题款图样乎？</string>
+    <string name="settings_title_image_cleared">题款图样已除</string>
+    <string name="settings_title_image_day_opacity">白昼模式透明度</string>
+    <string name="settings_title_image_night_opacity">黑夜模式透明度</string>
+    <string name="settings_title_image_dim">背景昏暗度</string>
+    <string name="settings_title_image_offset_x">横平位置</string>
+
     <string name="settings_launcher_icon">引仙台标识</string>
     
     <string name="su_exclude_all_title">批量摒除仙籍</string>

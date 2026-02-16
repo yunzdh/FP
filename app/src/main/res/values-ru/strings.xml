@@ -444,6 +444,22 @@
     <string name="settings_select_superuser_background">Фон суперпользователя</string>
     <string name="settings_select_system_module_background">Фон системного модуля</string>
     <string name="settings_select_settings_background">Фон страницы настроек</string>
+
+    <string name="settings_advanced_title_style">Расширенный стиль заголовка</string>
+    <string name="settings_advanced_title_style_summary">Заменить заголовок верхней панели на自定义 изображение</string>
+    <string name="settings_advanced_title_style_enabled">Расширенный стиль заголовка включен</string>
+    <string name="settings_select_title_image">Выбрать изображение заголовка</string>
+    <string name="settings_title_image_selected">Изображение заголовка выбрано</string>
+    <string name="settings_title_image_saved">Изображение заголовка успешно сохранено</string>
+    <string name="settings_title_image_error">Не удалось сохранить изображение заголовка</string>
+    <string name="settings_clear_title_image">Очистить изображение заголовка</string>
+    <string name="settings_clear_title_image_confirm">Вы уверены, что хотите очистить изображение заголовка?</string>
+    <string name="settings_title_image_cleared">Изображение заголовка очищено</string>
+    <string name="settings_title_image_day_opacity">Прозрачность дневного режима</string>
+    <string name="settings_title_image_night_opacity">Прозрачность ночного режима</string>
+    <string name="settings_title_image_dim">Затемнение фона</string>
+    <string name="settings_title_image_offset_x">Горизонтальная позиция</string>
+
     <string name="settings_launcher_icon">Иконка лаунчера</string>
     <string name="settings_grid_working_card_hide_check">Скрыть значок статуса</string>
     <string name="settings_grid_working_card_hide_check_summary">Скрыть галочку или значок предупреждения на рабочей карточке</string>

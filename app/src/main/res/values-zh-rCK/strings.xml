@@ -429,6 +429,21 @@
     <string name="settings_select_system_module_background">招牌菜背景</string>
     <string name="settings_select_settings_background">秘籍背景</string>
 
+    <string name="settings_advanced_title_style">高级标题样式</string>
+    <string name="settings_advanced_title_style_summary">用自定义图片替换顶部标题</string>
+    <string name="settings_advanced_title_style_enabled">高级标题样式已开启</string>
+    <string name="settings_select_title_image">挑标题图片</string>
+    <string name="settings_title_image_selected">标题图片挑好了</string>
+    <string name="settings_title_image_saved">标题图片存好了</string>
+    <string name="settings_title_image_error">标题图片存失败</string>
+    <string name="settings_clear_title_image">撤标题图片</string>
+    <string name="settings_clear_title_image_confirm">真要撤标题图片吗？</string>
+    <string name="settings_title_image_cleared">标题图片撤了</string>
+    <string name="settings_title_image_day_opacity">白天透明度</string>
+    <string name="settings_title_image_night_opacity">晚上透明度</string>
+    <string name="settings_title_image_dim">背景暗度</string>
+    <string name="settings_title_image_offset_x">水平位置</string>
+
     <!-- Font Settings -->
     <string name="settings_custom_font">自定字体</string>
     <string name="settings_select_font_file">挑字体文件</string>

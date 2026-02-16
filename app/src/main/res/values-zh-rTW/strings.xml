@@ -439,6 +439,22 @@
     <string name="settings_select_superuser_background">超級使用者背景</string>
     <string name="settings_select_system_module_background">系統模組背景</string>
     <string name="settings_select_settings_background">設定頁面背景</string>
+
+    <string name="settings_advanced_title_style">進階標題樣式</string>
+    <string name="settings_advanced_title_style_summary">使用自訂圖片替換頂部標題</string>
+    <string name="settings_advanced_title_style_enabled">進階標題樣式已啟用</string>
+    <string name="settings_select_title_image">選擇標題圖片</string>
+    <string name="settings_title_image_selected">已選擇標題圖片</string>
+    <string name="settings_title_image_saved">標題圖片儲存成功</string>
+    <string name="settings_title_image_error">儲存標題圖片失敗</string>
+    <string name="settings_clear_title_image">清除標題圖片</string>
+    <string name="settings_clear_title_image_confirm">確定要清除標題圖片嗎？</string>
+    <string name="settings_title_image_cleared">標題圖片已清除</string>
+    <string name="settings_title_image_day_opacity">白天模式透明度</string>
+    <string name="settings_title_image_night_opacity">夜間模式透明度</string>
+    <string name="settings_title_image_dim">背景暗度</string>
+    <string name="settings_title_image_offset_x">水平位置</string>
+
     <string name="settings_launcher_icon">桌面圖示</string>
     <string name="su_exclude_all_title">批次排除</string>
     <string name="su_exclude_all_confirm">確定要將所有未授權 Root 的應用程式設為排除嗎？</string>

@@ -446,7 +446,22 @@ Oto kilka możliwych przyczyn niepowodzenia uwierzytelnienia—proszę sprawdzi�
     <string name="settings_select_system_module_background">Tło modułu systemowego</string>
     <string name="settings_select_settings_background">Tło strony ustawień</string>
     <string name="settings_launcher_icon">Ikona launchera</string>
-    
+    <string name="settings_advanced_title_style">Zaawansowany styl tytułu</string>
+    <string name="settings_advanced_title_style_summary">Zastąp tytuł górnego paska niestandardowym obrazem</string>
+    <string name="settings_advanced_title_style_enabled">Zaawansowany styl tytułu włączony</string>
+    <string name="settings_select_title_image">Wybierz obraz tytułu</string>
+    <string name="settings_title_image_selected">Wybrano obraz tytułu</string>
+    <string name="settings_title_image_saved">Pomyślnie zapisano obraz tytułu</string>
+    <string name="settings_title_image_error">Nie udało się zapisać obrazu tytułu</string>
+    <string name="settings_clear_title_image">Wyczyść obraz tytułu</string>
+    <string name="settings_clear_title_image_confirm">Czy na pewno chcesz wyczyścić obraz tytułu?</string>
+    <string name="settings_title_image_cleared">Wyczyszczono obraz tytułu</string>
+    <string name="settings_title_image_day_opacity">Nieprzezroczystość trybu dziennego</string>
+    <string name="settings_title_image_night_opacity">Nieprzezroczystość trybu nocnego</string>
+    <string name="settings_title_image_dim">Przyciemnienie tła</string>
+    <string name="settings_title_image_offset_x">Pozycja pozioma</string>
+
+    <string name="settings_launcher_icon">Ikona launchera</string>
     <!-- KPM AutoLoad Strings -->
     <string name="kpm_autoload_title">Automatyczne ładowanie KPM</string>
     <string name="kpm_autoload_enabled">Włącz automatyczne ładowanie</string>

@@ -11,8 +11,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -98,8 +100,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.ColorMatrix
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
@@ -112,6 +119,8 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
 import androidx.compose.ui.window.SecureFlagPolicy
 import androidx.lifecycle.compose.dropUnlessResumed
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootGraph
 import com.ramcosta.composedestinations.generated.destinations.AboutScreenDestination
@@ -555,9 +564,18 @@ private fun TopBar(
     onInstallClick: () -> Unit, navigator: DestinationsNavigator, kpState: APApplication.State
 ) {
     val uriHandler = LocalUriHandler.current
+    val context = androidx.compose.ui.platform.LocalContext.current
     var showDropdownMoreOptions by remember { mutableStateOf(false) }
     var showDropdownReboot by remember { mutableStateOf(false) }
     val prefs = APApplication.sharedPreferences
+    val darkThemeFollowSys = prefs.getBoolean("night_mode_follow_sys", false)
+    val nightModeEnabled = prefs.getBoolean("night_mode_enabled", true)
+    val isDarkTheme = if (darkThemeFollowSys) {
+        isSystemInDarkTheme()
+    } else {
+        nightModeEnabled
+    }
+    
     val currentTitle = prefs.getString("app_title", "folkpatch") ?: "folkpatch"
     val titleResId = when (currentTitle) {
         "fpatch" -> R.string.app_title_fpatch
@@ -574,8 +592,49 @@ private fun TopBar(
         else -> R.string.app_title_folkpatch
     }
 
+    val useAdvancedTitleStyle = BackgroundConfig.isAdvancedTitleStyleEnabled && 
+                                !BackgroundConfig.titleImageUri.isNullOrEmpty()
+    val titleOpacity = if (useAdvancedTitleStyle) {
+        BackgroundConfig.getEffectiveTitleImageOpacity(isDarkTheme)
+    } else 1f
+    val titleDim = if (useAdvancedTitleStyle) {
+        BackgroundConfig.getEffectiveTitleImageDim(isDarkTheme)
+    } else 0f
+    val titleOffsetX = if (useAdvancedTitleStyle) {
+        BackgroundConfig.titleImageOffsetX * 100f
+    } else 0f
+
     TopAppBar(title = {
-        Text(stringResource(titleResId))
+        if (useAdvancedTitleStyle) {
+            AsyncImage(
+                model = ImageRequest.Builder(context)
+                    .data(BackgroundConfig.titleImageUri)
+                    .crossfade(true)
+                    .build(),
+                contentDescription = stringResource(titleResId),
+                modifier = Modifier
+                    .height(40.dp)
+                    .offset(x = titleOffsetX.dp)
+                    .alpha(titleOpacity)
+                    .graphicsLayer {
+                        if (titleDim > 0f) {
+                            colorFilter = ColorFilter.colorMatrix(
+                                ColorMatrix().apply {
+                                    setToScale(
+                                        1f - titleDim,
+                                        1f - titleDim,
+                                        1f - titleDim,
+                                        1f
+                                    )
+                                }
+                            )
+                        }
+                    },
+                contentScale = ContentScale.Fit
+            )
+        } else {
+            Text(stringResource(titleResId))
+        }
     }, actions = {
         if (MusicConfig.isMusicEnabled) {
             val isPlaying by MusicManager.isPlaying.collectAsState()

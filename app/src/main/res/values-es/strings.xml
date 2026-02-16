@@ -442,6 +442,21 @@ Aquí hay algunas posibles razones para el fallo de autenticación—por favor v
     <string name="settings_select_system_module_background">Fondo Módulos del Sistema</string>
     <string name="settings_select_settings_background">Fondo Ajustes</string>
 
+    <string name="settings_advanced_title_style">Estilo de Título Avanzado</string>
+    <string name="settings_advanced_title_style_summary">Reemplazar el título de la barra superior con una imagen personalizada</string>
+    <string name="settings_advanced_title_style_enabled">Estilo de título avanzado activado</string>
+    <string name="settings_select_title_image">Seleccionar Imagen de Título</string>
+    <string name="settings_title_image_selected">Imagen de título seleccionada</string>
+    <string name="settings_title_image_saved">Imagen de título guardada exitosamente</string>
+    <string name="settings_title_image_error">Error al guardar la imagen de título</string>
+    <string name="settings_clear_title_image">Limpiar Imagen de Título</string>
+    <string name="settings_clear_title_image_confirm">¿Estás seguro de que deseas limpiar la imagen de título?</string>
+    <string name="settings_title_image_cleared">Imagen de título limpiada</string>
+    <string name="settings_title_image_day_opacity">Opacidad Modo Día</string>
+    <string name="settings_title_image_night_opacity">Opacidad Modo Noche</string>
+    <string name="settings_title_image_dim">Atenuación de Fondo</string>
+    <string name="settings_title_image_offset_x">Posición Horizontal</string>
+
     <!-- Font Settings -->
     <string name="settings_custom_font">Fuente Personalizada</string>
     <string name="settings_select_font_file">Seleccionar archivo de fuente</string>

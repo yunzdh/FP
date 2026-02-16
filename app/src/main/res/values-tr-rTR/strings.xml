@@ -440,6 +440,21 @@ Bol şans! Ayrıca, aşağıdaki belge butonuna tıklamak kesinlikle doğru!</st
     <string name="settings_select_settings_background">Ayarlar Arka Planı</string>
 
 
+    <string name="settings_advanced_title_style">Gelişmiş Başlık Stili</string>
+    <string name="settings_advanced_title_style_summary">Üst bar başlığını özel bir resimle değiştir</string>
+    <string name="settings_advanced_title_style_enabled">Gelişmiş başlık stili etkinleştirildi</string>
+    <string name="settings_select_title_image">Başlık Resmi Seç</string>
+    <string name="settings_title_image_selected">Başlık resmi seçildi</string>
+    <string name="settings_title_image_saved">Başlık resmi başarıyla kaydedildi</string>
+    <string name="settings_title_image_error">Başlık resmi kaydedilemedi</string>
+    <string name="settings_clear_title_image">Başlık Resmini Temizle</string>
+    <string name="settings_clear_title_image_confirm">Başlık resmini temizlemek istediğinizden emin misiniz?</string>
+    <string name="settings_title_image_cleared">Başlık resmi temizlendi</string>
+    <string name="settings_title_image_day_opacity">Gündüz Modu Opaklığı</string>
+    <string name="settings_title_image_night_opacity">Gece Modu Opaklığı</string>
+    <string name="settings_title_image_dim">Arka Plan Karartma</string>
+    <string name="settings_title_image_offset_x">Yatay Konum</string>
+
     <!-- Font Settings -->
     <string name="settings_custom_font">Özel Yazı Tipi</string>
     <string name="settings_select_font_file">Yazı Tipi Dosyası Seç</string>

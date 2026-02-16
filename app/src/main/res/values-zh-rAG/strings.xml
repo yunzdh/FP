@@ -440,7 +440,22 @@
     <string name="settings_select_superuser_background">超级用户背景图喵</string>
     <string name="settings_select_system_module_background">系统模块背景图喵</string>
     <string name="settings_select_settings_background">设置页背景图喵</string>
-    
+
+    <string name="settings_advanced_title_style">高级标题样式喵</string>
+    <string name="settings_advanced_title_style_summary">用自定义图片换掉顶部标题喵</string>
+    <string name="settings_advanced_title_style_enabled">高级标题样式开起来了喵！</string>
+    <string name="settings_select_title_image">挑标题图片喵！</string>
+    <string name="settings_title_image_selected">标题图片挑好了喵！</string>
+    <string name="settings_title_image_saved">标题图片存好了喵！</string>
+    <string name="settings_title_image_error">标题图片存失败喵...</string>
+    <string name="settings_clear_title_image">撤标题图片喵</string>
+    <string name="settings_clear_title_image_confirm">真要撤标题图片吗喵？</string>
+    <string name="settings_title_image_cleared">标题图片撤了喵</string>
+    <string name="settings_title_image_day_opacity">白天透明度喵</string>
+    <string name="settings_title_image_night_opacity">晚上透明度喵</string>
+    <string name="settings_title_image_dim">背景暗度喵</string>
+    <string name="settings_title_image_offset_x">水平位置喵</string>
+
     <!-- Font Settings -->
     <string name="settings_custom_font">自定义字体喵</string>
     <string name="settings_select_font_file">选字体文件喵！</string>

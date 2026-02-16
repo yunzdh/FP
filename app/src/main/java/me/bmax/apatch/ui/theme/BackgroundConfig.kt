@@ -98,6 +98,20 @@ object BackgroundConfig {
         private set
     var settingsBackgroundUri: String? by mutableStateOf(null)
         private set
+
+    // Advanced Title Style
+    var isAdvancedTitleStyleEnabled: Boolean by mutableStateOf(false)
+        private set
+    var titleImageUri: String? by mutableStateOf(null)
+        private set
+    var titleImageDayOpacity: Float by mutableStateOf(1.0f)
+        private set
+    var titleImageNightOpacity: Float by mutableStateOf(1.0f)
+        private set
+    var titleImageDim: Float by mutableStateOf(0.0f)
+        private set
+    var titleImageOffsetX: Float by mutableStateOf(0f)
+        private set
     
     private const val PREFS_NAME = "background_settings"
     private const val KEY_CUSTOM_BACKGROUND_URI = "custom_background_uri"
@@ -143,6 +157,13 @@ object BackgroundConfig {
     private const val KEY_SUPERUSER_BACKGROUND_URI = "superuser_background_uri"
     private const val KEY_SYSTEM_MODULE_BACKGROUND_URI = "system_module_background_uri"
     private const val KEY_SETTINGS_BACKGROUND_URI = "settings_background_uri"
+
+    private const val KEY_ADVANCED_TITLE_STYLE_ENABLED = "advanced_title_style_enabled"
+    private const val KEY_TITLE_IMAGE_URI = "title_image_uri"
+    private const val KEY_TITLE_IMAGE_DAY_OPACITY = "title_image_day_opacity"
+    private const val KEY_TITLE_IMAGE_NIGHT_OPACITY = "title_image_night_opacity"
+    private const val KEY_TITLE_IMAGE_DIM = "title_image_dim"
+    private const val KEY_TITLE_IMAGE_OFFSET_X = "title_image_offset_x"
 
     private const val TAG = "BackgroundConfig"
     
@@ -389,6 +410,39 @@ object BackgroundConfig {
     fun updateSettingsBackgroundUri(uri: String?) {
         settingsBackgroundUri = uri
     }
+
+    // Advanced Title Style Setters
+    fun setAdvancedTitleStyleEnabledState(enabled: Boolean) {
+        isAdvancedTitleStyleEnabled = enabled
+    }
+
+    fun updateTitleImageUri(uri: String?) {
+        titleImageUri = uri
+    }
+
+    fun setTitleImageDayOpacityValue(opacity: Float) {
+        titleImageDayOpacity = opacity
+    }
+
+    fun setTitleImageNightOpacityValue(opacity: Float) {
+        titleImageNightOpacity = opacity
+    }
+
+    fun getEffectiveTitleImageOpacity(isDarkTheme: Boolean): Float {
+        return if (isDarkTheme) titleImageNightOpacity else titleImageDayOpacity
+    }
+
+    fun setTitleImageDimValue(dim: Float) {
+        titleImageDim = dim
+    }
+
+    fun getEffectiveTitleImageDim(isDarkTheme: Boolean): Float {
+        return titleImageDim
+    }
+
+    fun setTitleImageOffsetXValue(offset: Float) {
+        titleImageOffsetX = offset
+    }
     
     /**
      * 保存配置到SharedPreferences
@@ -439,6 +493,13 @@ object BackgroundConfig {
             putString(KEY_SUPERUSER_BACKGROUND_URI, superuserBackgroundUri)
             putString(KEY_SYSTEM_MODULE_BACKGROUND_URI, systemModuleBackgroundUri)
             putString(KEY_SETTINGS_BACKGROUND_URI, settingsBackgroundUri)
+
+            putBoolean(KEY_ADVANCED_TITLE_STYLE_ENABLED, isAdvancedTitleStyleEnabled)
+            putString(KEY_TITLE_IMAGE_URI, titleImageUri)
+            putFloat(KEY_TITLE_IMAGE_DAY_OPACITY, titleImageDayOpacity)
+            putFloat(KEY_TITLE_IMAGE_NIGHT_OPACITY, titleImageNightOpacity)
+            putFloat(KEY_TITLE_IMAGE_DIM, titleImageDim)
+            putFloat(KEY_TITLE_IMAGE_OFFSET_X, titleImageOffsetX)
             apply()
         }
     }
@@ -492,6 +553,13 @@ object BackgroundConfig {
         val superuserUri = prefs.getString(KEY_SUPERUSER_BACKGROUND_URI, null)
         val systemModuleUri = prefs.getString(KEY_SYSTEM_MODULE_BACKGROUND_URI, null)
         val settingsUri = prefs.getString(KEY_SETTINGS_BACKGROUND_URI, null)
+
+        val advancedTitleStyleEnabled = prefs.getBoolean(KEY_ADVANCED_TITLE_STYLE_ENABLED, false)
+        val titleImageUriValue = prefs.getString(KEY_TITLE_IMAGE_URI, null)
+        val titleDayOpacity = prefs.getFloat(KEY_TITLE_IMAGE_DAY_OPACITY, 1.0f)
+        val titleNightOpacity = prefs.getFloat(KEY_TITLE_IMAGE_NIGHT_OPACITY, 1.0f)
+        val titleDim = prefs.getFloat(KEY_TITLE_IMAGE_DIM, 0.0f)
+        val titleOffsetX = prefs.getFloat(KEY_TITLE_IMAGE_OFFSET_X, 0f)
         
         Log.d(TAG, "加载背景配置: URI=$uri, enabled=$enabled, opacity=$opacity, dim=$dim")
         
@@ -536,6 +604,13 @@ object BackgroundConfig {
         superuserBackgroundUri = superuserUri
         systemModuleBackgroundUri = systemModuleUri
         settingsBackgroundUri = settingsUri
+
+        isAdvancedTitleStyleEnabled = advancedTitleStyleEnabled
+        titleImageUri = titleImageUriValue
+        titleImageDayOpacity = titleDayOpacity
+        titleImageNightOpacity = titleNightOpacity
+        titleImageDim = titleDim
+        titleImageOffsetX = titleOffsetX
     }
     
     /**
@@ -584,6 +659,13 @@ object BackgroundConfig {
         superuserBackgroundUri = null
         systemModuleBackgroundUri = null
         settingsBackgroundUri = null
+
+        isAdvancedTitleStyleEnabled = false
+        titleImageUri = null
+        titleImageDayOpacity = 1.0f
+        titleImageNightOpacity = 1.0f
+        titleImageDim = 0.0f
+        titleImageOffsetX = 0f
     }
 }
 
@@ -602,6 +684,8 @@ object BackgroundManager {
     private const val SUPERUSER_BACKGROUND_FILENAME = "background_superuser"
     private const val SYSTEM_MODULE_BACKGROUND_FILENAME = "background_system_module"
     private const val SETTINGS_BACKGROUND_FILENAME = "background_settings"
+
+    private const val TITLE_IMAGE_FILENAME = "title_image"
 
     /**
      * 获取文件扩展名
@@ -866,6 +950,42 @@ object BackgroundManager {
     
     fun clearSettingsBackground(context: Context) = 
         clearGenericBackground(context, SETTINGS_BACKGROUND_FILENAME) { BackgroundConfig.updateSettingsBackgroundUri(it) }
+
+    // Title Image
+    suspend fun saveAndApplyTitleImage(context: Context, uri: Uri): Boolean {
+        return try {
+            withContext(Dispatchers.IO) {
+                val extension = getFileExtension(context, uri)
+                clearOldFiles(context, TITLE_IMAGE_FILENAME)
+                
+                val targetFile = File(context.filesDir, "$TITLE_IMAGE_FILENAME$extension")
+                val savedUri = saveImageToInternalStorage(context, uri, targetFile)
+                
+                if (savedUri != null) {
+                    Log.d(TAG, "标题图片保存成功，URI: $savedUri")
+                    BackgroundConfig.updateTitleImageUri(savedUri.toString())
+                    BackgroundConfig.save(context)
+                    true
+                } else {
+                    Log.e(TAG, "标题图片保存失败")
+                    false
+                }
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "保存标题图片失败: ${e.message}", e)
+            false
+        }
+    }
+
+    fun clearTitleImage(context: Context) {
+        try {
+            clearOldFiles(context, TITLE_IMAGE_FILENAME)
+            BackgroundConfig.updateTitleImageUri(null)
+            BackgroundConfig.save(context)
+        } catch (e: Exception) {
+            Log.e(TAG, "清除标题图片失败: ${e.message}", e)
+        }
+    }
     
     /**
      * 加载自定义背景
