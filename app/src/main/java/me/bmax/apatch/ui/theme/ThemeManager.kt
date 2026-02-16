@@ -87,11 +87,6 @@ object ThemeManager {
         // Video Background
         val isVideoBackgroundEnabled: Boolean = false,
         val videoVolume: Float = 0f,
-        // Banner Settings
-        val isBannerEnabled: Boolean = true,
-        val isFolkBannerEnabled: Boolean = false,
-        val isBannerCustomOpacityEnabled: Boolean = false,
-        val bannerCustomOpacity: Float = 0.5f,
         // Advanced Title Style
         val isAdvancedTitleStyleEnabled: Boolean = false,
         val titleImageDayOpacity: Float = 1.0f,
@@ -153,10 +148,6 @@ object ThemeManager {
                     soundEffectScope = SoundEffectConfig.scope,
                     isVideoBackgroundEnabled = BackgroundConfig.isVideoBackgroundEnabled,
                     videoVolume = BackgroundConfig.videoVolume,
-                    isBannerEnabled = BackgroundConfig.isBannerEnabled,
-                    isFolkBannerEnabled = BackgroundConfig.isFolkBannerEnabled,
-                    isBannerCustomOpacityEnabled = BackgroundConfig.isBannerCustomOpacityEnabled,
-                    bannerCustomOpacity = BackgroundConfig.bannerCustomOpacity,
                     // Advanced Title Style
                     isAdvancedTitleStyleEnabled = BackgroundConfig.isAdvancedTitleStyleEnabled,
                     titleImageDayOpacity = BackgroundConfig.titleImageDayOpacity,
@@ -212,12 +203,6 @@ object ThemeManager {
                     // Video Background
                     put("isVideoBackgroundEnabled", config.isVideoBackgroundEnabled)
                     put("videoVolume", config.videoVolume.toDouble())
-
-                    // Banner Settings
-                    put("isBannerEnabled", config.isBannerEnabled)
-                    put("isFolkBannerEnabled", config.isFolkBannerEnabled)
-                    put("isBannerCustomOpacityEnabled", config.isBannerCustomOpacityEnabled)
-                    put("bannerCustomOpacity", config.bannerCustomOpacity.toDouble())
 
                     // Advanced Title Style
                     put("isAdvancedTitleStyleEnabled", config.isAdvancedTitleStyleEnabled)
@@ -496,12 +481,6 @@ object ThemeManager {
                 val isVideoBackgroundEnabled = json.optBoolean("isVideoBackgroundEnabled", false)
                 val videoVolume = json.optDouble("videoVolume", 0.0).toFloat()
 
-                // Banner Settings
-                val isBannerEnabled = json.optBoolean("isBannerEnabled", true)
-                val isFolkBannerEnabled = json.optBoolean("isFolkBannerEnabled", false)
-                val isBannerCustomOpacityEnabled = json.optBoolean("isBannerCustomOpacityEnabled", false)
-                val bannerCustomOpacity = json.optDouble("bannerCustomOpacity", 0.5).toFloat()
-
                 // Advanced Title Style
                 val isAdvancedTitleStyleEnabled = json.optBoolean("isAdvancedTitleStyleEnabled", false)
                 val titleImageDayOpacity = json.optDouble("titleImageDayOpacity", 1.0).toFloat()
@@ -675,12 +654,6 @@ object ThemeManager {
                         }
                     }
                 }
-
-                // Apply Banner Settings
-                BackgroundConfig.setBannerEnabledState(isBannerEnabled)
-                BackgroundConfig.setFolkBannerEnabledState(isFolkBannerEnabled)
-                BackgroundConfig.setBannerCustomOpacityEnabledState(isBannerCustomOpacityEnabled)
-                BackgroundConfig.setBannerCustomOpacityValue(bannerCustomOpacity)
 
                 // Apply Advanced Title Style
                 BackgroundConfig.setAdvancedTitleStyleEnabledState(isAdvancedTitleStyleEnabled)

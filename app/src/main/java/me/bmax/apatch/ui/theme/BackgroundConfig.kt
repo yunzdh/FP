@@ -72,7 +72,7 @@ object BackgroundConfig {
     // Banner Settings
     var isBannerEnabled: Boolean by mutableStateOf(true)
         private set
-    var isFolkBannerEnabled: Boolean by mutableStateOf(false)
+    var isFolkBannerEnabled: Boolean by mutableStateOf(true)
         private set
     var isBannerCustomOpacityEnabled: Boolean by mutableStateOf(false)
         private set
@@ -537,7 +537,7 @@ object BackgroundConfig {
         val badgeTextMode = prefs.getInt(KEY_CUSTOM_BADGE_TEXT_MODE, 0)
 
         val bannerEnabled = prefs.getBoolean(KEY_BANNER_ENABLED, true)
-        val folkBannerEnabled = prefs.getBoolean(KEY_FOLK_BANNER_ENABLED, false)
+        val folkBannerEnabled = prefs.getBoolean(KEY_FOLK_BANNER_ENABLED, true)
         val bannerCustomOpacityEnabled = prefs.getBoolean(KEY_BANNER_CUSTOM_OPACITY_ENABLED, false)
         val bannerCustomOpacity = prefs.getFloat(KEY_BANNER_CUSTOM_OPACITY, 0.5f)
 
@@ -646,7 +646,7 @@ object BackgroundConfig {
         customBadgeTextMode = 0
 
         isBannerEnabled = true
-        isFolkBannerEnabled = false
+        isFolkBannerEnabled = true
         isBannerCustomOpacityEnabled = false
         bannerCustomOpacity = 0.5f
 
